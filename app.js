@@ -4,6 +4,9 @@ const btnTurn = document.querySelector('#btn-turn');
 const spinContainerEl = document.querySelector('#spin-container');
 const peopleContainerEl = document.querySelector('#people-container');
 const personStyle = document.createElement('style');
+const peopleListEl = document.querySelector('#people-list');
+
+// FIXME: remove
 const btn = document.querySelector('#btn');
 
 let isBack = false;
@@ -137,6 +140,7 @@ function flipCard(isBack, direction) {
   isBack = !isBack;
 }
 
+/* side__front create person UI*/
 // set rotateDeg for each person
 setRotateDeg(persons);
 function setRotateDeg(persons) {
@@ -246,6 +250,12 @@ function resetAll(allPersons) {
   return [...allPersons];
 }
 
+/*side__back*/
+function createPeopleList() {
+  peopleListEl.innerHTML = persons.map();
+}
+
+/*help functions*/
 // get CSS var
 function getCssVar(variable) {
   let style = getComputedStyle(document.body);
@@ -257,13 +267,13 @@ function setCssVar(variable, value) {
   document.documentElement.style.setProperty(variable, value);
 }
 
-// click to flip TODO: remove
-// btn.addEventListener('click', () => {
-//   if (!isBack) {
-//     spinContainerEl.classList.add('spin-container__flip');
-//   } else {
-//     spinContainerEl.classList.remove('spin-container__flip');
-//   }
+// click to flip FIXME: remove
+btn.addEventListener('click', () => {
+  if (!isBack) {
+    spinContainerEl.classList.add('spin-container__flip');
+  } else {
+    spinContainerEl.classList.remove('spin-container__flip');
+  }
 
-//   isBack = !isBack;
-// });
+  isBack = !isBack;
+});

@@ -50,6 +50,8 @@ body {
   transition: -webkit-transform 0.3s ease-in-out, -webkit-box-shadow 0.2s ease-in-out;
   transition: transform 0.3s ease-in-out, box-shadow 0.2s ease-in-out;
   transition: transform 0.3s ease-in-out, box-shadow 0.2s ease-in-out, -webkit-transform 0.3s ease-in-out, -webkit-box-shadow 0.2s ease-in-out;
+  -webkit-transform: rotateY(180deg);
+          transform: rotateY(180deg);
 }
 
 .spin-container__flip {

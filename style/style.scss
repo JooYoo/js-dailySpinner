@@ -38,6 +38,9 @@ body {
   transform-style: preserve-3d;
   transition: transform 0.3s ease-in-out, box-shadow 0.2s ease-in-out;
 
+  // FIXME: remove after side__back finish
+  transform: rotateY(180deg);
+
   // backside__after-flip
   &__flip {
     transform: scale(1.15) rotateY(180deg);
