@@ -1,9 +1,15 @@
 :root {
+  --basic-unit: 4px;
   --rotate-from: 0deg;
   --rotate-to: 0deg;
   --person-position: 0;
   --card-shadow: 1px 1px 10px 5px rgba(0, 0, 0, 0.1);
   --card-shadow-transition: 1px 1px 10px 1px rgba(0, 0, 0, 0.08);
+  --spin-container-height: calc(var(--basic-unit) * 125);
+  --spin-container-width: calc(var(--basic-unit) * 125);
+  --people-list-width: calc(var(--basic-unit) * 112.5);
+  --people-list-height: calc(var(--basic-unit) * 87.5);
+  --people-list-padding-top: calc(var(--basic-unit) * 27.5);
 }
 
 * {
@@ -36,8 +42,8 @@ body {
 
 .spin-container {
   position: relative;
-  height: 500px;
-  width: 500px;
+  height: var(--spin-container-height);
+  width: var(--spin-container-width);
   border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 50%;
   -webkit-box-shadow: 0 -15px 15px rgba(255, 255, 255, 0.1), inset 0 -15px 15px white, 0 15px 15px rgba(0, 0, 0, 0.1), inset 0 15px 15px rgba(0, 0, 0, 0.08);
@@ -88,6 +94,13 @@ body {
 }
 
 .side__back {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
   -webkit-transform: rotateY(180deg);
           transform: rotateY(180deg);
 }
@@ -149,6 +162,68 @@ body {
   border: 1px solid rgba(255, 255, 255, 0.1);
   -webkit-box-shadow: -6px -6px 26px 0 rgba(255, 255, 255, 0.9), 6px 6px 16px 0 rgba(217, 210, 200, 0.5);
           box-shadow: -6px -6px 26px 0 rgba(255, 255, 255, 0.9), 6px 6px 16px 0 rgba(217, 210, 200, 0.5);
+}
+
+.side .people-list {
+  overflow: scroll;
+  position: relative;
+  top: 40px;
+  width: var(--people-list-width);
+  height: var(--people-list-height);
+  border-radius: 50%;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
+.side .people-list::-webkit-scrollbar {
+  display: none;
+}
+
+.side .people-list__textbox {
+  width: var(--people-list-width);
+}
+
+.side .people-list__textbox input {
+  position: absolute;
+  top: 10%;
+  left: 50%;
+  height: 10%;
+  width: 50%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+  border: 0;
+  background-color: gainsboro;
+}
+
+.side .people-list-item {
+  list-style: none;
+  margin: 30px 0 65px 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.side .people-list-item__box-name-container {
+  position: absolute;
+  left: 80px;
+}
+
+.side .people-list-item__delete-btn {
+  position: absolute;
+  right: 0;
+  padding: 15px 5px;
+  margin-right: 100px;
+  background: transparent;
+  border: 0;
+  font-weight: lighter;
+  font-size: 20px;
+  color: gainsboro;
 }
 
 .turn--start {

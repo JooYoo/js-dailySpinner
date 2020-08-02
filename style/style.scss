@@ -1,9 +1,15 @@
 :root {
+  --basic-unit: 4px;
   --rotate-from: 0deg;
   --rotate-to: 0deg;
   --person-position: 0;
   --card-shadow: 1px 1px 10px 5px rgba(0, 0, 0, 0.1);
   --card-shadow-transition: 1px 1px 10px 1px rgba(0, 0, 0, 0.08);
+  --spin-container-height: calc(var(--basic-unit) * 125); // 500px
+  --spin-container-width: calc(var(--basic-unit) * 125); // 500px
+  --people-list-width: calc(var(--basic-unit) * 112.5); // 400px
+  --people-list-height: calc(var(--basic-unit) * 87.5); // 350px
+  --people-list-padding-top: calc(var(--basic-unit) * 27.5); // 110px
 }
 
 * {
@@ -25,8 +31,8 @@ body {
 
 .spin-container {
   position: relative;
-  height: 500px;
-  width: 500px;
+  height: var(--spin-container-height);
+  width: var(--spin-container-width);
 
   border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 50%;
@@ -65,6 +71,8 @@ body {
   }
 
   &__back {
+    display: flex;
+    flex-direction: column;
     transform: rotateY(180deg);
   }
 
@@ -127,6 +135,66 @@ body {
         6px 6px 16px 0 rgba(217, 210, 200, 0.5);
     }
   }
+
+  .people-list {
+    overflow: scroll;
+    position: relative;
+    top: 40px;
+    width: var(--people-list-width);
+    height: var(--people-list-height);
+    border-radius: 50%;
+    // border: 1px solid;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+
+    &__textbox {
+      width: var(--people-list-width);
+
+      input {
+        position: absolute;
+        top: 10%;
+        left: 50%;
+        height: 10%;
+        width: 50%;
+        transform: translateX(-50%);
+        border: 0;
+        background-color: gainsboro;
+      }
+    }
+
+    &-item {
+      list-style: none;
+      margin: 30px 0 65px 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    &-item__box-name-container {
+      position: absolute;
+      left: 80px;
+    }
+
+    &-item__checkbox {
+      //TODO: styling
+    }
+
+    &-item__delete-btn {
+      position: absolute;
+      right: 0;
+      padding: 15px 5px;
+      margin-right: 100px;
+      background: transparent;
+      border: 0;
+      font-weight: lighter;
+      font-size: 20px;
+      color: gainsboro;
+    }
+  }
 }
 
 // needle turn animation
@@ -165,7 +233,7 @@ body {
   }
 }
 
-// help flip button
+// FIXME: help flip button
 .btn {
   position: absolute;
   bottom: 5vh;
