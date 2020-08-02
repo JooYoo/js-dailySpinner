@@ -189,10 +189,20 @@ body {
   left: 50%;
   height: 10%;
   width: 50%;
+  padding: 0 20px;
   -webkit-transform: translateX(-50%);
           transform: translateX(-50%);
   border: 0;
-  background-color: gainsboro;
+  border-bottom: 1px solid gainsboro;
+  line-height: 1.3;
+  color: gray;
+  font-family: cursive;
+  font-size: 20px;
+  background-color: transparent;
+}
+
+.side .people-list__textbox input:focus {
+  outline: 0;
 }
 
 .side .people-list-item {
@@ -211,7 +221,7 @@ body {
 
 .side .people-list-item__box-name-container {
   position: absolute;
-  left: 80px;
+  left: 100px;
 }
 
 .side .people-list-item__delete-btn {
@@ -224,6 +234,10 @@ body {
   font-weight: lighter;
   font-size: 20px;
   color: gainsboro;
+}
+
+.side .people-list-item__delete-btn:focus {
+  outline: 0;
 }
 
 .turn--start {
