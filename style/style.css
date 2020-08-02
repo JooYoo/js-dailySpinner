@@ -183,6 +183,22 @@ body {
   width: var(--people-list-width);
 }
 
+.side .people-list__textbox ::-webkit-input-placeholder {
+  color: lightgray;
+}
+
+.side .people-list__textbox :-ms-input-placeholder {
+  color: lightgray;
+}
+
+.side .people-list__textbox ::-ms-input-placeholder {
+  color: lightgray;
+}
+
+.side .people-list__textbox ::placeholder {
+  color: lightgray;
+}
+
 .side .people-list__textbox input {
   position: absolute;
   top: 10%;
@@ -221,7 +237,39 @@ body {
 
 .side .people-list-item__box-name-container {
   position: absolute;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   left: 100px;
+}
+
+.side .people-list-item__checkbox[type='checkbox'] {
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  border: 2px solid #ccc;
+  border-radius: 50%;
+  background: white;
+  width: 1rem;
+  height: 1rem;
+}
+
+.side .people-list-item__checkbox[type='checkbox']:checked {
+  background: lightgreen;
+  border: 3px solid #ccc;
+  border-radius: 1rem;
+}
+
+.side .people-list-item__checkbox[type='checkbox']:focus {
+  outline: none;
+}
+
+.side .people-list-item__text {
+  margin-left: 10px;
+  color: grey;
 }
 
 .side .people-list-item__delete-btn {
