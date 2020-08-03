@@ -229,6 +229,9 @@ btnTurn.addEventListener('click', () => {
     needle.classList.add('turn--start');
   }
 
+  // set progressbar
+  setProgress();
+
   // restart animation: reflow
   needle.style.animation = 'none';
   needle.offsetHeight;
@@ -261,6 +264,31 @@ function resetAll(allPersons) {
   console.log('reset');
 
   return [...allPersons];
+}
+
+// progressbar
+function setProgress() {
+  let progressLength = selectedPersons.length;
+  let progressLengthCurrent = currentPersons.length;
+  let progressDegUnit = 360 / progressLength;
+  let progressDeg;
+  let progressPercent = 0;
+
+  if (progressPercent < 100) {
+    progressDeg = progressDegUnit * (progressLength - progressLengthCurrent);
+  } else {
+    progressDeg = 0;
+  }
+  progressPercent = (progressDeg / 360) * 100;
+
+  setProgressUi(progressPercent);
+}
+
+function setProgressUi(progressPercent) {
+  document.documentElement.style.setProperty(
+    '--spin-progressbar-percent',
+    progressPercent
+  );
 }
 
 /*side__back*/
@@ -305,6 +333,7 @@ function setPersonAttend(selectedPersonName, e) {
   );
   selectedPerson.isAttend = !selectedPerson.isAttend;
   setPersonAttenUI(e.target.parentElement, selectedPerson.isAttend);
+  //TODO: reset front_side needle
 }
 
 function setPersonAttenUI(parentEl, isAttend) {

@@ -7,6 +7,7 @@
   --card-shadow-transition: 1px 1px 10px 1px rgba(0, 0, 0, 0.08);
   --spin-container-height: calc(var(--basic-unit) * 125);
   --spin-container-width: calc(var(--basic-unit) * 125);
+  --spin-progressbar-percent: 0;
   --people-list-width: calc(var(--basic-unit) * 112.5);
   --people-list-height: calc(var(--basic-unit) * 87.5);
   --people-list-padding-top: calc(var(--basic-unit) * 27.5);
@@ -103,6 +104,41 @@ body {
           transform: rotateY(180deg);
   border-radius: 50%;
   background-color: rgba(255, 255, 255, 0.5);
+}
+
+.side .spin-progressbar {
+  position: absolute;
+  left: 50%;
+  -webkit-transform: translate(-50%) rotate(-90deg);
+          transform: translate(-50%) rotate(-90deg);
+  width: 60%;
+  height: 60%;
+}
+
+.side .spin-progressbar svg {
+  overflow: visible;
+}
+
+.side .spin-progressbar svg circle {
+  fill: none;
+  stroke-width: 6px;
+  stroke-dasharray: 440;
+  stroke-dashoffset: 440;
+  stroke-linecap: round;
+  overflow: visible;
+}
+
+.side .spin-progressbar svg circle:nth-child(1) {
+  stroke: rgba(0, 0, 0, 0.03);
+  stroke-dashoffset: 0;
+}
+
+.side .spin-progressbar svg circle:nth-child(2) {
+  -webkit-transition: stroke-dashoffset 2s ease-in-out;
+  transition: stroke-dashoffset 2s ease-in-out;
+  stroke-width: 4px;
+  stroke: rgba(0, 0, 0, 0.15);
+  stroke-dashoffset: calc( 440 - (440 * var(--spin-progressbar-percent)) / 100);
 }
 
 .side .spin-needle {
