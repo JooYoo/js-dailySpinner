@@ -14,6 +14,7 @@ let isTapDownPlate = false;
 
 // create Person-Object
 let persons = [];
+let selectedPersons = [];
 class Person {
   constructor(name) {
     this.id = Person.setId();
@@ -36,13 +37,15 @@ persons.push(
   new Person('Felix'),
   new Person('Yu'),
   new Person('Slawa'),
-  new Person('Ali')
+  new Person('Ali'),
+  new Person('Winnie')
 );
 
 //TODO: add person from Ui
-// persons.push((new Person('ABB').isAttend = false));
-persons[0].isAttend = false;
-console.log(persons);
+
+function getSelectedPersons() {
+  return persons.filter((person) => person.isAttend == true);
+}
 
 /* swipe to flip the dial plate */
 // detect mousedown & touchstart in card
@@ -68,7 +71,7 @@ function onSwipeTo(e) {
 
   let swipeTo = onSwipe(e);
   if (swipeTo) {
-    flipCard(isBack, swipeTo);
+    flipPlate(isBack, swipeTo);
   }
 }
 
@@ -133,7 +136,7 @@ function checkDirection(oldx, oldy, currx, curry) {
 }
 
 // flip plate
-function flipCard(isBack, direction) {
+function flipPlate(isBack, direction) {
   if (!isBack && direction === Swipe.RIGHT) {
     spinContainerEl.classList.add('spin-container__flip');
   } else {
@@ -141,33 +144,39 @@ function flipCard(isBack, direction) {
   }
 
   isBack = !isBack;
+  createPersonEls();
 }
 
 /* side__front create person UI*/
 // set rotateDeg for each person
-setRotateDeg(persons);
-function setRotateDeg(persons) {
-  for (let i = 0; i < persons.length; i++) {
-    persons[i].rotateDeg = (360 / persons.length) * i;
+function setRotateDeg(selectedPersons) {
+  for (let i = 0; i < selectedPersons.length; i++) {
+    selectedPersons[i].rotateDeg = (360 / selectedPersons.length) * i;
   }
 }
 
 // create persons in UI
 createPersonEls();
 function createPersonEls() {
-  peopleContainerEl.innerHTML = persons
+  peopleContainerEl.innerHTML = '';
+  selectedPersons = getSelectedPersons();
+  setRotateDeg(selectedPersons);
+
+  peopleContainerEl.innerHTML = selectedPersons
     .map(
-      (person) => `
-        <div class="people people--${person.id}"></div>
+      (person) =>
+        `
+          <div class="people people--${person.id}"></div>
         `
     )
     .join('');
+
+  setPersonStyles();
 }
 
 // set style to persons in UI
-setPersonStyles();
 function setPersonStyles() {
-  personStyle.innerHTML = persons
+  personStyle.innerHTML = selectedPersons
     .map((person) => {
       if (person.rotateDeg > 90 && person.rotateDeg < 270) {
         return `
@@ -198,7 +207,7 @@ function setPersonStyles() {
 }
 
 // click to get randomPerson no repeat
-let currentPersons = [...persons];
+let currentPersons = [...selectedPersons];
 let randomPerson;
 
 btnTurn.addEventListener('click', () => {
@@ -262,9 +271,13 @@ function createPeopleList() {
         `
         <li class="people-list-item">
           <div class="people-list-item__box-name-container">
-            <input class="people-list-item__checkbox" type="checkbox" 
-            ${person.isAttend ? 'checked' : ''}/>
-            <span class="people-list-item__text">${person.name}</span>
+            <input id="${person.name}"
+              class="people-list-item__checkbox" 
+              type="checkbox" 
+              ${person.isAttend ? 'checked' : ''}/>
+            <label class="people-list-item__text" 
+              for="${person.name}">${person.name}
+            </label>
           </div>
           <button class="people-list-item__delete-btn">X</button>
         </li>
@@ -273,7 +286,24 @@ function createPeopleList() {
     .join('');
 }
 
-// TODO: isAttend logic
+// isAttend logic
+peopleListEl.addEventListener('click', (e) => {
+  let selectedPersonName;
+  if (e.target.id && e.target.id != 'people-list') {
+    selectedPersonName = e.target.id;
+  } else {
+    return;
+  }
+
+  setPersonAttend(selectedPersonName);
+});
+
+function setPersonAttend(selectedPersonName) {
+  let selectedPerson = persons.find(
+    (person) => person.name == selectedPersonName
+  );
+  selectedPerson.isAttend = !selectedPerson.isAttend;
+}
 
 /*help functions*/
 // get CSS var
@@ -296,4 +326,5 @@ btn.addEventListener('click', () => {
   }
 
   isBack = !isBack;
+  createPersonEls();
 });
