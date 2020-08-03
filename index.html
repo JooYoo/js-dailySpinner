@@ -9,13 +9,14 @@
   <body>
     <div id="spin-container" class="spin-container">
       <div class="side side__front">
+        <div class=""></div>
         <div id="spin-needle" class="spin-needle"></div>
         <div id="people-container" class="people-container"></div>
         <button id="btn-turn" class="btn-turn"></button>
       </div>
 
       <div class="side side__back">
-        <form class="people-list__textbox" action="">
+        <form class="people-list__textbox" onkeypress="addPerson(event)">
           <input type="text" name="" id="" placeholder="e.g. Jason..." />
         </form>
         <ul id="people-list" class="people-list"></ul>

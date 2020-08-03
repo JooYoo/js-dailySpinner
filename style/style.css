@@ -265,17 +265,17 @@ body {
   -webkit-appearance: none;
      -moz-appearance: none;
           appearance: none;
-  border: 2px solid #ccc;
   border-radius: 50%;
-  background: white;
+  background: rgba(0, 0, 0, 0.05);
   width: 1rem;
   height: 1rem;
 }
 
 .side .people-list-item__checkbox[type='checkbox']:checked {
-  background: lightgreen;
-  border: 3px solid rgba(0, 0, 0, 0.1);
+  border: 5px solid rgba(0, 0, 0, 0.1);
   border-radius: 1rem;
+  padding: 2px;
+  background-color: white;
 }
 
 .side .people-list-item__checkbox[type='checkbox']:focus {

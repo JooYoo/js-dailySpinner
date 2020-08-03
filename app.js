@@ -150,14 +150,7 @@ function flipPlate(isBack, direction) {
   createPersonEls();
 }
 
-/* side__front create person UI*/
-// set rotateDeg for each person
-function setRotateDeg(selectedPersons) {
-  for (let i = 0; i < selectedPersons.length; i++) {
-    selectedPersons[i].rotateDeg = (360 / selectedPersons.length) * i;
-  }
-}
-
+/* side__front*/
 // create persons in UI
 createPersonEls();
 function createPersonEls() {
@@ -176,6 +169,13 @@ function createPersonEls() {
     .join('');
 
   setPersonStyles();
+}
+
+// set rotateDeg for each person
+function setRotateDeg(selectedPersons) {
+  for (let i = 0; i < selectedPersons.length; i++) {
+    selectedPersons[i].rotateDeg = (360 / selectedPersons.length) * i;
+  }
 }
 
 // set style to persons in UI
@@ -296,15 +296,40 @@ peopleListEl.addEventListener('click', (e) => {
     return;
   }
 
-  setPersonAttend(selectedPersonName);
+  setPersonAttend(selectedPersonName, e);
 });
 
-function setPersonAttend(selectedPersonName) {
+function setPersonAttend(selectedPersonName, e) {
   let selectedPerson = persons.find(
     (person) => person.name == selectedPersonName
   );
   selectedPerson.isAttend = !selectedPerson.isAttend;
+  setPersonAttenUI(e.target.parentElement, selectedPerson.isAttend);
 }
+
+function setPersonAttenUI(parentEl, isAttend) {
+  let personEl = parentEl.children[1];
+  if (isAttend) {
+    personEl.style.color = 'black';
+  } else {
+    personEl.style.color = 'gainsboro';
+  }
+}
+
+//TODO: add Person
+function addPerson(e) {
+  let inputValue = e.target.value;
+
+  if (e.keyCode === 13 && inputValue) {
+    e.preventDefault();
+    console.log('Enter:', inputValue);
+  } else if (!inputValue) {
+    // enter when no text inputed
+    e.preventDefault();
+  }
+}
+
+// TODO: remove Person
 
 /*help functions*/
 // get CSS var
