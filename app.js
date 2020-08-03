@@ -15,6 +15,9 @@ let isTapDownPlate = false;
 // create Person-Object
 let persons = [];
 let selectedPersons = [];
+let currentPersons;
+let randomPerson;
+
 class Person {
   constructor(name) {
     this.id = Person.setId();
@@ -160,6 +163,7 @@ createPersonEls();
 function createPersonEls() {
   peopleContainerEl.innerHTML = '';
   selectedPersons = getSelectedPersons();
+  currentPersons = [...selectedPersons];
   setRotateDeg(selectedPersons);
 
   peopleContainerEl.innerHTML = selectedPersons
@@ -207,13 +211,10 @@ function setPersonStyles() {
 }
 
 // click to get randomPerson no repeat
-let currentPersons = [...selectedPersons];
-let randomPerson;
-
 btnTurn.addEventListener('click', () => {
   // check if finish
   if (currentPersons.length === 0) {
-    currentPersons = resetAll(persons);
+    currentPersons = resetAll(selectedPersons);
 
     console.log('🍻');
   } else {
