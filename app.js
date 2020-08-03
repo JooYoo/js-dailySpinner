@@ -18,6 +18,7 @@ class Person {
   constructor(name) {
     this.id = Person.setId();
     this.name = name;
+    this.isAttend = true;
     this.rotateDeg;
   }
 
@@ -39,7 +40,9 @@ persons.push(
 );
 
 //TODO: add person from Ui
-// persons.push(new Person('ABB'));
+// persons.push((new Person('ABB').isAttend = false));
+persons[0].isAttend = false;
+console.log(persons);
 
 /* swipe to flip the dial plate */
 // detect mousedown & touchstart in card
@@ -251,9 +254,26 @@ function resetAll(allPersons) {
 }
 
 /*side__back*/
+createPeopleList();
 function createPeopleList() {
-  peopleListEl.innerHTML = persons.map();
+  peopleListEl.innerHTML = persons
+    .map(
+      (person) =>
+        `
+        <li class="people-list-item">
+          <div class="people-list-item__box-name-container">
+            <input class="people-list-item__checkbox" type="checkbox" 
+            ${person.isAttend ? 'checked' : ''}/>
+            <span class="people-list-item__text">${person.name}</span>
+          </div>
+          <button class="people-list-item__delete-btn">X</button>
+        </li>
+      `
+    )
+    .join('');
 }
+
+// TODO: isAttend logic
 
 /*help functions*/
 // get CSS var
