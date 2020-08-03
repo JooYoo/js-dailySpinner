@@ -84,15 +84,15 @@ body {
     left: 50%;
     transform: translate(-50%) rotate(-90deg);
 
-    width: 60%;
-    height: 60%;
+    width: 73%;
+    height: 73%;
 
     & svg {
       overflow: visible;
 
       & circle {
         fill: none;
-        stroke-width: 6px;
+        stroke-width: 3px;
         stroke-dasharray: 440;
         stroke-dashoffset: 440;
         stroke-linecap: round;
@@ -100,12 +100,12 @@ body {
       }
 
       & circle:nth-child(1) {
-        stroke: rgba(0, 0, 0, 0.03);
+        stroke: rgba(0, 0, 0, 0.02);
         stroke-dashoffset: 0;
       }
       & circle:nth-child(2) {
         transition: stroke-dashoffset 2s ease-in-out;
-        stroke-width: 4px;
+        stroke-width: 2px;
         stroke: rgba(0, 0, 0, 0.15);
         stroke-dashoffset: calc(
           440 - (440 * var(--spin-progressbar-percent)) / 100
