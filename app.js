@@ -261,8 +261,6 @@ function resetAll(allPersons) {
   needle.classList.remove('turn--start');
   needle.classList.add('turn--reset');
 
-  console.log('reset');
-
   return [...allPersons];
 }
 
@@ -351,9 +349,12 @@ function addPerson(e) {
 
   if (e.keyCode === 13 && inputValue) {
     e.preventDefault();
-    console.log('Enter:', inputValue);
-  } else if (!inputValue) {
-    // enter when no text inputed
+
+    persons.push(new Person(inputValue));
+
+    console.log(persons);
+  } else if (e.keyCode === 13 && !inputValue) {
+    // press enter when no text inputed
     e.preventDefault();
   }
 }
