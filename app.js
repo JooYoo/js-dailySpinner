@@ -5,6 +5,7 @@ const spinContainerEl = document.querySelector('#spin-container');
 const peopleContainerEl = document.querySelector('#people-container');
 const personStyle = document.createElement('style');
 const peopleListEl = document.querySelector('#people-list');
+const peopleListTextboxEl = document.querySelector('.people-list__textbox');
 
 // FIXME: remove
 const btn = document.querySelector('#btn');
@@ -37,11 +38,6 @@ persons.push(
   new Person('Sascha'),
   new Person('Adi'),
   new Person('Chris'),
-  new Person('Felix'),
-  new Person('Yu'),
-  new Person('Slawa'),
-  new Person('Ali'),
-  new Person('Winnie')
 );
 
 //TODO: add person from Ui
@@ -343,14 +339,18 @@ function setPersonAttenUI(parentEl, isAttend) {
   }
 }
 
-//TODO: add Person
+//add Person
 function addPerson(e) {
   let inputValue = e.target.value;
 
   if (e.keyCode === 13 && inputValue) {
     e.preventDefault();
 
-    persons.push(new Person(inputValue));
+    persons.unshift(new Person(inputValue));
+    peopleListTextboxEl.reset();
+    createPersonEls();
+    createPeopleList();
+    //TODO: reset front_side
 
     console.log(persons);
   } else if (e.keyCode === 13 && !inputValue) {
