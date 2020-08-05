@@ -38,9 +38,11 @@ persons.push(
   new Person('Sascha'),
   new Person('Adi'),
   new Person('Chris'),
+  new Person('Yu'),
+  new Person('Ali'),
+  new Person('Felix'),
+  new Person('Slawa')
 );
-
-//TODO: add person from Ui
 
 function getSelectedPersons() {
   return persons.filter((person) => person.isAttend == true);
@@ -143,13 +145,13 @@ function flipPlate(isBack, direction) {
   }
 
   isBack = !isBack;
-  createPersonEls();
+  createFsidePeoplePlate();
 }
 
 /* side__front*/
 // create persons in UI
-createPersonEls();
-function createPersonEls() {
+createFsidePeoplePlate();
+function createFsidePeoplePlate() {
   peopleContainerEl.innerHTML = '';
   selectedPersons = getSelectedPersons();
   currentPersons = [...selectedPersons];
@@ -286,8 +288,8 @@ function setProgressUi(progressPercent) {
 }
 
 /*side__back*/
-createPeopleList();
-function createPeopleList() {
+createBsidePeopleList();
+function createBsidePeopleList() {
   peopleListEl.innerHTML = persons
     .map(
       (person) =>
@@ -348,29 +350,26 @@ function addPerson(e) {
 
     persons.unshift(new Person(inputValue));
     peopleListTextboxEl.reset();
-    createPersonEls();
-    createPeopleList();
+    createFsidePeoplePlate();
+    createBsidePeopleList();
     //TODO: reset front_side
-
   } else if (e.keyCode === 13 && !inputValue) {
     // press enter when no text inputed
     e.preventDefault();
   }
 }
 
-// TODO: remove Person
-peopleListEl.addEventListener('click', (e)=>{
+// remove Person
+peopleListEl.addEventListener('click', (e) => {
   let deleElId;
-  
-  if(e.target.className === 'people-list-item__delete-btn') {
+
+  if (e.target.className === 'people-list-item__delete-btn') {
     deleElId = e.target.parentElement.id;
 
-    persons = persons.filter(person => person.id != deleElId);
-    //TODO: rename createPersonEls() and createPeopleList()
-
-    console.log(persons);
+    persons = persons.filter((person) => person.id != deleElId);
+    createBsidePeopleList();
+    createFsidePeoplePlate();
   }
-
 });
 
 /*help functions*/
@@ -394,5 +393,5 @@ btn.addEventListener('click', () => {
   }
 
   isBack = !isBack;
-  createPersonEls();
+  createFsidePeoplePlate();
 });
