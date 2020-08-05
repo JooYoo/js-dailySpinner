@@ -292,7 +292,7 @@ function createPeopleList() {
     .map(
       (person) =>
         `
-        <li class="people-list-item">
+        <li id="${person.id}" class="people-list-item">
           <div class="people-list-item__box-name-container">
             <input id="${person.name}"
               class="people-list-item__checkbox" 
@@ -352,7 +352,6 @@ function addPerson(e) {
     createPeopleList();
     //TODO: reset front_side
 
-    console.log(persons);
   } else if (e.keyCode === 13 && !inputValue) {
     // press enter when no text inputed
     e.preventDefault();
@@ -360,6 +359,19 @@ function addPerson(e) {
 }
 
 // TODO: remove Person
+peopleListEl.addEventListener('click', (e)=>{
+  let deleElId;
+  
+  if(e.target.className === 'people-list-item__delete-btn') {
+    deleElId = e.target.parentElement.id;
+
+    persons = persons.filter(person => person.id != deleElId);
+    //TODO: rename createPersonEls() and createPeopleList()
+
+    console.log(persons);
+  }
+
+});
 
 /*help functions*/
 // get CSS var
