@@ -1,22 +1,21 @@
 // get UI elements
 const needle = document.querySelector('#spin-needle');
-const btnTurn = document.querySelector('#btn-turn');
+const btnTurnEl = document.querySelector('#btn-turn');
 const spinContainerEl = document.querySelector('#spin-container');
 const peopleContainerEl = document.querySelector('#people-container');
 const personStyle = document.createElement('style');
 const peopleListEl = document.querySelector('#people-list');
 const peopleListTextboxEl = document.querySelector('.people-list__textbox');
+const inputEl = peopleListTextboxEl['new-name'];
 
-// FIXME: remove
-const btn = document.querySelector('#btn');
-
-let isBack = false;
 let isTapDownPlate = false;
+let oldDirection;
+let currDirection;
 
 // create Person-Object
 let persons = [];
 let selectedPersons = [];
-let currentPersons;
+let currentPersons = [];
 let randomPerson;
 
 class Person {
@@ -70,10 +69,19 @@ spinContainerEl.addEventListener('touchmove', (e) => {
 function onSwipeTo(e) {
   if (!isTapDownPlate) return;
 
-  let swipeTo = onSwipe(e);
-  if (swipeTo) {
-    flipPlate(isBack, swipeTo);
+  // output direction info only one time
+  oldDirection = onSwipe(e);
+  if (!oldDirection) return;
+  if (oldDirection === currDirection) return;
+  currDirection = oldDirection;
+
+  let swipeTo = currDirection;
+
+  if (swipeTo === Swipe.LEFT || swipeTo === Swipe.RIGHT) {
+    console.log(swipeTo);
+    flipPlate();
   }
+  //TODO: swipe up to reset
 }
 
 // detect mouoseup & touchend anywhere
@@ -137,15 +145,22 @@ function checkDirection(oldx, oldy, currx, curry) {
 }
 
 // flip plate
-function flipPlate(isBack, direction) {
-  if (!isBack && direction === Swipe.RIGHT) {
+function flipPlate() {
+  if (!isBack()) {
     spinContainerEl.classList.add('spin-container__flip');
   } else {
     spinContainerEl.classList.remove('spin-container__flip');
+    console.log('go Front');
+    createFsidePeoplePlate();
+    currentPersons = resetAll(selectedPersons);
+    setProgressUi(0);
   }
 
-  isBack = !isBack;
-  createFsidePeoplePlate();
+  //createFsidePeoplePlate();
+}
+
+function isBack() {
+  return spinContainerEl.classList.contains('spin-container__flip');
 }
 
 /* side__front*/
@@ -209,7 +224,12 @@ function setPersonStyles() {
 }
 
 // click to get randomPerson no repeat
-btnTurn.addEventListener('click', () => {
+btnTurnEl.addEventListener('click', () => {
+  playSpinner();
+});
+
+// turn needle
+function playSpinner() {
   // check if finish
   if (currentPersons.length === 0) {
     currentPersons = resetAll(selectedPersons);
@@ -218,7 +238,7 @@ btnTurn.addEventListener('click', () => {
   } else {
     // get random Person
     randomPerson = getRandomPerson(currentPersons);
-    currentPersons = removePerson(currentPersons, randomPerson);
+    currentPersons = removeCurrentPerson(currentPersons, randomPerson);
 
     setCssVar('--rotate-to', `${randomPerson.rotateDeg}deg`);
 
@@ -234,7 +254,7 @@ btnTurn.addEventListener('click', () => {
   needle.style.animation = 'none';
   needle.offsetHeight;
   needle.style.animation = null;
-});
+}
 
 // get random person
 function getRandomPerson(allPersons) {
@@ -243,21 +263,15 @@ function getRandomPerson(allPersons) {
 }
 
 // remove person
-function removePerson(allPersons, selectedPerson) {
+function removeCurrentPerson(allPersons, selectedPerson) {
   return allPersons.filter((x) => x !== selectedPerson);
 }
-
-// press 'R' to reset
-window.addEventListener('keydown', (e) => {
-  if (e.keyCode === 82) {
-    currentPersons = resetAll(persons);
-  }
-});
 
 // reset needle
 function resetAll(allPersons) {
   needle.classList.remove('turn--start');
   needle.classList.add('turn--reset');
+  setProgressUi(0);
 
   return [...allPersons];
 }
@@ -372,6 +386,24 @@ peopleListEl.addEventListener('click', (e) => {
   }
 });
 
+/*shortcuts*/
+// press 'R' to reset
+window.addEventListener('keydown', (e) => {
+  if (e.keyCode === 82 && !(inputEl === document.activeElement) && !isBack()) {
+    currentPersons = resetAll(selectedPersons);
+  }
+});
+
+// press 'F' to flip
+window.addEventListener('keydown', (e) => {
+  if (e.keyCode === 70 && !(inputEl === document.activeElement)) flipPlate();
+});
+
+// press 'Enter' to turn
+window.addEventListener('keydown', (e) => {
+  if (e.keyCode === 13) playSpinner();
+});
+
 /*help functions*/
 // get CSS var
 function getCssVar(variable) {
@@ -383,15 +415,3 @@ function getCssVar(variable) {
 function setCssVar(variable, value) {
   document.documentElement.style.setProperty(variable, value);
 }
-
-// click to flip FIXME: remove
-btn.addEventListener('click', () => {
-  if (!isBack) {
-    spinContainerEl.classList.add('spin-container__flip');
-  } else {
-    spinContainerEl.classList.remove('spin-container__flip');
-  }
-
-  isBack = !isBack;
-  createFsidePeoplePlate();
-});
