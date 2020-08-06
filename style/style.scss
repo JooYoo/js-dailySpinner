@@ -50,8 +50,26 @@ body {
 
   // backside__after-flip
   &__flip {
-    transform: scale(1) rotateY(180deg);
+    transform: rotateY(180deg);
     box-shadow: var(--card-shadow-transition);
+  }
+
+  &__flip--rest {
+    animation-name: spin-container__flip--rest;
+    animation-duration: 1s;
+    animation-timing-function: ease-out;
+  }
+}
+
+@keyframes spin-container__flip--rest {
+  0% {
+    transform: rotateX(0deg);
+  }
+  50% {
+    transform: rotateX(60deg);
+  }
+  100% {
+    transform: rotateX(0deg);
   }
 }
 
@@ -322,12 +340,4 @@ body {
   100% {
     transform: translateX(-50%) rotate(0deg);
   }
-}
-
-// FIXME: help flip button
-.btn {
-  position: absolute;
-  bottom: 5vh;
-  height: 60px;
-  width: 120px;
 }

@@ -60,10 +60,49 @@ body {
 }
 
 .spin-container__flip {
-  -webkit-transform: scale(1) rotateY(180deg);
-          transform: scale(1) rotateY(180deg);
+  -webkit-transform: rotateY(180deg);
+          transform: rotateY(180deg);
   -webkit-box-shadow: var(--card-shadow-transition);
           box-shadow: var(--card-shadow-transition);
+}
+
+.spin-container__flip--rest {
+  -webkit-animation-name: spin-container__flip--rest;
+          animation-name: spin-container__flip--rest;
+  -webkit-animation-duration: 1s;
+          animation-duration: 1s;
+  -webkit-animation-timing-function: ease-out;
+          animation-timing-function: ease-out;
+}
+
+@-webkit-keyframes spin-container__flip--rest {
+  0% {
+    -webkit-transform: rotateX(0deg);
+            transform: rotateX(0deg);
+  }
+  50% {
+    -webkit-transform: rotateX(60deg);
+            transform: rotateX(60deg);
+  }
+  100% {
+    -webkit-transform: rotateX(0deg);
+            transform: rotateX(0deg);
+  }
+}
+
+@keyframes spin-container__flip--rest {
+  0% {
+    -webkit-transform: rotateX(0deg);
+            transform: rotateX(0deg);
+  }
+  50% {
+    -webkit-transform: rotateX(60deg);
+            transform: rotateX(60deg);
+  }
+  100% {
+    -webkit-transform: rotateX(0deg);
+            transform: rotateX(0deg);
+  }
 }
 
 .side {
@@ -138,7 +177,7 @@ body {
   transition: stroke-dashoffset 2s ease-in-out;
   stroke-width: 2px;
   stroke: rgba(0, 0, 0, 0.15);
-  stroke-dashoffset: calc( 440 - (440 * var(--spin-progressbar-percent)) / 100);
+  stroke-dashoffset: calc( 440 - (440 * var(--spin-progressbar-percent)) / 100);
 }
 
 .side .spin-needle {
@@ -402,12 +441,5 @@ body {
     -webkit-transform: translateX(-50%) rotate(0deg);
             transform: translateX(-50%) rotate(0deg);
   }
-}
-
-.btn {
-  position: absolute;
-  bottom: 5vh;
-  height: 60px;
-  width: 120px;
 }
 /*# sourceMappingURL=style.css.map */
