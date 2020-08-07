@@ -90,18 +90,23 @@ function onSwipeTo(e) {
     (swipeTo === Swipe.LEFT || swipeTo === Swipe.RIGHT) &&
     !isAfterSwipeUp
   ) {
+    //TODO: after SwipeUp then SwipeLeft doesn't work
     flipPlate();
   }
-  console.log(
-    `isAfterSwipeRight:${isAfterSwipeRight}; isAfterSwipeUp:${isAfterSwipeUp}`
-  );
+  // console.log(
+  //   `isAfterSwipeRight:${isAfterSwipeRight}; isAfterSwipeUp:${isAfterSwipeUp}`
+  // );
 }
+
+spinContainerEl.addEventListener('animationend', () => {
+  console.log('Animation End!');
+  spinContainerEl.classList.remove('spin-container__flip--rest');
+});
 
 function swipeToReset() {
   spinContainerEl.classList.add('spin-container__flip--rest');
   currentPersons = resetAll(selectedPersons);
   setProgressUi(0);
-  currDirection = '';
 }
 
 // detect mouoseup & touchend anywhere
@@ -246,8 +251,6 @@ function setPersonStyles() {
 // click to get randomPerson no repeat
 btnTurnEl.addEventListener('click', () => {
   playSpinner();
-  // reset the swipeUp animation after playSpinner-btn clicked
-  spinContainerEl.classList.remove('spin-container__flip--rest');
 });
 
 // turn needle
