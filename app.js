@@ -76,12 +76,32 @@ function onSwipeTo(e) {
   currDirection = oldDirection;
 
   let swipeTo = currDirection;
+  let isAfterSwipeRight = spinContainerEl.classList.contains(
+    'spin-container__flip'
+  );
+  let isAfterSwipeUp = spinContainerEl.classList.contains(
+    'spin-container__flip--rest'
+  );
+  console.log(swipeTo);
 
-  if (swipeTo === Swipe.LEFT || swipeTo === Swipe.RIGHT) {
-    console.log(swipeTo);
+  if (swipeTo === Swipe.UP) {
+    swipeToReset();
+  } else if (
+    (swipeTo === Swipe.LEFT || swipeTo === Swipe.RIGHT) &&
+    !isAfterSwipeUp
+  ) {
     flipPlate();
   }
-  //TODO: swipe up to reset
+  console.log(
+    `isAfterSwipeRight:${isAfterSwipeRight}; isAfterSwipeUp:${isAfterSwipeUp}`
+  );
+}
+
+function swipeToReset() {
+  spinContainerEl.classList.add('spin-container__flip--rest');
+  currentPersons = resetAll(selectedPersons);
+  setProgressUi(0);
+  currDirection = '';
 }
 
 // detect mouoseup & touchend anywhere
@@ -150,7 +170,7 @@ function flipPlate() {
     spinContainerEl.classList.add('spin-container__flip');
   } else {
     spinContainerEl.classList.remove('spin-container__flip');
-    console.log('go Front');
+
     createFsidePeoplePlate();
     currentPersons = resetAll(selectedPersons);
     setProgressUi(0);
@@ -226,6 +246,8 @@ function setPersonStyles() {
 // click to get randomPerson no repeat
 btnTurnEl.addEventListener('click', () => {
   playSpinner();
+  // reset the swipeUp animation after playSpinner-btn clicked
+  spinContainerEl.classList.remove('spin-container__flip--rest');
 });
 
 // turn needle
@@ -271,6 +293,7 @@ function removeCurrentPerson(allPersons, selectedPerson) {
 function resetAll(allPersons) {
   needle.classList.remove('turn--start');
   needle.classList.add('turn--reset');
+
   setProgressUi(0);
 
   return [...allPersons];
@@ -366,7 +389,6 @@ function addPerson(e) {
     peopleListTextboxEl.reset();
     createFsidePeoplePlate();
     createBsidePeopleList();
-    //TODO: reset front_side
   } else if (e.keyCode === 13 && !inputValue) {
     // press enter when no text inputed
     e.preventDefault();
