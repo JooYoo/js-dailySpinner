@@ -8,9 +8,12 @@ const peopleListEl = document.querySelector('#people-list');
 const peopleListTextboxEl = document.querySelector('.people-list__textbox');
 const inputEl = peopleListTextboxEl['new-name'];
 
+// UI variables
 let isTapDownPlate = false;
-let oldDirection;
-let currDirection;
+let direOld;
+let direCur;
+let direCount = 0;
+let sensitivity = 10;
 
 // create Person-Object
 let persons = [];
@@ -61,45 +64,38 @@ spinContainerEl.addEventListener('touchstart', (e) => {
 window.addEventListener('mousemove', (e) => {
   onSwipeTo(e);
 });
-
 spinContainerEl.addEventListener('touchmove', (e) => {
   onSwipeTo(e);
 });
 
+// swipe help function
 function onSwipeTo(e) {
   if (!isTapDownPlate) return;
 
-  // output direction info only one time
-  oldDirection = onSwipe(e);
-  if (!oldDirection) return;
-  if (oldDirection === currDirection) return;
-  currDirection = oldDirection;
-
-  let swipeTo = currDirection;
-  let isAfterSwipeRight = spinContainerEl.classList.contains(
-    'spin-container__flip'
-  );
-  let isAfterSwipeUp = spinContainerEl.classList.contains(
-    'spin-container__flip--rest'
-  );
-  console.log(swipeTo);
+  //output Direction by sensitivity
+  //FIXME: encapsulation as function
+  direOld = onSwipe(e);
+  if (!direOld) return;
+  if (direCur === direOld) {
+    direCount++;
+  } else {
+    direCount = 0;
+    direCur = direOld;
+  }
+  if (direCount != sensitivity) {
+    return;
+  }
+  let swipeTo = direCur;
+  console.log(swipeTo, direCount);
 
   if (swipeTo === Swipe.UP) {
     swipeToReset();
-  } else if (
-    (swipeTo === Swipe.LEFT || swipeTo === Swipe.RIGHT) &&
-    !isAfterSwipeUp
-  ) {
-    //TODO: after SwipeUp then SwipeLeft doesn't work
+  } else if (swipeTo === Swipe.LEFT || swipeTo === Swipe.RIGHT) {
     flipPlate();
   }
-  // console.log(
-  //   `isAfterSwipeRight:${isAfterSwipeRight}; isAfterSwipeUp:${isAfterSwipeUp}`
-  // );
 }
 
 spinContainerEl.addEventListener('animationend', () => {
-  console.log('Animation End!');
   spinContainerEl.classList.remove('spin-container__flip--rest');
 });
 
@@ -107,15 +103,18 @@ function swipeToReset() {
   spinContainerEl.classList.add('spin-container__flip--rest');
   currentPersons = resetAll(selectedPersons);
   setProgressUi(0);
+  direCount = 0;
 }
 
 // detect mouoseup & touchend anywhere
 window.addEventListener('mouseup', () => {
   isTapDownPlate = false;
+  rawDireCount = 0;
 });
 
 window.addEventListener('touchend', () => {
   isTapDownPlate = false;
+  rawDireCount = 0;
 });
 
 // detect mouse move direction
@@ -188,7 +187,9 @@ function isBack() {
   return spinContainerEl.classList.contains('spin-container__flip');
 }
 
-/* side__front*/
+/* -------------------------------------------------------------------------- */
+/*                                 side__front                                */
+/* -------------------------------------------------------------------------- */
 // create persons in UI
 createFsidePeoplePlate();
 function createFsidePeoplePlate() {
@@ -327,7 +328,9 @@ function setProgressUi(progressPercent) {
   );
 }
 
-/*side__back*/
+/* -------------------------------------------------------------------------- */
+/*                                 side__back                                 */
+/* -------------------------------------------------------------------------- */
 createBsidePeopleList();
 function createBsidePeopleList() {
   peopleListEl.innerHTML = persons
@@ -411,7 +414,9 @@ peopleListEl.addEventListener('click', (e) => {
   }
 });
 
-/*shortcuts*/
+/* -------------------------------------------------------------------------- */
+/*                                  shortcuts                                 */
+/* -------------------------------------------------------------------------- */
 // press 'R' to reset
 window.addEventListener('keydown', (e) => {
   if (e.keyCode === 82 && !(inputEl === document.activeElement) && !isBack()) {
@@ -429,7 +434,9 @@ window.addEventListener('keydown', (e) => {
   if (e.keyCode === 13) playSpinner();
 });
 
-/*help functions*/
+/* -------------------------------------------------------------------------- */
+/*                               help functions                               */
+/* -------------------------------------------------------------------------- */
 // get CSS var
 function getCssVar(variable) {
   let style = getComputedStyle(document.body);
