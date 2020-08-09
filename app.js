@@ -46,11 +46,22 @@ persons.push(
   new Person('Slawa')
 );
 
-function getSelectedPersons() {
-  return persons.filter((person) => person.isAttend == true);
+/* -------------------------------------------------------------------------- */
+/*                        save and load people to localStorage                        */
+/* -------------------------------------------------------------------------- */
+
+// save people to localStorage
+function savePeople(allPeople) {
+  localStorage.setItem('dailyPeople', JSON.stringify(allPeople));
 }
 
-/* swipe to flip the dial plate */
+// load people from localStorage
+function loadPeople() {}
+
+/* -------------------------------------------------------------------------- */
+/*                        swipe to flip the dial plate                        */
+/* -------------------------------------------------------------------------- */
+
 // detect mousedown & touchstart in card
 spinContainerEl.addEventListener('mousedown', (e) => {
   isTapDownPlate = true;
@@ -190,6 +201,11 @@ function isBack() {
 /* -------------------------------------------------------------------------- */
 /*                                 side__front                                */
 /* -------------------------------------------------------------------------- */
+
+function getSelectedPersons() {
+  return persons.filter((person) => person.isAttend == true);
+}
+
 // create persons in UI
 createFsidePeoplePlate();
 function createFsidePeoplePlate() {
@@ -395,6 +411,7 @@ function addPerson(e) {
     peopleListTextboxEl.reset();
     createFsidePeoplePlate();
     createBsidePeopleList();
+    savePeople(persons);
   } else if (e.keyCode === 13 && !inputValue) {
     // press enter when no text inputed
     e.preventDefault();
