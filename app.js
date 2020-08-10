@@ -36,15 +36,18 @@ class Person {
   }
 }
 
-persons.push(
-  new Person('Sascha'),
-  new Person('Adi'),
-  new Person('Chris'),
-  new Person('Yu'),
-  new Person('Ali'),
-  new Person('Felix'),
-  new Person('Slawa')
-);
+loadPeople();
+if (!persons || persons.length < 1) {
+  persons.push(
+    new Person('Sascha'),
+    new Person('Adi'),
+    new Person('Chris'),
+    new Person('Yu'),
+    new Person('Ali'),
+    new Person('Felix'),
+    new Person('Slawa')
+  );
+}
 
 /* -------------------------------------------------------------------------- */
 /*                        save and load people to localStorage                        */
@@ -56,7 +59,12 @@ function savePeople(allPeople) {
 }
 
 // load people from localStorage
-function loadPeople() {}
+function loadPeople() {
+  const loadedPeople = JSON.parse(localStorage.getItem('dailyPeople'));
+  if (loadedPeople) {
+    persons = loadedPeople;
+  }
+}
 
 /* -------------------------------------------------------------------------- */
 /*                        swipe to flip the dial plate                        */
@@ -426,8 +434,9 @@ peopleListEl.addEventListener('click', (e) => {
     deleElId = e.target.parentElement.id;
 
     persons = persons.filter((person) => person.id != deleElId);
-    createBsidePeopleList();
     createFsidePeoplePlate();
+    createBsidePeopleList();
+    savePeople(persons);
   }
 });
 
