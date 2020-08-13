@@ -50,6 +50,24 @@ if (!persons || persons.length < 1) {
 }
 
 /* -------------------------------------------------------------------------- */
+/*                               Service Worker                               */
+/* -------------------------------------------------------------------------- */
+
+registerSW();
+
+async function registerSW() {
+  if ('serviceWorker' in navigator) {
+    if ('serviceWorker' in navigator) {
+      try {
+        await navigator.serviceWorker.register('./sw.js');
+      } catch (e) {
+        console.log(`SW registration failed`);
+      }
+    }
+  }
+}
+
+/* -------------------------------------------------------------------------- */
 /*                        save and load people to localStorage                        */
 /* -------------------------------------------------------------------------- */
 
