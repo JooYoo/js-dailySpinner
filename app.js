@@ -13,7 +13,8 @@ let isTapDownPlate = false;
 let direOld;
 let direCur;
 let direCount = 0;
-let sensitivity = 10;
+let sensitivity = 0;
+let interaction;
 
 // create Person-Object
 let persons = [];
@@ -88,13 +89,21 @@ function loadPeople() {
 /*                        swipe to flip the dial plate                        */
 /* -------------------------------------------------------------------------- */
 
+const ControlBy = {
+  MOUSE: 'MOUSE',
+  TOUCH: 'TOUCH',
+};
+
 // detect mousedown & touchstart in card
 spinContainerEl.addEventListener('mousedown', (e) => {
   isTapDownPlate = true;
+  interaction = ControlBy.MOUSE;
+  sensitivity = 10;
 });
-
 spinContainerEl.addEventListener('touchstart', (e) => {
   isTapDownPlate = true;
+  interaction = ControlBy.TOUCH;
+  sensitivity = 0.2;
 });
 
 // detect mousemove & touchmove
@@ -106,15 +115,22 @@ spinContainerEl.addEventListener('touchmove', (e) => {
 });
 
 // swipe help function
+function increaseDireCount() {
+  if (interaction === ControlBy.MOUSE) {
+    direCount++;
+  } else if (interaction === ControlBy.TOUCH) {
+    direCount += 0.1;
+  }
+}
+
 function onSwipeTo(e) {
   if (!isTapDownPlate) return;
 
   //output Direction by sensitivity
-  //FIXME: encapsulation as function
   direOld = onSwipe(e);
   if (!direOld) return;
   if (direCur === direOld) {
-    direCount++;
+    increaseDireCount();
   } else {
     direCount = 0;
     direCur = direOld;
@@ -146,12 +162,9 @@ function swipeToReset() {
 // detect mouoseup & touchend anywhere
 window.addEventListener('mouseup', () => {
   isTapDownPlate = false;
-  rawDireCount = 0;
 });
-
 window.addEventListener('touchend', () => {
   isTapDownPlate = false;
-  rawDireCount = 0;
 });
 
 // detect mouse move direction
