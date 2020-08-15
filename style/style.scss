@@ -31,7 +31,7 @@ body {
   height: 100vh;
   margin: 0;
   background-color: #efeeee;
-  font-family: cursive;
+  font-family: Cursive, 'Lucida Handwriting';
   font-size: var(--spin-font-size);
   touch-action: none;
   overflow: hidden;
@@ -148,7 +148,7 @@ body {
           border-bottom: 1px solid gainsboro;
           line-height: 1.3;
           color: gray;
-          font-family: cursive;
+          font-family: Cursive, 'Lucida Handwriting';
           font-size: var(--spin-font-size);
           background-color: transparent;
 
