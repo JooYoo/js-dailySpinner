@@ -313,7 +313,7 @@ btnTurnEl.addEventListener('click', () => {
 function playSpinner() {
   // check if finish
   if (currentPersons.length === 0) {
-    currentPersons = resetAll(selectedPersons);
+    swipeToReset();
 
     console.log('🍻');
   } else {
@@ -477,7 +477,7 @@ peopleListEl.addEventListener('click', (e) => {
 // press 'R' to reset
 window.addEventListener('keydown', (e) => {
   if (e.keyCode === 82 && !(inputEl === document.activeElement) && !isBack()) {
-    currentPersons = resetAll(selectedPersons);
+    swipeToReset();
   }
 });
 
