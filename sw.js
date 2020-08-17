@@ -5,6 +5,7 @@ const staticAssets = [
   './style/style.css',
   './app.js',
   './manifest.json',
+  './hammer.min.js',
 ];
 
 self.addEventListener('install', async (e) => {

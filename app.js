@@ -86,6 +86,16 @@ function loadPeople() {
 }
 
 /* -------------------------------------------------------------------------- */
+/*                               hammer gesture                               */
+/* -------------------------------------------------------------------------- */
+
+let hammertime = new Hammer(spinContainerEl);
+hammertime.get('swipe').set({ direction: Hammer.DIRECTION_ALL });
+hammertime.on('swipe', function (ev) {
+  console.log(ev);
+});
+
+/* -------------------------------------------------------------------------- */
 /*                        swipe to flip side                                  */
 /* -------------------------------------------------------------------------- */
 
@@ -139,7 +149,7 @@ function onSwipeTo(e) {
     return;
   }
   let swipeTo = direCur;
-  console.log(swipeTo, direCount);
+  //TODO: console.log(swipeTo, direCount);
 
   if (swipeTo === Swipe.UP && !isBack()) {
     swipeToReset();
