@@ -86,7 +86,7 @@ function loadPeople() {
 }
 
 /* -------------------------------------------------------------------------- */
-/*                        swipe to flip the dial plate                        */
+/*                        swipe to flip side                                  */
 /* -------------------------------------------------------------------------- */
 
 const ControlBy = {
@@ -141,7 +141,7 @@ function onSwipeTo(e) {
   let swipeTo = direCur;
   console.log(swipeTo, direCount);
 
-  if (swipeTo === Swipe.UP) {
+  if (swipeTo === Swipe.UP && !isBack()) {
     swipeToReset();
   } else if (swipeTo === Swipe.LEFT || swipeTo === Swipe.RIGHT) {
     flipPlate();
@@ -427,7 +427,6 @@ function setPersonAttend(selectedPersonName, e) {
   );
   selectedPerson.isAttend = !selectedPerson.isAttend;
   setPersonAttenUI(e.target.parentElement, selectedPerson.isAttend);
-  //TODO: reset front_side needle
 }
 
 function setPersonAttenUI(parentEl, isAttend) {
