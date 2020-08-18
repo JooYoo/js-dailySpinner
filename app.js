@@ -23,11 +23,18 @@ let currentPersons = [];
 let randomPerson;
 
 class Person {
-  constructor(name) {
-    this.id = Person.setId();
-    this.name = name;
-    this.isAttend = true;
-    this.rotateDeg;
+  constructor(name, id) {
+    if (arguments.length == 2) {
+      this.id = id;
+      this.name = name;
+      this.isAttend = true;
+      this.rotateDeg;
+    } else {
+      this.id = Person.setId();
+      this.name = name;
+      this.isAttend = true;
+      this.rotateDeg;
+    }
   }
 
   static setId() {
@@ -445,7 +452,14 @@ function addPerson(e) {
   if (e.keyCode === 13 && inputValue) {
     e.preventDefault();
 
-    persons.unshift(new Person(inputValue));
+    let newPerson = new Person(inputValue);
+    let isIdExist = persons.find((person) => person.id == newPerson.id);
+
+    if (!isIdExist) {
+      persons.unshift(newPerson);
+    } else {
+      persons.unshift(new Person(inputValue, persons.length + 1));
+    }
     peopleListTextboxEl.reset();
     createFsidePeoplePlate();
     createBsidePeopleList();
