@@ -4,20 +4,18 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Daily Spinner</title>
-    <!-- <link
-      href="https://fonts.googleapis.com/css2?family=Charm&display=swap"
-      rel="stylesheet"
-    /> -->
     <link
       href="https://fonts.googleapis.com/css2?family=Raleway+Dots&display=swap"
       rel="stylesheet"
     />
-
     <link rel="stylesheet" href="./style/style.css" />
     <link rel="manifest" href="./manifest.json" />
     <link rel="apple-touch-icon" href="./images/icon-192x192.png" />
     <link rel="shortcut icon" href="./favicon.ico" type="image/x-icon" />
     <meta name="theme-color" content="#fff" />
+
+    <script type="module" defer src="./app.js"></script>
+    <noscript>This app requir JavaScript support :(</noscript>
   </head>
   <body>
     <div id="spin-container" class="spin-container">
@@ -34,7 +32,7 @@
       </div>
 
       <div class="side side__back">
-        <form class="people-list__textbox" onkeypress="addPerson(event)">
+        <form id="people-list__form" class="people-list__textbox">
           <input
             type="text"
             name="new-name"
@@ -45,8 +43,5 @@
         <ul id="people-list" class="people-list"></ul>
       </div>
     </div>
-
-    <script src="./app.js"></script>
-    <noscript>This app requir JavaScript support :(</noscript>
   </body>
 </html>

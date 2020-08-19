@@ -1,3 +1,5 @@
+import * as lib from './src/js/lib.js';
+
 // get UI elements
 const needle = document.querySelector('#spin-needle');
 const btnTurnEl = document.querySelector('#btn-turn');
@@ -5,8 +7,8 @@ const spinContainerEl = document.querySelector('#spin-container');
 const peopleContainerEl = document.querySelector('#people-container');
 const personStyle = document.createElement('style');
 const peopleListEl = document.querySelector('#people-list');
-const peopleListTextboxEl = document.querySelector('.people-list__textbox');
-const inputEl = peopleListTextboxEl['new-name'];
+const peopleListFormEl = document.querySelector('#people-list__form');
+const inputEl = peopleListFormEl['new-name'];
 
 // UI variables
 let isTapDownPlate = false;
@@ -26,15 +28,12 @@ class Person {
   constructor(name, id) {
     if (arguments.length == 2) {
       this.id = id;
-      this.name = name;
-      this.isAttend = true;
-      this.rotateDeg;
     } else {
       this.id = Person.setId();
-      this.name = name;
-      this.isAttend = true;
-      this.rotateDeg;
     }
+    this.name = name;
+    this.isAttend = true;
+    this.rotateDeg;
   }
 
   static setId() {
@@ -236,8 +235,6 @@ function flipPlate() {
     currentPersons = resetAll(selectedPersons);
     setProgressUi(0);
   }
-
-  //createFsidePeoplePlate();
 }
 
 function isBack() {
@@ -328,7 +325,7 @@ function playSpinner() {
     randomPerson = getRandomPerson(currentPersons);
     currentPersons = removeCurrentPerson(currentPersons, randomPerson);
 
-    setCssVar('--rotate-to', `${randomPerson.rotateDeg}deg`);
+    lib.setCssVar('--rotate-to', `${randomPerson.rotateDeg}deg`);
 
     // turn the needle
     needle.classList.remove('turn--reset');
@@ -446,21 +443,14 @@ function setPersonAttenUI(parentEl, isAttend) {
 }
 
 //add Person
-function addPerson(e) {
-  let inputValue = e.target.value;
+peopleListFormEl.addEventListener('keydown', (e) => {
+  let inputValue = inputEl.value;
 
   if (e.keyCode === 13 && inputValue) {
     e.preventDefault();
 
-    let newPerson = new Person(inputValue);
-    let isIdExist = persons.find((person) => person.id == newPerson.id);
-
-    if (!isIdExist) {
-      persons.unshift(newPerson);
-    } else {
-      persons.unshift(new Person(inputValue, persons.length + 1));
-    }
-    peopleListTextboxEl.reset();
+    addPerson(inputValue);
+    peopleListFormEl.reset();
     createFsidePeoplePlate();
     createBsidePeopleList();
     savePeople(persons);
@@ -468,6 +458,16 @@ function addPerson(e) {
     // press enter when no text inputed
     e.preventDefault();
   }
+});
+
+function addPerson(inputValue) {
+  let newPersonId = persons.length + 1;
+  let isIdExist = persons.find((person) => person.id == newPersonId);
+  while (isIdExist) {
+    newPersonId++;
+    isIdExist = persons.find((person) => person.id == newPersonId);
+  }
+  persons.unshift(new Person(inputValue, newPersonId));
 }
 
 // remove Person
@@ -501,19 +501,5 @@ window.addEventListener('keydown', (e) => {
 
 // press 'Enter' to turn
 window.addEventListener('keydown', (e) => {
-  if (e.keyCode === 13) playSpinner();
+  if (e.keyCode === 13 && !isBack()) playSpinner();
 });
-
-/* -------------------------------------------------------------------------- */
-/*                               help functions                               */
-/* -------------------------------------------------------------------------- */
-// get CSS var
-function getCssVar(variable) {
-  let style = getComputedStyle(document.body);
-  return style.getPropertyValue(variable);
-}
-
-// set CSS var
-function setCssVar(variable, value) {
-  document.documentElement.style.setProperty(variable, value);
-}
