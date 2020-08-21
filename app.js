@@ -1,4 +1,5 @@
-import * as lib from './src/js/lib.js';
+import * as uiUtility from './src/js/ui_utility.js';
+import * as dataLocalStorage from './src/js/data_localstorage.js';
 
 // get UI elements
 const needle = document.querySelector('#spin-needle');
@@ -43,8 +44,11 @@ class Person {
   }
 }
 
-loadPeople();
-if (!persons || persons.length < 1) {
+// validate if localStorage has data, otherwise push default people
+let preloadPeople = dataLocalStorage.loadPeople();
+if (preloadPeople) {
+  persons = dataLocalStorage.loadPeople();
+} else {
   persons.push(
     new Person('Sascha'),
     new Person('Adi'),
@@ -71,23 +75,6 @@ async function registerSW() {
         console.log(`SW registration failed`);
       }
     }
-  }
-}
-
-/* -------------------------------------------------------------------------- */
-/*                        save and load people to localStorage                        */
-/* -------------------------------------------------------------------------- */
-
-// save people to localStorage
-function savePeople(allPeople) {
-  localStorage.setItem('dailyPeople', JSON.stringify(allPeople));
-}
-
-// load people from localStorage
-function loadPeople() {
-  const loadedPeople = JSON.parse(localStorage.getItem('dailyPeople'));
-  if (loadedPeople) {
-    persons = loadedPeople;
   }
 }
 
@@ -325,7 +312,7 @@ function playSpinner() {
     randomPerson = getRandomPerson(currentPersons);
     currentPersons = removeCurrentPerson(currentPersons, randomPerson);
 
-    lib.setCssVar('--rotate-to', `${randomPerson.rotateDeg}deg`);
+    uiUtility.setCssVar('--rotate-to', `${randomPerson.rotateDeg}deg`);
 
     // turn the needle
     needle.classList.remove('turn--reset');
@@ -453,7 +440,7 @@ peopleListFormEl.addEventListener('keydown', (e) => {
     peopleListFormEl.reset();
     createFsidePeoplePlate();
     createBsidePeopleList();
-    savePeople(persons);
+    dataLocalStorage.savePeople(persons);
   } else if (e.keyCode === 13 && !inputValue) {
     // press enter when no text inputed
     e.preventDefault();
@@ -480,7 +467,7 @@ peopleListEl.addEventListener('click', (e) => {
     persons = persons.filter((person) => person.id != deleElId);
     createFsidePeoplePlate();
     createBsidePeopleList();
-    savePeople(persons);
+    dataLocalStorage.savePeople(persons);
   }
 });
 
