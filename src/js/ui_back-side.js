@@ -79,11 +79,7 @@ function addPerson(
       addNewPerson(inputValue, allPeople);
       peopleListEl.reset();
 
-      UiFrontSide.createFsidePeoplePlate(
-        peopleContainerEl,
-        newStyle,
-        allPeople
-      );
+      UiFrontSide.renderFrontSide(peopleContainerEl, newStyle, allPeople);
       createBsidePeopleList(peopleListEl, allPeople);
       dataLocalStorage.savePeople(allPeople);
     } else if (e.keyCode === 13 && !inputValue) {
@@ -121,11 +117,7 @@ function removePerson(
     if (e.target.className === 'people-list-item__delete-btn') {
       deleElId = e.target.parentElement.id;
 
-      UiFrontSide.createFsidePeoplePlate(
-        peopleContainerEl,
-        newStyle,
-        allPeople
-      );
+      UiFrontSide.renderFrontSide(peopleContainerEl, newStyle, allPeople);
       createBsidePeopleList(peopleListEl, allPeople);
       dataLocalStorage.savePeople(allPeople);
       allPeople = allPeople.filter((person) => person.id != deleElId);

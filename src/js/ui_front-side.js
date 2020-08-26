@@ -5,16 +5,16 @@ import * as uiSwipe from './ui_swipe.js';
 /* -------------------------------------------------------------------------- */
 /*                            create front side UI                            */
 /* -------------------------------------------------------------------------- */
-
-// FIXME: split UI and DT
-function createFsidePeoplePlate(swipeEl, mainStyle, allPeople) {
+function renderFrontSide(peopleContainerEl, mainStyle, allPeople) {
   let selectedPersons;
 
-  swipeEl.innerHTML = '';
   selectedPersons = getSelectedPersons(allPeople);
-  setRotateDeg(selectedPersons);
 
-  swipeEl.innerHTML = selectedPersons
+  peopleContainerEl.innerHTML = '';
+  setPeoplePosition(selectedPersons);
+  setPeopleReverse(mainStyle, selectedPersons);
+
+  peopleContainerEl.innerHTML = selectedPersons
     .map(
       (person) =>
         `
@@ -22,26 +22,22 @@ function createFsidePeoplePlate(swipeEl, mainStyle, allPeople) {
         `
     )
     .join('');
-
-  setPersonStyles(mainStyle, selectedPersons);
-
-  let restPeople = [...selectedPersons];
-  return restPeople;
 }
 
 /* -------------------------------- create front side UI: help func ------------------------------- */
 
+//FIXME: change a place to store: people.js
 function getSelectedPersons(allPeople) {
   return allPeople.filter((person) => person.isAttend == true);
 }
 
-function setRotateDeg(selectedPeople) {
+function setPeoplePosition(selectedPeople) {
   for (let i = 0; i < selectedPeople.length; i++) {
     selectedPeople[i].rotateDeg = (360 / selectedPeople.length) * i;
   }
 }
 
-function setPersonStyles(mainStyle, selectedPeople) {
+function setPeopleReverse(mainStyle, selectedPeople) {
   mainStyle.innerHTML = selectedPeople
     .map((person) => {
       if (person.rotateDeg > 90 && person.rotateDeg < 270) {
@@ -120,4 +116,4 @@ function removeRandomPerson(currentPeople, randomPerson) {
   return currentPeople.filter((x) => x !== randomPerson);
 }
 
-export { createFsidePeoplePlate, playSpinner, getSelectedPersons };
+export { renderFrontSide, playSpinner, getSelectedPersons };

@@ -54,6 +54,9 @@ if (preloadPeople) {
   );
 }
 
+// inBeginning:
+currentPersons = uiFrontSide.getSelectedPersons(persons);
+
 /* -------------------------------------------------------------------------- */
 /*                               Service Worker                               */
 /* -------------------------------------------------------------------------- */
@@ -73,7 +76,7 @@ async function registerSW() {
 }
 
 /* -------------------------------------------------------------------------- */
-/*                        SWIPE: flip + reset                                  */
+/*                        SWIPE: flip + reset                                 */
 /* -------------------------------------------------------------------------- */
 
 /* ---------------------------------- start --------------------------------- */
@@ -86,11 +89,25 @@ swipeEl.addEventListener('touchstart', (e) => {
 
 /* ----------------------------------- on ----------------------------------- */
 window.addEventListener('mousemove', (e) => {
-  let restPeople = uiSwipe.onSwipeTo(e, swipeEl, needle, mainStyle, persons);
+  let restPeople = uiSwipe.onSwipeTo(
+    e,
+    swipeEl,
+    needle,
+    peopleContainerEl,
+    mainStyle,
+    persons
+  );
   if (restPeople) currentPersons = restPeople;
 });
 swipeEl.addEventListener('touchmove', (e) => {
-  let restPeople = uiSwipe.onSwipeTo(e, swipeEl, needle, mainStyle, persons);
+  let restPeople = uiSwipe.onSwipeTo(
+    e,
+    swipeEl,
+    needle,
+    peopleContainerEl,
+    mainStyle,
+    persons
+  );
   if (restPeople) currentPersons = restPeople;
 });
 
@@ -106,12 +123,8 @@ window.addEventListener('touchend', () => {
 /*                                 side__front                                */
 /* -------------------------------------------------------------------------- */
 
-// create persons in UI
-currentPersons = uiFrontSide.createFsidePeoplePlate(
-  peopleContainerEl,
-  mainStyle,
-  persons
-);
+// render FrontSide
+uiFrontSide.renderFrontSide(peopleContainerEl, mainStyle, persons);
 
 // click to get randomPerson no repeat
 btnTurnEl.addEventListener('click', () => {

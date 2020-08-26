@@ -34,7 +34,14 @@ function onSwipeTouchStart(touchSensitivity) {
 /* -------------------------------------------------------------------------- */
 
 // swipeUtil: main function
-function onSwipeTo(e, swipeEl, needleEl, mainStyle, allPeople) {
+function onSwipeTo(
+  e,
+  swipeEl,
+  needleEl,
+  peopleContainerEl,
+  mainStyle,
+  allPeople
+) {
   if (!isTapDownPlate) return;
 
   let restPeople;
@@ -55,14 +62,49 @@ function onSwipeTo(e, swipeEl, needleEl, mainStyle, allPeople) {
   console.log(swipeTo, direCount);
 
   if (swipeTo === Swipe.UP && !isBack(swipeEl)) {
-    // FIXME: swipe up to reset all
+    // UP: reset
     restPeople = resetAll(swipeEl, needleEl, allPeople);
     return restPeople;
-  } else if (swipeTo === Swipe.LEFT || swipeTo === Swipe.RIGHT) {
-    //FIXME: split to swiptLeft and swipeRight
-    restPeople = flipPlate(swipeEl, needleEl, mainStyle, allPeople);
+  } else if (swipeTo === Swipe.RIGHT && !isBack(swipeEl)) {
+    // to Back =>
+    flipToBackAnim(swipeEl);
+  } else if (swipeTo === Swipe.LEFT) {
+    // <= to Front
+    flipToFrontAnim(swipeEl);
+
+    restPeople = flipPlate(
+      swipeEl,
+      needleEl,
+      peopleContainerEl,
+      mainStyle,
+      allPeople
+    );
     return restPeople;
   }
+}
+
+// flip plate
+function flipPlate(swipeEl, needleEl, peopleContainerEl, mainStyle, allPeople) {
+  let restPeople;
+
+  // create front UI
+  uiFrontSide.renderFrontSide(peopleContainerEl, mainStyle, allPeople);
+
+  //resetData
+  restPeople = resetAll(swipeEl, needleEl, allPeople);
+  return restPeople;
+}
+
+function flipToBackAnim(swipeEl) {
+  swipeEl.classList.add('spin-container__flip');
+}
+
+function flipToFrontAnim(swipeEl) {
+  swipeEl.classList.remove('spin-container__flip');
+}
+
+function isBack(swipeEl) {
+  return swipeEl.classList.contains('spin-container__flip');
 }
 
 // swipeUti: filter the useless direction signal in swipe process
@@ -124,38 +166,6 @@ function checkDirection(oldx, oldy, currx, curry) {
   if (direction) {
     return direction;
   }
-}
-
-// flip plate
-function flipPlate(swipeEl, needleEl, mainStyle, allPeople) {
-  let restPeople;
-  let selectedPeople;
-
-  if (!isBack(swipeEl)) {
-    // on FrontSide
-    swipeEl.classList.add('spin-container__flip');
-  } else {
-    // on BackSide
-    swipeEl.classList.remove('spin-container__flip');
-
-    // create front UI; get selectedPeople
-    selectedPeople = uiFrontSide.createFsidePeoplePlate(
-      swipeEl,
-      mainStyle,
-      allPeople
-    );
-
-    // set ProgressRing UI
-    uiProgressRing.setProgressUi(0);
-
-    //resetData
-    restPeople = resetAll(swipeEl, needleEl, allPeople);
-    return restPeople;
-  }
-}
-
-function isBack(swipeEl) {
-  return swipeEl.classList.contains('spin-container__flip');
 }
 
 /* -------------------------------------------------------------------------- */
