@@ -1,8 +1,12 @@
 import * as UiFrontSide from './ui_front-side.js';
 import * as dataLocalStorage from './data_localstorage.js';
+import * as dataPeople from './data_people.js';
 
-function createBsidePeopleList(peopleListEl, allPeople) {
-  peopleListEl.innerHTML = allPeople
+/* -------------------------------------------------------------------------- */
+/*                         render Backside People list                        */
+/* -------------------------------------------------------------------------- */
+function renderBackSide(backSidePeopleEl, allPeople) {
+  backSidePeopleEl.innerHTML = allPeople
     .map(
       (person) =>
         `
@@ -24,11 +28,46 @@ function createBsidePeopleList(peopleListEl, allPeople) {
 }
 
 /* -------------------------------------------------------------------------- */
+/*                                 add person                                 */
+/* -------------------------------------------------------------------------- */
+
+function addPerson(
+  frontSidePeopleEl,
+  backSidePeopleEl,
+  backSidePeopleFormEl,
+  mainStyle,
+  inputVal,
+  allPeople
+) {
+  // DT
+  addNewPerson(inputVal, allPeople);
+  backSidePeopleFormEl.reset();
+
+  // UI
+  UiFrontSide.renderFrontSide(frontSidePeopleEl, mainStyle, allPeople);
+  renderBackSide(backSidePeopleEl, allPeople);
+
+  // DT: save to localStorage
+  dataLocalStorage.savePeople(allPeople);
+}
+
+// FIXME: store into people.js
+function addNewPerson(inputValue, allPeople) {
+  let newPersonId = allPeople.length + 1;
+  let isIdExist = allPeople.find((person) => person.id == newPersonId);
+  while (isIdExist) {
+    newPersonId++;
+    isIdExist = allPeople.find((person) => person.id == newPersonId);
+  }
+  allPeople.unshift(new dataPeople.Person(inputValue, newPersonId));
+}
+
+/* -------------------------------------------------------------------------- */
 /*                                set isAttend person                         */
 /* -------------------------------------------------------------------------- */
 
-function setAttendPerson(peopleListEl, allPeople) {
-  peopleListEl.addEventListener('click', (e) => {
+function setAttendPerson(backSidePeopleEl, allPeople) {
+  backSidePeopleEl.addEventListener('click', (e) => {
     let selectedPersonName;
     if (e.target.id && e.target.id != 'people-list') {
       selectedPersonName = e.target.id;
@@ -58,67 +97,24 @@ function setPersonAttenUI(parentEl, isAttend) {
 }
 
 /* -------------------------------------------------------------------------- */
-/*                                 add person                                 */
-/* -------------------------------------------------------------------------- */
-
-function addPerson(
-  peopleContainerEl,
-  peopleListEl,
-  inputEl,
-  newStyle,
-  allPeople,
-  selectedPeople,
-  currentPersons
-) {
-  peopleListEl.addEventListener('keydown', (e) => {
-    let inputValue = inputEl.value;
-
-    if (e.keyCode === 13 && inputValue) {
-      e.preventDefault();
-
-      addNewPerson(inputValue, allPeople);
-      peopleListEl.reset();
-
-      UiFrontSide.renderFrontSide(peopleContainerEl, newStyle, allPeople);
-      createBsidePeopleList(peopleListEl, allPeople);
-      dataLocalStorage.savePeople(allPeople);
-    } else if (e.keyCode === 13 && !inputValue) {
-      // press enter when no text inputed
-      e.preventDefault();
-    }
-  });
-}
-
-function addNewPerson(inputValue, allPeople) {
-  let newPersonId = allPeople.length + 1;
-  let isIdExist = allPeople.find((person) => person.id == newPersonId);
-  while (isIdExist) {
-    newPersonId++;
-    isIdExist = allPeople.find((person) => person.id == newPersonId);
-  }
-  allPeople.unshift(new Person(inputValue, newPersonId));
-  //TODO: test if here need a return
-}
-
-/* -------------------------------------------------------------------------- */
 /*                                remove People                               */
 /* -------------------------------------------------------------------------- */
 
 function removePerson(
-  peopleContainerEl,
-  peopleListEl,
+  frontSidePeopleEl,
+  backSidePeopleEl,
   newStyle,
   allPeople,
   selectedPeople
 ) {
-  peopleListEl.addEventListener('click', (e) => {
+  backSidePeopleEl.addEventListener('click', (e) => {
     let deleElId;
 
     if (e.target.className === 'people-list-item__delete-btn') {
       deleElId = e.target.parentElement.id;
 
-      UiFrontSide.renderFrontSide(peopleContainerEl, newStyle, allPeople);
-      createBsidePeopleList(peopleListEl, allPeople);
+      UiFrontSide.renderFrontSide(frontSidePeopleEl, newStyle, allPeople);
+      renderBackSide(backSidePeopleEl, allPeople);
       dataLocalStorage.savePeople(allPeople);
       allPeople = allPeople.filter((person) => person.id != deleElId);
       //TODO: test if here need a return
@@ -126,4 +122,4 @@ function removePerson(
   });
 }
 
-export { createBsidePeopleList, setAttendPerson, addPerson, removePerson };
+export { renderBackSide, setAttendPerson, addPerson, removePerson };

@@ -8,45 +8,28 @@ import * as dataPeople from './src/js/data_people.js';
 const needle = document.querySelector('#spin-needle');
 const btnTurnEl = document.querySelector('#btn-turn');
 const swipeEl = document.querySelector('#spin-container');
-const peopleContainerEl = document.querySelector('#people-container');
+const frontSidePeopleEl = document.querySelector('#people-container');
 const mainStyle = document.createElement('style');
-const peopleListEl = document.querySelector('#people-list');
-const peopleListFormEl = document.querySelector('#people-list__form');
-const inputEl = peopleListFormEl['new-name'];
+const backSidePeopleEl = document.querySelector('#people-list');
+const backSidePeopleFormEl = document.querySelector('#people-list__form');
+const inputEl = backSidePeopleFormEl['new-name'];
 
 // create Person-Object
 let persons = [];
+//FIXME: can be change to restPeople
 let currentPersons = [];
 //FIXME: can be remove after arrange backside
 let selectedPersons = [];
-
-class Person {
-  constructor(name, id) {
-    if (arguments.length == 2) {
-      this.id = id;
-    } else {
-      this.id = Person.setId();
-    }
-    this.name = name;
-    this.isAttend = true;
-    this.rotateDeg;
-  }
-
-  static setId() {
-    if (!this.latestId) this.latestId = 1;
-    else this.latestId++;
-    return this.latestId;
-  }
-}
 
 // validate if localStorage has data, otherwise push default people
 let preloadPeople = dataLocalStorage.loadPeople();
 if (preloadPeople) {
   persons = dataLocalStorage.loadPeople();
 } else {
+  // FIXME: move to people.js
   persons.push(
-    new Person('Sascha'),
-    new Person('Adi')
+    new dataPeople.Person('Sascha'),
+    new dataPeople.Person('Adi')
     // new Person('Chris')
     // new Person('Yu')
     // new Person('Ali'),
@@ -77,7 +60,7 @@ async function registerSW() {
 }
 
 /* -------------------------------------------------------------------------- */
-/*                        SWIPE: flip + reset                                 */
+/*                     UI_SWIPE: flip + reset                                 */
 /* -------------------------------------------------------------------------- */
 
 /* ---------------------------------- start --------------------------------- */
@@ -94,7 +77,7 @@ window.addEventListener('mousemove', (e) => {
     e,
     swipeEl,
     needle,
-    peopleContainerEl,
+    frontSidePeopleEl,
     mainStyle,
     persons
   );
@@ -105,7 +88,7 @@ swipeEl.addEventListener('touchmove', (e) => {
     e,
     swipeEl,
     needle,
-    peopleContainerEl,
+    frontSidePeopleEl,
     mainStyle,
     persons
   );
@@ -125,7 +108,7 @@ window.addEventListener('touchend', () => {
 /* -------------------------------------------------------------------------- */
 
 // render FrontSide
-uiFrontSide.renderFrontSide(peopleContainerEl, mainStyle, persons);
+uiFrontSide.renderFrontSide(frontSidePeopleEl, mainStyle, persons);
 
 // click to get randomPerson no repeat
 btnTurnEl.addEventListener('click', () => {
@@ -140,19 +123,48 @@ btnTurnEl.addEventListener('click', () => {
 /* -------------------------------------------------------------------------- */
 /*                                 side__back                                 */
 /* -------------------------------------------------------------------------- */
-uiBackSide.createBsidePeopleList(peopleListEl, persons);
-uiBackSide.setAttendPerson(peopleListEl, persons);
-uiBackSide.addPerson(
-  peopleContainerEl,
-  peopleListEl,
-  inputEl,
-  mainStyle,
-  persons,
-  selectedPersons
-);
+
+//render Backside People list
+uiBackSide.renderBackSide(backSidePeopleEl, persons);
+
+/* ----------------------------- add new person ----------------------------- */
+
+// press Enter: ad new person
+backSidePeopleFormEl.addEventListener('keydown', (e) => {
+  // Textbox content
+  let inputVal = inputEl.value;
+
+  console.log('keydown');
+
+  // press Enter: valid text
+  if (e.keyCode === 13 && inputVal) {
+    e.preventDefault();
+
+    // add new person DT + UI
+    uiBackSide.addPerson(
+      frontSidePeopleEl,
+      backSidePeopleEl,
+      backSidePeopleFormEl,
+      mainStyle,
+      inputVal,
+      persons
+    );
+
+    // press Enter: invalid text
+  } else if (e.keyCode === 13 && !inputVal) {
+    e.preventDefault();
+  }
+});
+
+/* ---------------------------- set attend person --------------------------- */
+
+uiBackSide.setAttendPerson(backSidePeopleEl, persons);
+
+/* ------------------------------ remove person ----------------------------- */
+
 uiBackSide.removePerson(
-  peopleContainerEl,
-  peopleListEl,
+  frontSidePeopleEl,
+  backSidePeopleEl,
   mainStyle,
   persons,
   selectedPersons
@@ -162,18 +174,18 @@ uiBackSide.removePerson(
 /*                             TODO:  shortcuts                               */
 /* -------------------------------------------------------------------------- */
 // press 'R' to reset
-window.addEventListener('keydown', (e) => {
-  if (e.keyCode === 82 && !(inputEl === document.activeElement) && !isBack()) {
-    swipeToReset();
-  }
-});
+// window.addEventListener('keydown', (e) => {
+//   if (e.keyCode === 82 && !(inputEl === document.activeElement) && !isBack()) {
+//     swipeToReset();
+//   }
+// });
 
-// press 'F' to flip
-window.addEventListener('keydown', (e) => {
-  if (e.keyCode === 70 && !(inputEl === document.activeElement)) flipPlate();
-});
+// // press 'F' to flip
+// window.addEventListener('keydown', (e) => {
+//   if (e.keyCode === 70 && !(inputEl === document.activeElement)) flipPlate();
+// });
 
-// press 'Enter' to turn
-window.addEventListener('keydown', (e) => {
-  if (e.keyCode === 13 && !isBack()) playSpinner();
-});
+// // press 'Enter' to turn
+// window.addEventListener('keydown', (e) => {
+//   if (e.keyCode === 13 && !isBack()) playSpinner();
+// });
