@@ -1,5 +1,6 @@
 import * as uiProgressRing from './ui_progress-ring.js';
 import * as uiFrontSide from './ui_front-side.js';
+import * as dataPeople from './data_people.js';
 
 let isTapDownPlate;
 let interactionType;
@@ -192,7 +193,7 @@ function resetAll(swipeEl, needleEl, allPeople) {
   swipeToResetUi(swipeEl, needleEl);
 
   // DT
-  selectedPeople = uiFrontSide.getSelectedPersons(allPeople);
+  selectedPeople = dataPeople.getSelectedPeople(allPeople);
   restPeople = [...selectedPeople];
   return restPeople;
 }

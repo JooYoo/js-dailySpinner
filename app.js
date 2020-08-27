@@ -2,6 +2,7 @@ import * as uiSwipe from './src/js/ui_swipe.js';
 import * as uiFrontSide from './src/js/ui_front-side.js';
 import * as uiBackSide from './src/js/ui_back-side.js';
 import * as dataLocalStorage from './src/js/data_localstorage.js';
+import * as dataPeople from './src/js/data_people.js';
 
 // get UI elements
 const needle = document.querySelector('#spin-needle');
@@ -55,7 +56,7 @@ if (preloadPeople) {
 }
 
 // inBeginning:
-currentPersons = uiFrontSide.getSelectedPersons(persons);
+currentPersons = dataPeople.getSelectedPeople(persons);
 
 /* -------------------------------------------------------------------------- */
 /*                               Service Worker                               */

@@ -1,9 +1,9 @@
-import * as uiFrontSide from './ui_front-side.js';
+import * as dataPeople from './data_people.js';
 
 function setProgress(restPeople, allPeople) {
   if (!restPeople) return;
 
-  let selectedPeople = uiFrontSide.getSelectedPersons(allPeople);
+  let selectedPeople = dataPeople.getSelectedPeople(allPeople);
 
   let progressLength = selectedPeople.length;
   let progressLengthCurrent = restPeople.length;

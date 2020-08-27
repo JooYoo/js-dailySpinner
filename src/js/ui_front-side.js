@@ -1,20 +1,20 @@
 import * as uiUtility from './ui_utility.js';
 import * as uiProgressRing from './ui_progress-ring.js';
 import * as uiSwipe from './ui_swipe.js';
+import * as dataPeople from './data_people.js';
 
 /* -------------------------------------------------------------------------- */
 /*                            create front side UI                            */
 /* -------------------------------------------------------------------------- */
 function renderFrontSide(peopleContainerEl, mainStyle, allPeople) {
-  let selectedPersons;
+  let selectedPeople;
 
-  selectedPersons = getSelectedPersons(allPeople);
+  selectedPeople = dataPeople.getSelectedPeople(allPeople);
 
   peopleContainerEl.innerHTML = '';
-  setPeoplePosition(selectedPersons);
-  setPeopleReverse(mainStyle, selectedPersons);
-
-  peopleContainerEl.innerHTML = selectedPersons
+  setPeoplePosition(selectedPeople);
+  setPeopleReverse(mainStyle, selectedPeople);
+  peopleContainerEl.innerHTML = selectedPeople
     .map(
       (person) =>
         `
@@ -25,11 +25,6 @@ function renderFrontSide(peopleContainerEl, mainStyle, allPeople) {
 }
 
 /* -------------------------------- create front side UI: help func ------------------------------- */
-
-//FIXME: change a place to store: people.js
-function getSelectedPersons(allPeople) {
-  return allPeople.filter((person) => person.isAttend == true);
-}
 
 function setPeoplePosition(selectedPeople) {
   for (let i = 0; i < selectedPeople.length; i++) {
@@ -116,4 +111,4 @@ function removeRandomPerson(currentPeople, randomPerson) {
   return currentPeople.filter((x) => x !== randomPerson);
 }
 
-export { renderFrontSide, playSpinner, getSelectedPersons };
+export { renderFrontSide, playSpinner };
