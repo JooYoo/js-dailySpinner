@@ -39,27 +39,14 @@ function addPerson(
   inputVal,
   allPeople
 ) {
-  // DT
-  addNewPerson(inputVal, allPeople);
-  backSidePeopleFormEl.reset();
+  // DT: save to localStorage
+  dataPeople.addNewPerson(inputVal, allPeople);
+  dataLocalStorage.savePeople(allPeople);
 
   // UI
   UiFrontSide.renderFrontSide(frontSidePeopleEl, mainStyle, allPeople);
   renderBackSide(backSidePeopleEl, allPeople);
-
-  // DT: save to localStorage
-  dataLocalStorage.savePeople(allPeople);
-}
-
-// FIXME: store into people.js
-function addNewPerson(inputValue, allPeople) {
-  let newPersonId = allPeople.length + 1;
-  let isIdExist = allPeople.find((person) => person.id == newPersonId);
-  while (isIdExist) {
-    newPersonId++;
-    isIdExist = allPeople.find((person) => person.id == newPersonId);
-  }
-  allPeople.unshift(new dataPeople.Person(inputValue, newPersonId));
+  backSidePeopleFormEl.reset();
 }
 
 /* -------------------------------------------------------------------------- */
@@ -104,22 +91,27 @@ function removePerson(
   frontSidePeopleEl,
   backSidePeopleEl,
   newStyle,
-  allPeople,
-  selectedPeople
+  e,
+  allPeople
 ) {
-  backSidePeopleEl.addEventListener('click', (e) => {
-    let deleElId;
+  let restPeople;
+  let deleElId;
 
-    if (e.target.className === 'people-list-item__delete-btn') {
-      deleElId = e.target.parentElement.id;
+  // check if click on deleBtn
+  if (e.target.className === 'people-list-item__delete-btn') {
+    // DT: get deleteEl id + update allPeople
+    deleElId = e.target.parentElement.id;
+    restPeople = allPeople.filter((person) => person.id != deleElId);
 
-      UiFrontSide.renderFrontSide(frontSidePeopleEl, newStyle, allPeople);
-      renderBackSide(backSidePeopleEl, allPeople);
-      dataLocalStorage.savePeople(allPeople);
-      allPeople = allPeople.filter((person) => person.id != deleElId);
-      //TODO: test if here need a return
-    }
-  });
+    // UI: FrontSide + BackSide
+    UiFrontSide.renderFrontSide(frontSidePeopleEl, newStyle, restPeople);
+    renderBackSide(backSidePeopleEl, restPeople);
+
+    // DT: save data
+    dataLocalStorage.savePeople(restPeople);
+  }
+
+  return restPeople;
 }
 
 export { renderBackSide, setAttendPerson, addPerson, removePerson };

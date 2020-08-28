@@ -21,4 +21,14 @@ function getSelectedPeople(allPeople) {
   return allPeople.filter((person) => person.isAttend == true);
 }
 
-export { getSelectedPeople, Person };
+function addNewPerson(inputValue, allPeople) {
+  let newPersonId = allPeople.length + 1;
+  let isIdExist = allPeople.find((person) => person.id == newPersonId);
+  while (isIdExist) {
+    newPersonId++;
+    isIdExist = allPeople.find((person) => person.id == newPersonId);
+  }
+  allPeople.unshift(new Person(inputValue, newPersonId));
+}
+
+export { Person, getSelectedPeople, addNewPerson };

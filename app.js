@@ -18,8 +18,6 @@ const inputEl = backSidePeopleFormEl['new-name'];
 let persons = [];
 //FIXME: can be change to restPeople
 let currentPersons = [];
-//FIXME: can be remove after arrange backside
-let selectedPersons = [];
 
 // validate if localStorage has data, otherwise push default people
 let preloadPeople = dataLocalStorage.loadPeople();
@@ -134,8 +132,6 @@ backSidePeopleFormEl.addEventListener('keydown', (e) => {
   // Textbox content
   let inputVal = inputEl.value;
 
-  console.log('keydown');
-
   // press Enter: valid text
   if (e.keyCode === 13 && inputVal) {
     e.preventDefault();
@@ -162,13 +158,15 @@ uiBackSide.setAttendPerson(backSidePeopleEl, persons);
 
 /* ------------------------------ remove person ----------------------------- */
 
-uiBackSide.removePerson(
-  frontSidePeopleEl,
-  backSidePeopleEl,
-  mainStyle,
-  persons,
-  selectedPersons
-);
+backSidePeopleEl.addEventListener('click', (e) => {
+  persons = uiBackSide.removePerson(
+    frontSidePeopleEl,
+    backSidePeopleEl,
+    mainStyle,
+    e,
+    persons
+  );
+});
 
 /* -------------------------------------------------------------------------- */
 /*                             TODO:  shortcuts                               */
