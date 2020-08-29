@@ -154,11 +154,16 @@ backSidePeopleFormEl.addEventListener('keydown', (e) => {
 
 /* ---------------------------- set attend person --------------------------- */
 
-uiBackSide.setAttendPerson(backSidePeopleEl, persons);
+backSidePeopleEl.addEventListener('click', (e) => {
+  persons = uiBackSide.setAttendPerson(e, persons);
+});
 
 /* ------------------------------ remove person ----------------------------- */
 
 backSidePeopleEl.addEventListener('click', (e) => {
+  // UI: only works when click on 'X'
+  if (e.target.className !== 'people-list-item__delete-btn') return;
+
   persons = uiBackSide.removePerson(
     frontSidePeopleEl,
     backSidePeopleEl,

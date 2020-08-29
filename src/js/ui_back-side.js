@@ -53,28 +53,41 @@ function addPerson(
 /*                                set isAttend person                         */
 /* -------------------------------------------------------------------------- */
 
-function setAttendPerson(backSidePeopleEl, allPeople) {
-  backSidePeopleEl.addEventListener('click', (e) => {
-    let selectedPersonName;
-    if (e.target.id && e.target.id != 'people-list') {
-      selectedPersonName = e.target.id;
-    } else {
-      return;
-    }
+function setAttendPerson(e, allPeople) {
+  let people;
+  let clickedPersonName;
 
-    setPersonAttend(selectedPersonName, e, allPeople);
-  });
+  // UI: get clicked Person name
+  if (e.target.id && e.target.id != 'people-list') {
+    clickedPersonName = e.target.id;
+  } else {
+    return;
+  }
+
+  // UI + DT: set clickedPerson
+  people = setPersonAttend(e, clickedPersonName, allPeople);
+
+  return people;
 }
 
-function setPersonAttend(selectedPersonName, e, allPeople) {
-  let selectedPerson = allPeople.find(
-    (person) => person.name == selectedPersonName
-  );
-  selectedPerson.isAttend = !selectedPerson.isAttend;
-  setPersonAttenUI(e.target.parentElement, selectedPerson.isAttend);
+function setPersonAttend(e, clickedPersonName, allPeople) {
+  let clickedPerson;
+  let backSidePeopleItemEl;
+  let people;
+
+  // DT: find the person + set isAttend
+  clickedPerson = allPeople.find((person) => person.name == clickedPersonName);
+  clickedPerson.isAttend = !clickedPerson.isAttend;
+  people = allPeople;
+
+  // UI: get peopleItemEl set clicked Person UI
+  backSidePeopleItemEl = e.target.parentElement;
+  setPersonAttendUI(backSidePeopleItemEl, clickedPerson.isAttend);
+
+  return people;
 }
 
-function setPersonAttenUI(parentEl, isAttend) {
+function setPersonAttendUI(parentEl, isAttend) {
   let personEl = parentEl.children[1];
   if (isAttend) {
     personEl.style.color = 'black';

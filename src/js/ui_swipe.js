@@ -47,7 +47,7 @@ function onSwipeTo(
 
   let restPeople;
 
-  //output Direction by sensitivity
+  //FIXME: (write a function) output Direction by sensitivity
   direOld = onSwipe(e);
   if (!direOld) return;
   if (direCur === direOld) {
@@ -61,6 +61,7 @@ function onSwipeTo(
   }
   let swipeTo = direCur;
   console.log(swipeTo, direCount);
+  // (func end)
 
   if (swipeTo === Swipe.UP && !isBack(swipeEl)) {
     // UP: reset
