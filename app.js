@@ -1,11 +1,12 @@
 import * as uiSwipe from './src/js/ui_swipe.js';
 import * as uiFrontSide from './src/js/ui_front-side.js';
 import * as uiBackSide from './src/js/ui_back-side.js';
+import * as uiShortcut from './src/js/ui_shortcut.js';
 import * as dataLocalStorage from './src/js/data_localstorage.js';
 import * as dataPeople from './src/js/data_people.js';
 
 // get UI elements
-const needle = document.querySelector('#spin-needle');
+const needleEl = document.querySelector('#spin-needle');
 const btnTurnEl = document.querySelector('#btn-turn');
 const swipeEl = document.querySelector('#spin-container');
 const frontSidePeopleEl = document.querySelector('#people-container');
@@ -74,7 +75,7 @@ window.addEventListener('mousemove', (e) => {
   let restPeople = uiSwipe.onSwipeTo(
     e,
     swipeEl,
-    needle,
+    needleEl,
     frontSidePeopleEl,
     mainStyle,
     persons
@@ -85,7 +86,7 @@ swipeEl.addEventListener('touchmove', (e) => {
   let restPeople = uiSwipe.onSwipeTo(
     e,
     swipeEl,
-    needle,
+    needleEl,
     frontSidePeopleEl,
     mainStyle,
     persons
@@ -112,7 +113,7 @@ uiFrontSide.renderFrontSide(frontSidePeopleEl, mainStyle, persons);
 btnTurnEl.addEventListener('click', () => {
   currentPersons = uiFrontSide.playSpinner(
     swipeEl,
-    needle,
+    needleEl,
     persons,
     currentPersons
   );
@@ -155,7 +156,8 @@ backSidePeopleFormEl.addEventListener('keydown', (e) => {
 /* ---------------------------- set attend person --------------------------- */
 
 backSidePeopleEl.addEventListener('click', (e) => {
-  persons = uiBackSide.setAttendPerson(e, persons);
+  let attendPeople = uiBackSide.setAttendPerson(e, persons);
+  if (attendPeople) persons = attendPeople;
 });
 
 /* ------------------------------ remove person ----------------------------- */
@@ -177,11 +179,9 @@ backSidePeopleEl.addEventListener('click', (e) => {
 /*                             TODO:  shortcuts                               */
 /* -------------------------------------------------------------------------- */
 // press 'R' to reset
-// window.addEventListener('keydown', (e) => {
-//   if (e.keyCode === 82 && !(inputEl === document.activeElement) && !isBack()) {
-//     swipeToReset();
-//   }
-// });
+window.addEventListener('keydown', (e) => {
+  currentPersons = uiShortcut.kbRest(swipeEl, needleEl, e, persons);
+});
 
 // // press 'F' to flip
 // window.addEventListener('keydown', (e) => {

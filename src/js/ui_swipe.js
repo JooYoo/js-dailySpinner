@@ -227,4 +227,5 @@ export {
   onSwipeMouseUp,
   onSwipeTouchEnd,
   resetAll,
+  isBack,
 };
