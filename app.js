@@ -180,15 +180,23 @@ backSidePeopleEl.addEventListener('click', (e) => {
 /* -------------------------------------------------------------------------- */
 // press 'R' to reset
 window.addEventListener('keydown', (e) => {
-  currentPersons = uiShortcut.kbRest(swipeEl, needleEl, e, persons);
+  let currentPeople = uiShortcut.kbRest(swipeEl, needleEl, e, persons);
+  if (currentPeople) currentPersons = currentPeople;
+});
+
+// // press 'Enter' to start spin
+window.addEventListener('keydown', (e) => {
+  let currentPeople = uiShortcut.kbStart(
+    swipeEl,
+    needleEl,
+    e,
+    persons,
+    currentPersons
+  );
+  if (currentPeople) currentPersons = currentPeople;
 });
 
 // // press 'F' to flip
 // window.addEventListener('keydown', (e) => {
 //   if (e.keyCode === 70 && !(inputEl === document.activeElement)) flipPlate();
-// });
-
-// // press 'Enter' to turn
-// window.addEventListener('keydown', (e) => {
-//   if (e.keyCode === 13 && !isBack()) playSpinner();
 // });
