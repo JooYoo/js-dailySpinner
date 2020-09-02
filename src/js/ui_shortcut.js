@@ -34,10 +34,11 @@ function kbFlip(
 
     // check Side, if back to front + reset
     if (!isBack) {
+      // onFront => flip to back
       uiSwipe.flipToBackAnim(swipeElement);
     } else {
-      uiSwipe.flipToFrontAnim(swipeElement);
-      return uiSwipe.flipPlate(
+      // onBack => flip to front
+      return uiSwipe.flipToFront(
         swipeElement,
         needleElement,
         frontSidePeopleElement,

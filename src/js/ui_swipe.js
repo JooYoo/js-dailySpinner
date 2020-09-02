@@ -68,13 +68,11 @@ function onSwipeTo(
     restPeople = resetAll(swipeEl, needleEl, allPeople);
     return restPeople;
   } else if (swipeTo === Swipe.RIGHT && !isBack(swipeEl)) {
-    // to Back =>
+    // => to Back
     flipToBackAnim(swipeEl);
   } else if (swipeTo === Swipe.LEFT) {
     // <= to Front
-    flipToFrontAnim(swipeEl);
-
-    restPeople = flipPlate(
+    restPeople = flipToFront(
       swipeEl,
       needleEl,
       peopleContainerEl,
@@ -86,14 +84,35 @@ function onSwipeTo(
 }
 
 // flip plate
-function flipPlate(swipeEl, needleEl, peopleContainerEl, mainStyle, allPeople) {
+function flipToFront(
+  swipeEl,
+  needleEl,
+  peopleContainerEl,
+  mainStyle,
+  allPeople
+) {
   let restPeople;
+  let selectedPeople;
 
-  // create front UI
+  // UI: plate rotate animation
+  flipToFrontAnim(swipeEl);
+
+  // UI: create frontUI
   uiFrontSide.renderFrontSide(peopleContainerEl, mainStyle, allPeople);
 
-  //resetData
-  restPeople = resetAll(swipeEl, needleEl, allPeople);
+  // UI: rest needle
+  resetNeedleUi(needleEl);
+
+  // UI: reset ProgressUI
+  uiProgressRing.setProgressUi(0);
+
+  // reset swipe sensetivity
+  direCount = 0;
+
+  // DT
+  selectedPeople = dataPeople.getSelectedPeople(allPeople);
+  restPeople = [...selectedPeople];
+
   return restPeople;
 }
 
@@ -208,14 +227,19 @@ function swipeToResetUi(swipeEl, needleEl) {
   });
 
   // rest needle
-  needleEl.classList.remove('turn--start');
-  needleEl.classList.add('turn--reset');
+  resetNeedleUi(needleEl);
 
   // reset ProgressUI
   uiProgressRing.setProgressUi(0);
 
   // reset swipe sensetivity
   direCount = 0;
+}
+
+// rest needle
+function resetNeedleUi(needleEl) {
+  needleEl.classList.remove('turn--start');
+  needleEl.classList.add('turn--reset');
 }
 
 export {
@@ -230,5 +254,5 @@ export {
   isBack,
   flipToBackAnim,
   flipToFrontAnim,
-  flipPlate,
+  flipToFront,
 };
