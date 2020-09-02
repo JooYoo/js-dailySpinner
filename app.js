@@ -176,7 +176,7 @@ backSidePeopleEl.addEventListener('click', (e) => {
 });
 
 /* -------------------------------------------------------------------------- */
-/*                             TODO:  shortcuts                               */
+/*                               shortcuts                                    */
 /* -------------------------------------------------------------------------- */
 // press 'R' to reset
 window.addEventListener('keydown', (e) => {
@@ -197,6 +197,15 @@ window.addEventListener('keydown', (e) => {
 });
 
 // // press 'F' to flip
-// window.addEventListener('keydown', (e) => {
-//   if (e.keyCode === 70 && !(inputEl === document.activeElement)) flipPlate();
-// });
+window.addEventListener('keydown', (e) => {
+  let currentPeople = uiShortcut.kbFlip(
+    swipeEl,
+    needleEl,
+    inputEl,
+    frontSidePeopleEl,
+    e,
+    mainStyle,
+    persons
+  );
+  if (currentPeople) currentPersons = currentPeople;
+});

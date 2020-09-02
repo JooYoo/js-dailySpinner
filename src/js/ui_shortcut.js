@@ -9,8 +9,6 @@ function kbRest(swipeElement, needleElement, e, allPeople) {
 
 function kbStart(swipeElement, needleElement, e, allPeople, currentPeople) {
   if (e.keyCode === 13 && !uiSwipe.isBack(swipeElement)) {
-    console.log('kbStart');
-
     return uiFrontSide.playSpinner(
       swipeElement,
       needleElement,
@@ -20,4 +18,34 @@ function kbStart(swipeElement, needleElement, e, allPeople, currentPeople) {
   }
 }
 
-export { kbRest, kbStart };
+function kbFlip(
+  swipeElement,
+  needleElement,
+  inputElement,
+  frontSidePeopleElement,
+  e,
+  mainStyle,
+  allPeople
+) {
+  let isBack;
+
+  if (e.keyCode === 70 && !(inputElement === document.activeElement)) {
+    isBack = uiSwipe.isBack(swipeElement);
+
+    // check Side, if back to front + reset
+    if (!isBack) {
+      uiSwipe.flipToBackAnim(swipeElement);
+    } else {
+      uiSwipe.flipToFrontAnim(swipeElement);
+      return uiSwipe.flipPlate(
+        swipeElement,
+        needleElement,
+        frontSidePeopleElement,
+        mainStyle,
+        allPeople
+      );
+    }
+  }
+}
+
+export { kbRest, kbStart, kbFlip };

@@ -228,4 +228,7 @@ export {
   onSwipeTouchEnd,
   resetAll,
   isBack,
+  flipToBackAnim,
+  flipToFrontAnim,
+  flipPlate,
 };
