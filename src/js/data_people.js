@@ -17,6 +17,20 @@ class Person {
   }
 }
 
+function initPeople(people) {
+  people.push(
+    new Person('Sascha'),
+    new Person('Adi'),
+    new Person('Chris'),
+    new Person('Yu'),
+    new Person('Ali'),
+    new Person('Felix'),
+    new Person('Slawa')
+  );
+
+  return people;
+}
+
 function getSelectedPeople(allPeople) {
   return allPeople.filter((person) => person.isAttend == true);
 }
@@ -31,4 +45,4 @@ function addNewPerson(inputValue, allPeople) {
   allPeople.unshift(new Person(inputValue, newPersonId));
 }
 
-export { Person, getSelectedPeople, addNewPerson };
+export { Person, getSelectedPeople, addNewPerson, initPeople };

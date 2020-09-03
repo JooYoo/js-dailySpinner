@@ -17,7 +17,6 @@ const inputEl = backSidePeopleFormEl['new-name'];
 
 // create Person-Object
 let persons = [];
-//FIXME: can be change to restPeople
 let currentPersons = [];
 
 // validate if localStorage has data, otherwise push default people
@@ -25,16 +24,7 @@ let preloadPeople = dataLocalStorage.loadPeople();
 if (preloadPeople) {
   persons = dataLocalStorage.loadPeople();
 } else {
-  // FIXME: move to people.js
-  persons.push(
-    new dataPeople.Person('Sascha'),
-    new dataPeople.Person('Adi')
-    // new Person('Chris')
-    // new Person('Yu')
-    // new Person('Ali'),
-    // new Person('Felix'),
-    // new Person('Slawa')
-  );
+  persons = dataPeople.initPeople(persons);
 }
 
 // inBeginning:
