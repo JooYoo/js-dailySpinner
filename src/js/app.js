@@ -1,9 +1,9 @@
-import * as uiSwipe from './src/js/ui_swipe.js';
-import * as uiFrontSide from './src/js/ui_front-side.js';
-import * as uiBackSide from './src/js/ui_back-side.js';
-import * as uiShortcut from './src/js/ui_shortcut.js';
-import * as dataLocalStorage from './src/js/data_localstorage.js';
-import * as dataPeople from './src/js/data_people.js';
+import * as uiSwipe from './ui_swipe.js';
+import * as uiFrontSide from './ui_front-side.js';
+import * as uiBackSide from './ui_back-side.js';
+import * as uiShortcut from './ui_shortcut.js';
+import * as dataLocalStorage from './data_localstorage.js';
+import * as dataPeople from './data_people.js';
 
 // get UI elements
 const needleEl = document.querySelector('#spin-needle');

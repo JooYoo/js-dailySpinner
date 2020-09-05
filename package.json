@@ -1,0 +1,23 @@
+{
+  "name": "yu-daily-spinner",
+  "version": "1.0.0",
+  "description": "",
+  "main": "sw.js",
+  "scripts": {
+    "deploy": "gh-pages -d dist"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JooYoo/js-dailySpinner.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JooYoo/js-dailySpinner/issues"
+  },
+  "homepage": "https://jooyoo.github.io/js-dailySpinner/",
+  "dependencies": {
+    "gh-pages": "^3.1.0"
+  }
+}
