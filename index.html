@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Daily Spinner</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Raleway+Dots&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./src/style/style.css" />
+    <link rel="manifest" href="./manifest.json" />
+    <link rel="apple-touch-icon" href="./src/assets/icon-192x192.png" />
+    <link rel="shortcut icon" href="./favicon.ico" type="image/x-icon" />
+    <meta name="theme-color" content="#fff" />
+
+    <script type="module" defer src="./src/js/app.js"></script>
+    <noscript>This app requir JavaScript support :(</noscript>
+  </head>
+  <body>
+    <div id="spin-container" class="spin-container">
+      <div class="side side__front">
+        <div class="spin-progressbar">
+          <svg viewbox="0 0 140 140">
+            <circle cx="70" cy="70" r="70"></circle>
+            <circle cx="70" cy="70" r="70"></circle>
+          </svg>
+        </div>
+        <div id="spin-needle" class="spin-needle"></div>
+        <div id="people-container" class="people-container"></div>
+        <button id="btn-turn" class="btn-turn"></button>
+      </div>
+
+      <div class="side side__back">
+        <form id="people-list__form" class="people-list__textbox">
+          <input
+            type="text"
+            name="new-name"
+            id=""
+            placeholder="e.g. Jason..."
+          />
+        </form>
+        <ul id="people-list" class="people-list"></ul>
+      </div>
+    </div>
+  </body>
+</html>
