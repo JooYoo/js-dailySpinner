@@ -1,6 +1,6 @@
 # DailySpinner
 
-**🔗[https://bit.ly/dailyspinner](https://bit.ly/dailyspinner)**
+**🔗 [https://bit.ly/dailyspinner](https://bit.ly/dailyspinner)**
 
 ### TechStack
 

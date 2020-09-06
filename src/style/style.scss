@@ -6,8 +6,8 @@
   --card-shadow: 1px 1px 10px 5px rgba(0, 0, 0, 0.1);
   --card-shadow-transition: 1px 1px 10px 1px rgba(0, 0, 0, 0.08);
 
-  --spin-container-width: 90vmin;
-  --spin-container-height: 90vmin;
+  --spin-container-width: 85vmin;
+  --spin-container-height: 85vmin;
   --spin-font-size: 4vmin;
   --spin-turn-btn-padding: 6vmin;
 
@@ -31,6 +31,7 @@ body {
   align-items: center;
   height: 100vh;
   margin: 0;
+  padding-bottom: 5vmin;
   background-color: #efeeee;
   font-family: 'Raleway Dots', cursive;
   font-weight: bold;

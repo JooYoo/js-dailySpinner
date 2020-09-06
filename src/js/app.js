@@ -4,6 +4,7 @@ import * as uiBackSide from './ui_back-side.js';
 import * as uiShortcut from './ui_shortcut.js';
 import * as dataLocalStorage from './data_localstorage.js';
 import * as dataPeople from './data_people.js';
+import '../components/yu-toast.js';
 
 // get UI elements
 const needleEl = document.querySelector('#spin-needle');
