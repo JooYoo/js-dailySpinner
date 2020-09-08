@@ -14,6 +14,7 @@ const frontSidePeopleEl = document.querySelector('#people-container');
 const mainStyle = document.createElement('style');
 const backSidePeopleEl = document.querySelector('#people-list');
 const backSidePeopleFormEl = document.querySelector('#people-list__form');
+const toastEl = document.querySelector('#toast');
 const inputEl = backSidePeopleFormEl['new-name'];
 
 // create Person-Object
