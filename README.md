@@ -12,7 +12,7 @@
 
 > ## 2020.08.27 UPDATE 🎊 PWA 🎡 📲
 
-![gif](https://media3.giphy.com/media/gKg3M8V1zKzrUpSr7q/giphy.gif)
+🌄
 
 ### What's new:
 
@@ -30,7 +30,7 @@
 
 > ## 2020.08.20 UPDATE 😚🎊🎉🎁🎏🥰
 
-![gif](https://media1.giphy.com/media/ely9fN0XKEGNagjlXS/giphy.gif)
+🌅
 
 ### What's new:
 
