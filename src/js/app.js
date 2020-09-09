@@ -4,6 +4,7 @@ import * as uiBackSide from './ui_back-side.js';
 import * as uiShortcut from './ui_shortcut.js';
 import * as dataLocalStorage from './data_localstorage.js';
 import * as dataPeople from './data_people.js';
+import '../components/yu-toast.js';
 
 // get UI elements
 const needleEl = document.querySelector('#spin-needle');
@@ -13,6 +14,7 @@ const frontSidePeopleEl = document.querySelector('#people-container');
 const mainStyle = document.createElement('style');
 const backSidePeopleEl = document.querySelector('#people-list');
 const backSidePeopleFormEl = document.querySelector('#people-list__form');
+const toastEl = document.querySelector('#toast');
 const inputEl = backSidePeopleFormEl['new-name'];
 
 // create Person-Object
