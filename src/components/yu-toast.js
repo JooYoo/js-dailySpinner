@@ -8,7 +8,7 @@ template.innerHTML = `
        display: flex;
        justify-content: space-around;
        width: 100%;
-       bottom: 14%;
+       bottom: 30%;
     }
 
     .toast__item {
@@ -18,6 +18,7 @@ template.innerHTML = `
        font-size: 3vmin;
        color: rgba(0, 0, 0, 0.7);
        white-space: nowrap;
+       user-select: none;
     }
 
 </style>
