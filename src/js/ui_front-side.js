@@ -87,6 +87,13 @@ function playSpinner(swipeEl, needleEl, allPeople, currentPeople) {
     uiUtility.setCssVar('--rotate-to', `${randomPerson.rotateDeg}deg`);
     needleEl.classList.remove('turn--reset');
     needleEl.classList.add('turn--start');
+
+    // get the selectedPersonEl; add .people--selected to it
+    // FIXME: write as an func; after animation start
+    let selectedPersonEl = document.querySelector(
+      `.people--${randomPerson.id}`
+    );
+    selectedPersonEl.classList.add('people--selected');
   }
 
   // UI: set progressRing

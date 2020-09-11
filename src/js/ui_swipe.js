@@ -86,8 +86,6 @@ function onSwipeTo(
 
     let toastEl = document.createElement('yu-toast');
     uiUtility.insertAfter(swipeEl, toastEl);
-
-    console.log(bodyEl);
   }
 
   return restPeople;

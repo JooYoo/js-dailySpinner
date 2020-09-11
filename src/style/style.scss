@@ -287,9 +287,16 @@ body {
       width: 100%;
       padding-top: var(--people-list-padding-top);
       text-align: center;
-      color: black;
 
       transform: rotate(var(--person-position));
+
+      &::before {
+        color: rgba(0, 0, 0, 0.3);
+      }
+    }
+
+    .people--selected::before {
+      color: black;
     }
   }
 

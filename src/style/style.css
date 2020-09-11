@@ -353,9 +353,16 @@ body {
   width: 100%;
   padding-top: var(--people-list-padding-top);
   text-align: center;
-  color: black;
   -webkit-transform: rotate(var(--person-position));
           transform: rotate(var(--person-position));
+}
+
+.side .people-container .people::before {
+  color: rgba(0, 0, 0, 0.3);
+}
+
+.side .people-container .people--selected::before {
+  color: black;
 }
 
 .side .btn-turn {
