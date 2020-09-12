@@ -16,6 +16,9 @@
   --people-list-padding-top: 3.5vmin;
   --people-list-margin: 10vmin;
   --people-list-item__box-name-container-left: 10vmin;
+  --people-selected-effect-bg: url(../assets/faveEffect.png);
+  --people-selected-effect-bg-size: 15vmin;
+  --people-selected-effect-bg-frame: 28;
 }
 
 * {
@@ -355,14 +358,26 @@ body {
   text-align: center;
   -webkit-transform: rotate(var(--person-position));
           transform: rotate(var(--person-position));
+  color: rgba(0, 0, 0, 0.2);
 }
 
-.side .people-container .people::before {
-  color: rgba(0, 0, 0, 0.3);
-}
-
-.side .people-container .people--selected::before {
-  color: black;
+.side .people-container .fave-effect {
+  position: absolute;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  height: var(--people-selected-effect-bg-size);
+  width: var(--people-selected-effect-bg-size);
+  top: 7%;
+  left: 50%;
+  background: var(--people-selected-effect-bg) no-repeat;
+  background-size: 500vmin;
 }
 
 .side .btn-turn {
@@ -388,6 +403,41 @@ body {
   border: 1px solid rgba(255, 255, 255, 0.1);
   -webkit-box-shadow: -6px -6px 26px 0 rgba(255, 255, 255, 0.9), 6px 6px 16px 0 rgba(217, 210, 200, 0.5);
           box-shadow: -6px -6px 26px 0 rgba(255, 255, 255, 0.9), 6px 6px 16px 0 rgba(217, 210, 200, 0.5);
+}
+
+.start-selected-effect {
+  -webkit-animation: selectedEffect 0.5s steps(28) forwards;
+          animation: selectedEffect 0.5s steps(28) forwards;
+}
+
+@-webkit-keyframes selectedEffect {
+  0% {
+    font-size: 0;
+    background-position-x: 0%;
+  }
+  50% {
+    font-size: calc(var(--spin-font-size) + 2vmin);
+  }
+  100% {
+    font-size: var(--spin-font-size);
+    background-position-x: 100%;
+    color: black;
+  }
+}
+
+@keyframes selectedEffect {
+  0% {
+    font-size: 0;
+    background-position-x: 0%;
+  }
+  50% {
+    font-size: calc(var(--spin-font-size) + 2vmin);
+  }
+  100% {
+    font-size: var(--spin-font-size);
+    background-position-x: 100%;
+    color: black;
+  }
 }
 
 .turn--start {

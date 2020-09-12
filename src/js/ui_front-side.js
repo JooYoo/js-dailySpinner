@@ -13,15 +13,21 @@ function renderFrontSide(peopleContainerEl, mainStyle, allPeople) {
 
   peopleContainerEl.innerHTML = '';
   setPeoplePosition(selectedPeople);
-  setPeopleReverse(mainStyle, selectedPeople);
   peopleContainerEl.innerHTML = selectedPeople
     .map(
       (person) =>
         `
-            <div class="people people--${person.id}"></div>
+        <div>
+          <div class="people people--${person.id}">
+            <div class="fave-effect">
+              ${person.name}
+            </div>
+          </div>
+        </div>
         `
     )
     .join('');
+  setPeopleReverse(mainStyle, selectedPeople);
 }
 
 /* -------------------------------- create front side UI: help func ------------------------------- */
@@ -40,11 +46,9 @@ function setPeopleReverse(mainStyle, selectedPeople) {
           .people--${person.id} {
             --person-position: ${person.rotateDeg}deg;
           }
-  
-          .people--${person.id}::before {
-            content: "${person.name}";
-            position: absolute;
-            transform: translateX(-50%) rotate(180deg);
+
+          .people--${person.id} .fave-effect {
+            transform: translateX(-50%) translateY(-50%) rotate(180deg);
           }
           `;
       } else {
@@ -52,9 +56,9 @@ function setPeopleReverse(mainStyle, selectedPeople) {
           .people--${person.id} {
             --person-position: ${person.rotateDeg}deg;
           }
-  
-          .people--${person.id}::before {
-            content: "${person.name}";
+
+          .people--${person.id} .fave-effect {
+            transform: translateX(-50%) translateY(-50%);
           }
           `;
       }
@@ -88,12 +92,8 @@ function playSpinner(swipeEl, needleEl, allPeople, currentPeople) {
     needleEl.classList.remove('turn--reset');
     needleEl.classList.add('turn--start');
 
-    // get the selectedPersonEl; add .people--selected to it
-    // FIXME: write as an func; after animation start
-    let selectedPersonEl = document.querySelector(
-      `.people--${randomPerson.id}`
-    );
-    selectedPersonEl.classList.add('people--selected');
+    // UI:  after the person is selected, render it selected-effects
+    setSelectedPersonUI(needleEl, randomPerson);
   }
 
   // UI: set progressRing
@@ -105,6 +105,20 @@ function playSpinner(swipeEl, needleEl, allPeople, currentPeople) {
   needleEl.style.animation = null;
 
   return restPeople;
+}
+
+function setSelectedPersonUI(needleEl, randomPerson) {
+  // get the selectedPersonFaveEl
+  let selectedPersonFaveEl = document.querySelector(
+    `.people--${randomPerson.id}`
+  ).children[0];
+
+  // play the FaveAnim after needle finished turn
+  needleEl.addEventListener('animationend', () => {
+    selectedPersonFaveEl.classList.add('start-selected-effect');
+  });
+
+  //TODO: after finished reset all the FaveAnim and PersonColor
 }
 
 /* ------------------------- turn needle: help func ------------------------- */

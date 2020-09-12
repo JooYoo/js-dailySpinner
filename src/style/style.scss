@@ -18,6 +18,10 @@
   --people-list-padding-top: 3.5vmin;
   --people-list-margin: 10vmin;
   --people-list-item__box-name-container-left: 10vmin;
+
+  --people-selected-effect-bg: url(../assets/faveEffect.png);
+  --people-selected-effect-bg-size: 15vmin;
+  --people-selected-effect-bg-frame: 28;
 }
 
 * {
@@ -287,16 +291,21 @@ body {
       width: 100%;
       padding-top: var(--people-list-padding-top);
       text-align: center;
-
       transform: rotate(var(--person-position));
-
-      &::before {
-        color: rgba(0, 0, 0, 0.3);
-      }
+      color: rgba(0, 0, 0, 0.2);
     }
 
-    .people--selected::before {
-      color: black;
+    .fave-effect {
+      position: absolute;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: var(--people-selected-effect-bg-size);
+      width: var(--people-selected-effect-bg-size);
+      top: 7%;
+      left: 50%;
+      background: var(--people-selected-effect-bg) no-repeat;
+      background-size: 500vmin;
     }
   }
 
@@ -324,6 +333,26 @@ body {
       box-shadow: -6px -6px 26px 0 rgba(255, 255, 255, 0.9),
         6px 6px 16px 0 rgba(217, 210, 200, 0.5);
     }
+  }
+}
+
+// selected effect
+.start-selected-effect {
+  animation: selectedEffect 0.5s steps(28) forwards;
+}
+
+@keyframes selectedEffect {
+  0% {
+    font-size: 0;
+    background-position-x: 0%;
+  }
+  50% {
+    font-size: calc(var(--spin-font-size) + 2vmin);
+  }
+  100% {
+    font-size: var(--spin-font-size);
+    background-position-x: 100%;
+    color: black;
   }
 }
 
