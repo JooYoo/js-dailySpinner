@@ -339,6 +339,7 @@ body {
 // selected effect
 .start-selected-effect {
   animation: selectedEffect 0.5s steps(28) forwards;
+  animation-delay: 2s;
 }
 
 @keyframes selectedEffect {

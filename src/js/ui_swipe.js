@@ -220,6 +220,9 @@ function resetAll(swipeEl, needleEl, allPeople) {
   // UI
   swipeToResetUi(swipeEl, needleEl);
 
+  // UI reset selected person Anim
+  uiFrontSide.resetSelectedPersonUI();
+
   // DT
   selectedPeople = dataPeople.getSelectedPeople(allPeople);
   restPeople = [...selectedPeople];

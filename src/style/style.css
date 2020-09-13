@@ -408,6 +408,8 @@ body {
 .start-selected-effect {
   -webkit-animation: selectedEffect 0.5s steps(28) forwards;
           animation: selectedEffect 0.5s steps(28) forwards;
+  -webkit-animation-delay: 2s;
+          animation-delay: 2s;
 }
 
 @-webkit-keyframes selectedEffect {

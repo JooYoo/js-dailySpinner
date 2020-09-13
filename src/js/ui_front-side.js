@@ -79,10 +79,17 @@ function playSpinner(swipeEl, needleEl, allPeople, currentPeople) {
   if (currentPeople.length === 0) {
     // reset UI and DATA
     restPeople = uiSwipe.resetAll(swipeEl, needleEl, allPeople);
+
+    // rest selectedPersonAnim
+    resetSelectedPersonUI();
+
     console.log('DONE 🍻');
   } else {
     // DT: get random Person
     randomPerson = getRandomPerson(currentPeople);
+
+    // UI:  after the person is selected, render it selected-effects
+    setSelectedPersonUI(randomPerson);
 
     // DT: remove the pick random person
     restPeople = removeRandomPerson(currentPeople, randomPerson);
@@ -91,9 +98,6 @@ function playSpinner(swipeEl, needleEl, allPeople, currentPeople) {
     uiUtility.setCssVar('--rotate-to', `${randomPerson.rotateDeg}deg`);
     needleEl.classList.remove('turn--reset');
     needleEl.classList.add('turn--start');
-
-    // UI:  after the person is selected, render it selected-effects
-    setSelectedPersonUI(needleEl, randomPerson);
   }
 
   // UI: set progressRing
@@ -107,18 +111,25 @@ function playSpinner(swipeEl, needleEl, allPeople, currentPeople) {
   return restPeople;
 }
 
-function setSelectedPersonUI(needleEl, randomPerson) {
+function setSelectedPersonUI(randomPerson) {
   // get the selectedPersonFaveEl
   let selectedPersonFaveEl = document.querySelector(
     `.people--${randomPerson.id}`
   ).children[0];
 
-  // play the FaveAnim after needle finished turn
-  needleEl.addEventListener('animationend', () => {
-    selectedPersonFaveEl.classList.add('start-selected-effect');
-  });
+  // play FaveAnim
+  selectedPersonFaveEl.classList.add('start-selected-effect');
+}
 
-  //TODO: after finished reset all the FaveAnim and PersonColor
+function resetSelectedPersonUI() {
+  // get all PersonEl which already shows the faveAnim
+  let allSelectedPerson = document.querySelectorAll('.fave-effect');
+
+  // - rest all the FaveAnim
+  // - rest Person color
+  allSelectedPerson.forEach((selectedPersonEl) => {
+    selectedPersonEl.classList.remove('start-selected-effect');
+  });
 }
 
 /* ------------------------- turn needle: help func ------------------------- */
@@ -132,4 +143,4 @@ function removeRandomPerson(currentPeople, randomPerson) {
   return currentPeople.filter((x) => x !== randomPerson);
 }
 
-export { renderFrontSide, playSpinner };
+export { renderFrontSide, playSpinner, resetSelectedPersonUI };
