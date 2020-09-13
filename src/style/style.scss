@@ -68,24 +68,6 @@ body {
     transform: rotateY(180deg);
     box-shadow: var(--card-shadow-transition);
   }
-
-  &__flip--rest {
-    animation-name: spin-container__flip--rest;
-    animation-duration: 1s;
-    animation-timing-function: ease-out;
-  }
-}
-
-@keyframes spin-container__flip--rest {
-  0% {
-    transform: rotateX(0deg);
-  }
-  50% {
-    transform: rotateX(60deg);
-  }
-  100% {
-    transform: rotateX(0deg);
-  }
 }
 
 .side {
@@ -336,13 +318,34 @@ body {
   }
 }
 
-// selected effect
+/* -------------------------------------------------------------------------- */
+/*                                  Animation                                 */
+/* -------------------------------------------------------------------------- */
+
+// reset Spinner Anim
+.spin-container__flip--rest {
+  animation: restSpinner 1s ease-out;
+}
+
+@keyframes restSpinner {
+  0% {
+    transform: rotateX(0deg);
+  }
+  50% {
+    transform: rotateX(60deg);
+  }
+  100% {
+    transform: rotateX(0deg);
+  }
+}
+
+// set SelectedPerson Anim
 .start-selected-effect {
-  animation: selectedEffect 0.5s steps(28) forwards;
+  animation: selectedPerson 0.5s steps(28) forwards;
   animation-delay: 2s;
 }
 
-@keyframes selectedEffect {
+@keyframes selectedPerson {
   0% {
     font-size: 0;
     background-position-x: 0%;
@@ -357,16 +360,12 @@ body {
   }
 }
 
-// needle turn animation
+// turn Needle Anim
 .turn--start {
-  animation-name: turn--start;
-  animation-duration: 2s;
-
-  animation-timing-function: ease-out;
-  animation-fill-mode: forwards;
+  animation: turnNeedle 2s ease-out forwards;
 }
 
-@keyframes turn--start {
+@keyframes turnNeedle {
   0% {
     transform: translateX(-50%) rotate(0deg);
   }
@@ -376,14 +375,12 @@ body {
   }
 }
 
+// reset Needle Anim
 .turn--reset {
-  animation-name: turn--reset;
-  animation-duration: 2s;
-  animation-timing-function: linear;
-  animation-fill-mode: forwards;
+  animation: resetNeedle 2s linear forwards;
 }
 
-@keyframes turn--reset {
+@keyframes resetNeedle {
   0% {
     transform: translateX(-50%) rotate(calc(360deg + var(--rotate-to)));
   }
@@ -393,6 +390,7 @@ body {
   }
 }
 
+// set Toast Anim
 .toast-hover-area {
   position: absolute;
   display: flex;

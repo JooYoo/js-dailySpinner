@@ -74,45 +74,6 @@ body {
           box-shadow: var(--card-shadow-transition);
 }
 
-.spin-container__flip--rest {
-  -webkit-animation-name: spin-container__flip--rest;
-          animation-name: spin-container__flip--rest;
-  -webkit-animation-duration: 1s;
-          animation-duration: 1s;
-  -webkit-animation-timing-function: ease-out;
-          animation-timing-function: ease-out;
-}
-
-@-webkit-keyframes spin-container__flip--rest {
-  0% {
-    -webkit-transform: rotateX(0deg);
-            transform: rotateX(0deg);
-  }
-  50% {
-    -webkit-transform: rotateX(60deg);
-            transform: rotateX(60deg);
-  }
-  100% {
-    -webkit-transform: rotateX(0deg);
-            transform: rotateX(0deg);
-  }
-}
-
-@keyframes spin-container__flip--rest {
-  0% {
-    -webkit-transform: rotateX(0deg);
-            transform: rotateX(0deg);
-  }
-  50% {
-    -webkit-transform: rotateX(60deg);
-            transform: rotateX(60deg);
-  }
-  100% {
-    -webkit-transform: rotateX(0deg);
-            transform: rotateX(0deg);
-  }
-}
-
 .side {
   position: absolute;
   height: 100%;
@@ -405,14 +366,52 @@ body {
           box-shadow: -6px -6px 26px 0 rgba(255, 255, 255, 0.9), 6px 6px 16px 0 rgba(217, 210, 200, 0.5);
 }
 
+/* -------------------------------------------------------------------------- */
+/*                                  Animation                                 */
+/* -------------------------------------------------------------------------- */
+.spin-container__flip--rest {
+  -webkit-animation: restSpinner 1s ease-out;
+          animation: restSpinner 1s ease-out;
+}
+
+@-webkit-keyframes restSpinner {
+  0% {
+    -webkit-transform: rotateX(0deg);
+            transform: rotateX(0deg);
+  }
+  50% {
+    -webkit-transform: rotateX(60deg);
+            transform: rotateX(60deg);
+  }
+  100% {
+    -webkit-transform: rotateX(0deg);
+            transform: rotateX(0deg);
+  }
+}
+
+@keyframes restSpinner {
+  0% {
+    -webkit-transform: rotateX(0deg);
+            transform: rotateX(0deg);
+  }
+  50% {
+    -webkit-transform: rotateX(60deg);
+            transform: rotateX(60deg);
+  }
+  100% {
+    -webkit-transform: rotateX(0deg);
+            transform: rotateX(0deg);
+  }
+}
+
 .start-selected-effect {
-  -webkit-animation: selectedEffect 0.5s steps(28) forwards;
-          animation: selectedEffect 0.5s steps(28) forwards;
+  -webkit-animation: selectedPerson 0.5s steps(28) forwards;
+          animation: selectedPerson 0.5s steps(28) forwards;
   -webkit-animation-delay: 2s;
           animation-delay: 2s;
 }
 
-@-webkit-keyframes selectedEffect {
+@-webkit-keyframes selectedPerson {
   0% {
     font-size: 0;
     background-position-x: 0%;
@@ -427,7 +426,7 @@ body {
   }
 }
 
-@keyframes selectedEffect {
+@keyframes selectedPerson {
   0% {
     font-size: 0;
     background-position-x: 0%;
@@ -443,17 +442,11 @@ body {
 }
 
 .turn--start {
-  -webkit-animation-name: turn--start;
-          animation-name: turn--start;
-  -webkit-animation-duration: 2s;
-          animation-duration: 2s;
-  -webkit-animation-timing-function: ease-out;
-          animation-timing-function: ease-out;
-  -webkit-animation-fill-mode: forwards;
-          animation-fill-mode: forwards;
+  -webkit-animation: turnNeedle 2s ease-out forwards;
+          animation: turnNeedle 2s ease-out forwards;
 }
 
-@-webkit-keyframes turn--start {
+@-webkit-keyframes turnNeedle {
   0% {
     -webkit-transform: translateX(-50%) rotate(0deg);
             transform: translateX(-50%) rotate(0deg);
@@ -464,7 +457,7 @@ body {
   }
 }
 
-@keyframes turn--start {
+@keyframes turnNeedle {
   0% {
     -webkit-transform: translateX(-50%) rotate(0deg);
             transform: translateX(-50%) rotate(0deg);
@@ -476,17 +469,11 @@ body {
 }
 
 .turn--reset {
-  -webkit-animation-name: turn--reset;
-          animation-name: turn--reset;
-  -webkit-animation-duration: 2s;
-          animation-duration: 2s;
-  -webkit-animation-timing-function: linear;
-          animation-timing-function: linear;
-  -webkit-animation-fill-mode: forwards;
-          animation-fill-mode: forwards;
+  -webkit-animation: resetNeedle 2s linear forwards;
+          animation: resetNeedle 2s linear forwards;
 }
 
-@-webkit-keyframes turn--reset {
+@-webkit-keyframes resetNeedle {
   0% {
     -webkit-transform: translateX(-50%) rotate(calc(360deg + var(--rotate-to)));
             transform: translateX(-50%) rotate(calc(360deg + var(--rotate-to)));
@@ -497,7 +484,7 @@ body {
   }
 }
 
-@keyframes turn--reset {
+@keyframes resetNeedle {
   0% {
     -webkit-transform: translateX(-50%) rotate(calc(360deg + var(--rotate-to)));
             transform: translateX(-50%) rotate(calc(360deg + var(--rotate-to)));
