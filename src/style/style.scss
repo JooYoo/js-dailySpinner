@@ -367,7 +367,7 @@ body {
 
 @keyframes turnNeedle {
   0% {
-    transform: translateX(-50%) rotate(0deg);
+    transform: translateX(-50%) rotate(var(--rotate-from));
   }
 
   100% {

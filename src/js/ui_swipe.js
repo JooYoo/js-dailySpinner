@@ -217,11 +217,8 @@ function resetAll(swipeEl, needleEl, allPeople) {
   let restPeople;
   let selectedPeople;
 
-  // UI
+  // UI: swipe to reset all UI
   swipeToResetUi(swipeEl, needleEl);
-
-  // UI reset selected person Anim
-  uiFrontSide.resetSelectedPersonUI();
 
   // DT
   selectedPeople = dataPeople.getSelectedPeople(allPeople);
@@ -242,6 +239,9 @@ function swipeToResetUi(swipeEl, needleEl) {
 
   // reset ProgressUI
   uiProgressRing.setProgressUi(0);
+
+  // reset selectedPerson Anim
+  uiFrontSide.resetSelectedPersonUI();
 
   // reset swipe sensetivity
   direCount = 0;

@@ -448,8 +448,8 @@ body {
 
 @-webkit-keyframes turnNeedle {
   0% {
-    -webkit-transform: translateX(-50%) rotate(0deg);
-            transform: translateX(-50%) rotate(0deg);
+    -webkit-transform: translateX(-50%) rotate(var(--rotate-from));
+            transform: translateX(-50%) rotate(var(--rotate-from));
   }
   100% {
     -webkit-transform: translateX(-50%) rotate(calc(360deg * 3 + var(--rotate-to)));
@@ -459,8 +459,8 @@ body {
 
 @keyframes turnNeedle {
   0% {
-    -webkit-transform: translateX(-50%) rotate(0deg);
-            transform: translateX(-50%) rotate(0deg);
+    -webkit-transform: translateX(-50%) rotate(var(--rotate-from));
+            transform: translateX(-50%) rotate(var(--rotate-from));
   }
   100% {
     -webkit-transform: translateX(-50%) rotate(calc(360deg * 3 + var(--rotate-to)));

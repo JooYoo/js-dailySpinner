@@ -72,27 +72,29 @@ function setPeopleReverse(mainStyle, selectedPeople) {
 /* -------------------------------------------------------------------------- */
 
 function playSpinner(swipeEl, needleEl, allPeople, currentPeople) {
-  let randomPerson;
   let restPeople;
+  let randomPerson;
+  let currentPeopleLength = currentPeople.length;
+  let selectPeopleLength = dataPeople.getSelectedPeople(allPeople).length;
+
+  // UI: veryBegin ? reset randomPerson
+  currentPeopleLength === selectPeopleLength ? (randomPerson = '') : '';
 
   // check if finish
   if (currentPeople.length === 0) {
     // reset UI and DATA
     restPeople = uiSwipe.resetAll(swipeEl, needleEl, allPeople);
 
-    // rest selectedPersonAnim
-    resetSelectedPersonUI();
-
     console.log('DONE 🍻');
   } else {
-    // DT: get random Person
+    // DT: get RandomPerson
     randomPerson = getRandomPerson(currentPeople);
 
-    // UI:  after the person is selected, render it selected-effects
-    setSelectedPersonUI(randomPerson);
-
-    // DT: remove the pick random person
+    // DT: remove picked RandomPerson
     restPeople = removeRandomPerson(currentPeople, randomPerson);
+
+    // UI: selectedPersonEffect Anim
+    setSelectedPersonUI(randomPerson);
 
     // UI: turn the needle
     uiUtility.setCssVar('--rotate-to', `${randomPerson.rotateDeg}deg`);
@@ -100,15 +102,29 @@ function playSpinner(swipeEl, needleEl, allPeople, currentPeople) {
     needleEl.classList.add('turn--start');
   }
 
+  // UI: set var(--rotate-from)
+  setRotateFromUI(needleEl, randomPerson);
+
   // UI: set progressRing
   uiProgressRing.setProgress(restPeople, allPeople);
 
-  // UI:  restart animation: by DOM reflow
+  // UI: restart animation: by DOM reflow
   needleEl.style.animation = 'none';
   needleEl.offsetHeight;
   needleEl.style.animation = null;
 
   return restPeople;
+}
+
+/* ------------------------- turn needle: help func ------------------------- */
+
+function setRotateFromUI(needleEl, randomPerson) {
+  // justBeginn ? continueSpin : firstSpin
+  needleEl.addEventListener('animationend', () => {
+    randomPerson
+      ? uiUtility.setCssVar('--rotate-from', `${randomPerson.rotateDeg}deg`)
+      : uiUtility.setCssVar('--rotate-from', '0deg');
+  });
 }
 
 function setSelectedPersonUI(randomPerson) {
@@ -131,8 +147,6 @@ function resetSelectedPersonUI() {
     selectedPersonEl.classList.remove('start-selected-effect');
   });
 }
-
-/* ------------------------- turn needle: help func ------------------------- */
 
 function getRandomPerson(allPersons) {
   let randomNr = Math.floor(Math.random() * allPersons.length);
