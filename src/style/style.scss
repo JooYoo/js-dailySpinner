@@ -43,6 +43,7 @@ body {
   font-size: var(--spin-font-size);
   touch-action: none;
   overflow: hidden;
+  perspective: 3000px;
 }
 
 .spin-container {
@@ -56,7 +57,6 @@ body {
     inset 0 -15px 15px rgba(255, 255, 255, 1), 0 15px 15px rgba(0, 0, 0, 0.1),
     inset 0 15px 15px rgba(0, 0, 0, 0.08);
 
-  perspective: 1000px;
   transform-style: preserve-3d;
   transition: transform 0.3s ease-in-out, box-shadow 0.2s ease-in-out;
 
