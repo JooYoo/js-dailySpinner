@@ -1,6 +1,7 @@
 import * as uiProgressRing from './ui_progress-ring.js';
 import * as uiFrontSide from './ui_front-side.js';
 import * as dataPeople from './data_people.js';
+import * as uiUtility from './ui_utility.js';
 
 let isTapDownPlate;
 let interactionType;
@@ -60,13 +61,12 @@ function onSwipeTo(
     return;
   }
   let swipeTo = direCur;
-  console.log(swipeTo, direCount);
+  // console.log(swipeTo, direCount);
   // (func end)
 
   if (swipeTo === Swipe.UP && !isBack(swipeEl)) {
     // UP: reset
     restPeople = resetAll(swipeEl, needleEl, allPeople);
-    return restPeople;
   } else if (swipeTo === Swipe.RIGHT && !isBack(swipeEl)) {
     // => to Back
     flipToBackAnim(swipeEl);
@@ -79,8 +79,16 @@ function onSwipeTo(
       mainStyle,
       allPeople
     );
-    return restPeople;
+  } else if (swipeTo === Swipe.DOWN) {
+    // DOWN: toast
+    // add <yu-toast> next to <spin-container>
+    let bodyEl = document.querySelector('body');
+
+    let toastEl = document.createElement('yu-toast');
+    uiUtility.insertAfter(swipeEl, toastEl);
   }
+
+  return restPeople;
 }
 
 // flip plate
@@ -209,7 +217,7 @@ function resetAll(swipeEl, needleEl, allPeople) {
   let restPeople;
   let selectedPeople;
 
-  // UI
+  // UI: swipe to reset all UI
   swipeToResetUi(swipeEl, needleEl);
 
   // DT
@@ -231,6 +239,9 @@ function swipeToResetUi(swipeEl, needleEl) {
 
   // reset ProgressUI
   uiProgressRing.setProgressUi(0);
+
+  // reset selectedPerson Anim
+  uiFrontSide.resetSelectedPersonUI();
 
   // reset swipe sensetivity
   direCount = 0;

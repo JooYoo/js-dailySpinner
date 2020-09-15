@@ -9,4 +9,9 @@ function setCssVar(variable, value) {
   document.documentElement.style.setProperty(variable, value);
 }
 
-export { getCssVar, setCssVar };
+// add element next to another
+function insertAfter(referenceNode, newNode) {
+  referenceNode.parentNode.insertBefore(newNode, referenceNode.nextSibling);
+}
+
+export { getCssVar, setCssVar, insertAfter };
