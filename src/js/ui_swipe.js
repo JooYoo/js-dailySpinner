@@ -86,8 +86,6 @@ function onSwipeTo(
 
     let toastEl = document.createElement('yu-toast');
     uiUtility.insertAfter(swipeEl, toastEl);
-
-    console.log(bodyEl);
   }
 
   return restPeople;
@@ -219,7 +217,7 @@ function resetAll(swipeEl, needleEl, allPeople) {
   let restPeople;
   let selectedPeople;
 
-  // UI
+  // UI: swipe to reset all UI
   swipeToResetUi(swipeEl, needleEl);
 
   // DT
@@ -241,6 +239,9 @@ function swipeToResetUi(swipeEl, needleEl) {
 
   // reset ProgressUI
   uiProgressRing.setProgressUi(0);
+
+  // reset selectedPerson Anim
+  uiFrontSide.resetSelectedPersonUI();
 
   // reset swipe sensetivity
   direCount = 0;

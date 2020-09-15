@@ -16,6 +16,9 @@
   --people-list-padding-top: 3.5vmin;
   --people-list-margin: 10vmin;
   --people-list-item__box-name-container-left: 10vmin;
+  --people-selected-effect-bg: url(../assets/faveEffect.png);
+  --people-selected-effect-bg-size: 15vmin;
+  --people-selected-effect-bg-frame: 28;
 }
 
 * {
@@ -69,45 +72,6 @@ body {
           transform: rotateY(180deg);
   -webkit-box-shadow: var(--card-shadow-transition);
           box-shadow: var(--card-shadow-transition);
-}
-
-.spin-container__flip--rest {
-  -webkit-animation-name: spin-container__flip--rest;
-          animation-name: spin-container__flip--rest;
-  -webkit-animation-duration: 1s;
-          animation-duration: 1s;
-  -webkit-animation-timing-function: ease-out;
-          animation-timing-function: ease-out;
-}
-
-@-webkit-keyframes spin-container__flip--rest {
-  0% {
-    -webkit-transform: rotateX(0deg);
-            transform: rotateX(0deg);
-  }
-  50% {
-    -webkit-transform: rotateX(60deg);
-            transform: rotateX(60deg);
-  }
-  100% {
-    -webkit-transform: rotateX(0deg);
-            transform: rotateX(0deg);
-  }
-}
-
-@keyframes spin-container__flip--rest {
-  0% {
-    -webkit-transform: rotateX(0deg);
-            transform: rotateX(0deg);
-  }
-  50% {
-    -webkit-transform: rotateX(60deg);
-            transform: rotateX(60deg);
-  }
-  100% {
-    -webkit-transform: rotateX(0deg);
-            transform: rotateX(0deg);
-  }
 }
 
 .side {
@@ -353,9 +317,28 @@ body {
   width: 100%;
   padding-top: var(--people-list-padding-top);
   text-align: center;
-  color: black;
   -webkit-transform: rotate(var(--person-position));
           transform: rotate(var(--person-position));
+  color: rgba(0, 0, 0, 0.2);
+}
+
+.side .people-container .fave-effect {
+  position: absolute;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  height: var(--people-selected-effect-bg-size);
+  width: var(--people-selected-effect-bg-size);
+  top: 7%;
+  left: 50%;
+  background: var(--people-selected-effect-bg) no-repeat;
+  background-size: 500vmin;
 }
 
 .side .btn-turn {
@@ -383,21 +366,90 @@ body {
           box-shadow: -6px -6px 26px 0 rgba(255, 255, 255, 0.9), 6px 6px 16px 0 rgba(217, 210, 200, 0.5);
 }
 
-.turn--start {
-  -webkit-animation-name: turn--start;
-          animation-name: turn--start;
-  -webkit-animation-duration: 2s;
-          animation-duration: 2s;
-  -webkit-animation-timing-function: ease-out;
-          animation-timing-function: ease-out;
-  -webkit-animation-fill-mode: forwards;
-          animation-fill-mode: forwards;
+/* -------------------------------------------------------------------------- */
+/*                                  Animation                                 */
+/* -------------------------------------------------------------------------- */
+.spin-container__flip--rest {
+  -webkit-animation: restSpinner 1s ease-out;
+          animation: restSpinner 1s ease-out;
 }
 
-@-webkit-keyframes turn--start {
+@-webkit-keyframes restSpinner {
   0% {
-    -webkit-transform: translateX(-50%) rotate(0deg);
-            transform: translateX(-50%) rotate(0deg);
+    -webkit-transform: rotateX(0deg);
+            transform: rotateX(0deg);
+  }
+  50% {
+    -webkit-transform: rotateX(60deg);
+            transform: rotateX(60deg);
+  }
+  100% {
+    -webkit-transform: rotateX(0deg);
+            transform: rotateX(0deg);
+  }
+}
+
+@keyframes restSpinner {
+  0% {
+    -webkit-transform: rotateX(0deg);
+            transform: rotateX(0deg);
+  }
+  50% {
+    -webkit-transform: rotateX(60deg);
+            transform: rotateX(60deg);
+  }
+  100% {
+    -webkit-transform: rotateX(0deg);
+            transform: rotateX(0deg);
+  }
+}
+
+.start-selected-effect {
+  -webkit-animation: selectedPerson 0.5s steps(28) forwards;
+          animation: selectedPerson 0.5s steps(28) forwards;
+  -webkit-animation-delay: 2s;
+          animation-delay: 2s;
+}
+
+@-webkit-keyframes selectedPerson {
+  0% {
+    font-size: 0;
+    background-position-x: 0%;
+  }
+  50% {
+    font-size: calc(var(--spin-font-size) + 2vmin);
+  }
+  100% {
+    font-size: var(--spin-font-size);
+    background-position-x: 100%;
+    color: black;
+  }
+}
+
+@keyframes selectedPerson {
+  0% {
+    font-size: 0;
+    background-position-x: 0%;
+  }
+  50% {
+    font-size: calc(var(--spin-font-size) + 2vmin);
+  }
+  100% {
+    font-size: var(--spin-font-size);
+    background-position-x: 100%;
+    color: black;
+  }
+}
+
+.turn--start {
+  -webkit-animation: turnNeedle 2s ease-out forwards;
+          animation: turnNeedle 2s ease-out forwards;
+}
+
+@-webkit-keyframes turnNeedle {
+  0% {
+    -webkit-transform: translateX(-50%) rotate(var(--rotate-from));
+            transform: translateX(-50%) rotate(var(--rotate-from));
   }
   100% {
     -webkit-transform: translateX(-50%) rotate(calc(360deg * 3 + var(--rotate-to)));
@@ -405,10 +457,10 @@ body {
   }
 }
 
-@keyframes turn--start {
+@keyframes turnNeedle {
   0% {
-    -webkit-transform: translateX(-50%) rotate(0deg);
-            transform: translateX(-50%) rotate(0deg);
+    -webkit-transform: translateX(-50%) rotate(var(--rotate-from));
+            transform: translateX(-50%) rotate(var(--rotate-from));
   }
   100% {
     -webkit-transform: translateX(-50%) rotate(calc(360deg * 3 + var(--rotate-to)));
@@ -417,17 +469,11 @@ body {
 }
 
 .turn--reset {
-  -webkit-animation-name: turn--reset;
-          animation-name: turn--reset;
-  -webkit-animation-duration: 2s;
-          animation-duration: 2s;
-  -webkit-animation-timing-function: linear;
-          animation-timing-function: linear;
-  -webkit-animation-fill-mode: forwards;
-          animation-fill-mode: forwards;
+  -webkit-animation: resetNeedle 2s linear forwards;
+          animation: resetNeedle 2s linear forwards;
 }
 
-@-webkit-keyframes turn--reset {
+@-webkit-keyframes resetNeedle {
   0% {
     -webkit-transform: translateX(-50%) rotate(calc(360deg + var(--rotate-to)));
             transform: translateX(-50%) rotate(calc(360deg + var(--rotate-to)));
@@ -438,7 +484,7 @@ body {
   }
 }
 
-@keyframes turn--reset {
+@keyframes resetNeedle {
   0% {
     -webkit-transform: translateX(-50%) rotate(calc(360deg + var(--rotate-to)));
             transform: translateX(-50%) rotate(calc(360deg + var(--rotate-to)));

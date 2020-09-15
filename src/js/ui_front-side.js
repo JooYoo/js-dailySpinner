@@ -13,15 +13,21 @@ function renderFrontSide(peopleContainerEl, mainStyle, allPeople) {
 
   peopleContainerEl.innerHTML = '';
   setPeoplePosition(selectedPeople);
-  setPeopleReverse(mainStyle, selectedPeople);
   peopleContainerEl.innerHTML = selectedPeople
     .map(
       (person) =>
         `
-            <div class="people people--${person.id}"></div>
+        <div>
+          <div class="people people--${person.id}">
+            <div class="fave-effect">
+              ${person.name}
+            </div>
+          </div>
+        </div>
         `
     )
     .join('');
+  setPeopleReverse(mainStyle, selectedPeople);
 }
 
 /* -------------------------------- create front side UI: help func ------------------------------- */
@@ -40,11 +46,9 @@ function setPeopleReverse(mainStyle, selectedPeople) {
           .people--${person.id} {
             --person-position: ${person.rotateDeg}deg;
           }
-  
-          .people--${person.id}::before {
-            content: "${person.name}";
-            position: absolute;
-            transform: translateX(-50%) rotate(180deg);
+
+          .people--${person.id} .fave-effect {
+            transform: translateX(-50%) translateY(-50%) rotate(180deg);
           }
           `;
       } else {
@@ -52,9 +56,9 @@ function setPeopleReverse(mainStyle, selectedPeople) {
           .people--${person.id} {
             --person-position: ${person.rotateDeg}deg;
           }
-  
-          .people--${person.id}::before {
-            content: "${person.name}";
+
+          .people--${person.id} .fave-effect {
+            transform: translateX(-50%) translateY(-50%);
           }
           `;
       }
@@ -68,20 +72,29 @@ function setPeopleReverse(mainStyle, selectedPeople) {
 /* -------------------------------------------------------------------------- */
 
 function playSpinner(swipeEl, needleEl, allPeople, currentPeople) {
-  let randomPerson;
   let restPeople;
+  let randomPerson;
+  let currentPeopleLength = currentPeople.length;
+  let selectPeopleLength = dataPeople.getSelectedPeople(allPeople).length;
+
+  // UI: veryBegin ? reset randomPerson
+  currentPeopleLength === selectPeopleLength ? (randomPerson = '') : '';
 
   // check if finish
   if (currentPeople.length === 0) {
     // reset UI and DATA
     restPeople = uiSwipe.resetAll(swipeEl, needleEl, allPeople);
+
     console.log('DONE 🍻');
   } else {
-    // DT: get random Person
+    // DT: get RandomPerson
     randomPerson = getRandomPerson(currentPeople);
 
-    // DT: remove the pick random person
+    // DT: remove picked RandomPerson
     restPeople = removeRandomPerson(currentPeople, randomPerson);
+
+    // UI: selectedPersonEffect Anim
+    setSelectedPersonUI(randomPerson);
 
     // UI: turn the needle
     uiUtility.setCssVar('--rotate-to', `${randomPerson.rotateDeg}deg`);
@@ -89,10 +102,13 @@ function playSpinner(swipeEl, needleEl, allPeople, currentPeople) {
     needleEl.classList.add('turn--start');
   }
 
+  // UI: set var(--rotate-from)
+  setRotateFromUI(needleEl, randomPerson);
+
   // UI: set progressRing
   uiProgressRing.setProgress(restPeople, allPeople);
 
-  // UI:  restart animation: by DOM reflow
+  // UI: restart animation: by DOM reflow
   needleEl.style.animation = 'none';
   needleEl.offsetHeight;
   needleEl.style.animation = null;
@@ -101,6 +117,36 @@ function playSpinner(swipeEl, needleEl, allPeople, currentPeople) {
 }
 
 /* ------------------------- turn needle: help func ------------------------- */
+
+function setRotateFromUI(needleEl, randomPerson) {
+  // justBeginn ? continueSpin : firstSpin
+  needleEl.addEventListener('animationend', () => {
+    randomPerson
+      ? uiUtility.setCssVar('--rotate-from', `${randomPerson.rotateDeg}deg`)
+      : uiUtility.setCssVar('--rotate-from', '0deg');
+  });
+}
+
+function setSelectedPersonUI(randomPerson) {
+  // get the selectedPersonFaveEl
+  let selectedPersonFaveEl = document.querySelector(
+    `.people--${randomPerson.id}`
+  ).children[0];
+
+  // play FaveAnim
+  selectedPersonFaveEl.classList.add('start-selected-effect');
+}
+
+function resetSelectedPersonUI() {
+  // get all PersonEl which already shows the faveAnim
+  let allSelectedPerson = document.querySelectorAll('.fave-effect');
+
+  // - rest all the FaveAnim
+  // - rest Person color
+  allSelectedPerson.forEach((selectedPersonEl) => {
+    selectedPersonEl.classList.remove('start-selected-effect');
+  });
+}
 
 function getRandomPerson(allPersons) {
   let randomNr = Math.floor(Math.random() * allPersons.length);
@@ -111,4 +157,4 @@ function removeRandomPerson(currentPeople, randomPerson) {
   return currentPeople.filter((x) => x !== randomPerson);
 }
 
-export { renderFrontSide, playSpinner };
+export { renderFrontSide, playSpinner, resetSelectedPersonUI };

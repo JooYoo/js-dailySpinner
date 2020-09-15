@@ -18,6 +18,10 @@
   --people-list-padding-top: 3.5vmin;
   --people-list-margin: 10vmin;
   --people-list-item__box-name-container-left: 10vmin;
+
+  --people-selected-effect-bg: url(../assets/faveEffect.png);
+  --people-selected-effect-bg-size: 15vmin;
+  --people-selected-effect-bg-frame: 28;
 }
 
 * {
@@ -39,6 +43,7 @@ body {
   font-size: var(--spin-font-size);
   touch-action: none;
   overflow: hidden;
+  perspective: 3000px;
 }
 
 .spin-container {
@@ -52,7 +57,6 @@ body {
     inset 0 -15px 15px rgba(255, 255, 255, 1), 0 15px 15px rgba(0, 0, 0, 0.1),
     inset 0 15px 15px rgba(0, 0, 0, 0.08);
 
-  perspective: 1000px;
   transform-style: preserve-3d;
   transition: transform 0.3s ease-in-out, box-shadow 0.2s ease-in-out;
 
@@ -63,24 +67,6 @@ body {
   &__flip {
     transform: rotateY(180deg);
     box-shadow: var(--card-shadow-transition);
-  }
-
-  &__flip--rest {
-    animation-name: spin-container__flip--rest;
-    animation-duration: 1s;
-    animation-timing-function: ease-out;
-  }
-}
-
-@keyframes spin-container__flip--rest {
-  0% {
-    transform: rotateX(0deg);
-  }
-  50% {
-    transform: rotateX(60deg);
-  }
-  100% {
-    transform: rotateX(0deg);
   }
 }
 
@@ -287,9 +273,21 @@ body {
       width: 100%;
       padding-top: var(--people-list-padding-top);
       text-align: center;
-      color: black;
-
       transform: rotate(var(--person-position));
+      color: rgba(0, 0, 0, 0.2);
+    }
+
+    .fave-effect {
+      position: absolute;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: var(--people-selected-effect-bg-size);
+      width: var(--people-selected-effect-bg-size);
+      top: 7%;
+      left: 50%;
+      background: var(--people-selected-effect-bg) no-repeat;
+      background-size: 500vmin;
     }
   }
 
@@ -320,18 +318,56 @@ body {
   }
 }
 
-// needle turn animation
-.turn--start {
-  animation-name: turn--start;
-  animation-duration: 2s;
+/* -------------------------------------------------------------------------- */
+/*                                  Animation                                 */
+/* -------------------------------------------------------------------------- */
 
-  animation-timing-function: ease-out;
-  animation-fill-mode: forwards;
+// reset Spinner Anim
+.spin-container__flip--rest {
+  animation: restSpinner 1s ease-out;
 }
 
-@keyframes turn--start {
+@keyframes restSpinner {
   0% {
-    transform: translateX(-50%) rotate(0deg);
+    transform: rotateX(0deg);
+  }
+  50% {
+    transform: rotateX(60deg);
+  }
+  100% {
+    transform: rotateX(0deg);
+  }
+}
+
+// set SelectedPerson Anim
+.start-selected-effect {
+  animation: selectedPerson 0.5s steps(28) forwards;
+  animation-delay: 2s;
+}
+
+@keyframes selectedPerson {
+  0% {
+    font-size: 0;
+    background-position-x: 0%;
+  }
+  50% {
+    font-size: calc(var(--spin-font-size) + 2vmin);
+  }
+  100% {
+    font-size: var(--spin-font-size);
+    background-position-x: 100%;
+    color: black;
+  }
+}
+
+// turn Needle Anim
+.turn--start {
+  animation: turnNeedle 2s ease-out forwards;
+}
+
+@keyframes turnNeedle {
+  0% {
+    transform: translateX(-50%) rotate(var(--rotate-from));
   }
 
   100% {
@@ -339,14 +375,12 @@ body {
   }
 }
 
+// reset Needle Anim
 .turn--reset {
-  animation-name: turn--reset;
-  animation-duration: 2s;
-  animation-timing-function: linear;
-  animation-fill-mode: forwards;
+  animation: resetNeedle 2s linear forwards;
 }
 
-@keyframes turn--reset {
+@keyframes resetNeedle {
   0% {
     transform: translateX(-50%) rotate(calc(360deg + var(--rotate-to)));
   }
@@ -356,6 +390,7 @@ body {
   }
 }
 
+// set Toast Anim
 .toast-hover-area {
   position: absolute;
   display: flex;

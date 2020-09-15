@@ -19,6 +19,8 @@ class Person {
 
 function initPeople(people) {
   people.push(
+    new Person('Ruben'),
+    new Person('Winnie'),
     new Person('Sascha'),
     new Person('Adi'),
     new Person('Chris'),
