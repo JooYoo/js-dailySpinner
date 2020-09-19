@@ -262,6 +262,13 @@ body {
   height: 73%;
 }
 
+.side .spin-progressbar__percent {
+  position: absolute;
+  bottom: 18%;
+  font: 0.8rem monospace;
+  color: rgba(0, 0, 0, 0.15);
+}
+
 .side .spin-progressbar svg {
   overflow: visible;
 }
