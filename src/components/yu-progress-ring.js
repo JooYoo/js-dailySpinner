@@ -72,14 +72,27 @@ class YuProgressRing extends HTMLElement {
     this.attachShadow({ mode: 'open' });
     this.shadowRoot.appendChild(template.content.cloneNode(true));
 
-    // get high-light-color
+    // get high-light-color && ringColor from DOM
     let ringEl = this.shadowRoot.querySelector('#ring');
     let ringColor = this.getAttribute('high-light-color');
     // set ringEl high-light-color
     ringEl.style.stroke = ringColor;
-    // TODO: set ringBgEl color
 
-    console.log(ringColor);
+    // set ringBgEl color
+    let ringBgEl = this.shadowRoot.querySelector('#ring-bg');
+    ringBgEl.style.stroke = this.setRingBgColor(ringColor);
+
+    // console.log(ringColor);
+  }
+
+  setRingBgColor(ringColor) {
+    // split rgba by ','
+    let ringColorArr = ringColor.split(',');
+    // set new color to ringBg
+    ringColorArr[3] = ' 0.2)';
+    let ringBgColor = ringColorArr.toString();
+
+    return ringBgColor;
   }
 }
 
