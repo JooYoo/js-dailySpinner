@@ -34,7 +34,10 @@ function setProgressUi(progressPercent) {
 
 function setPercent(targetNummber) {
   // get progressPercentEl
-  let progressPercentEl = document.querySelector('#spin-progressbar__percent');
+  let yuProgressRing = document.querySelector('#yuProgressRing');
+  let progressPercentEl = yuProgressRing.shadowRoot.querySelector(
+    '#spin-progressbar__percent'
+  );
 
   // get currentNum
   let currentNum = +progressPercentEl.innerHTML.slice(0, -1);
