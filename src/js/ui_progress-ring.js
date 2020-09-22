@@ -1,4 +1,5 @@
 import * as dataPeople from './data_people.js';
+import * as uiUtility from '../js/ui_utility.js';
 
 function setProgress(restPeople, allPeople) {
   if (!restPeople) return;
@@ -22,21 +23,71 @@ function setProgress(restPeople, allPeople) {
 }
 
 function setProgressUi(progressPercent) {
-  // set spin progressbar
-  document.documentElement.style.setProperty(
-    '--spin-progressbar-percent',
-    progressPercent
-  );
+  // set main Timer
+  setMainTimer(progressPercent);
 
-  // set progressbar percent
-  setPercent(progressPercent);
+  // set progress Ring
+  setProgressRing(progressPercent);
 }
 
-function setPercent(targetNummber) {
+/* ------------------------------ set mainTimer ----------------------------- */
+
+function setMainTimer(progressPercent) {
+  let mainTimerEl = document.querySelector('#mainTimer');
+  let timeCount = 0;
+
+  // get Timer state
+  let timerStatus = checkIsTimerStop(progressPercent);
+  console.log(`progressPercent:${progressPercent}`);
+  console.log('isTimerStop:', timerStatus);
+
+  //TODO: set MainTimer numericText
+  // get mainTimerValueEl
+  let mainTimerTextEl = mainTimerEl.shadowRoot.querySelector('#numeric-text');
+  if (timerStatus == onTimer.START) {
+    // set mainTimerValue each second
+    setInterval(() => {
+      mainTimerTextEl.innerHTML = `${timeCount++}`;
+    }, 1000);
+  }
+
+  //TODO: set MainTimer progressRing
+}
+
+const onTimer = {
+  DEFAULT: 'default',
+  START: 'start',
+  STOP: 'stop',
+};
+
+function checkIsTimerStop(targetNummber) {
+  switch (true) {
+    case targetNummber == 0:
+      return onTimer.STOP;
+    case targetNummber == 100:
+      return onTimer.STOP;
+    case targetNummber > 0:
+      return onTimer.START;
+    default:
+      return onTimer.DEFAULT;
+  }
+}
+
+/* ---------------------------- set progressRing ---------------------------- */
+
+function setProgressRing(targetNummber) {
+  let yuProgressRingEl = document.querySelector('#progressRing');
+
+  // set progressRing value
+  uiUtility.setCssVarShadowRoot(
+    yuProgressRingEl.shadowRoot.host,
+    '--progress-value',
+    targetNummber
+  );
+
   // get progressPercentEl
-  let yuProgressRing = document.querySelector('#yuProgressRing');
-  let progressPercentEl = yuProgressRing.shadowRoot.querySelector(
-    '#spin-progressbar__percent'
+  let progressPercentEl = yuProgressRingEl.shadowRoot.querySelector(
+    '#numeric-text'
   );
 
   // get currentNum
