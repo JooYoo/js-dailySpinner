@@ -253,41 +253,6 @@ body {
   outline: 0;
 }
 
-.side .spin-progressbar {
-  position: absolute;
-  left: 50%;
-  -webkit-transform: translate(-50%) rotate(-90deg);
-          transform: translate(-50%) rotate(-90deg);
-  width: 73%;
-  height: 73%;
-}
-
-.side .spin-progressbar svg {
-  overflow: visible;
-}
-
-.side .spin-progressbar svg circle {
-  fill: none;
-  stroke-width: 3px;
-  stroke-dasharray: 440;
-  stroke-dashoffset: 440;
-  stroke-linecap: round;
-  overflow: visible;
-}
-
-.side .spin-progressbar svg circle:nth-child(1) {
-  stroke: rgba(0, 0, 0, 0.02);
-  stroke-dashoffset: 0;
-}
-
-.side .spin-progressbar svg circle:nth-child(2) {
-  -webkit-transition: stroke-dashoffset 2s ease-in-out;
-  transition: stroke-dashoffset 2s ease-in-out;
-  stroke-width: 2px;
-  stroke: rgba(0, 0, 0, 0.15);
-  stroke-dashoffset: calc( 440 - (440 * var(--spin-progressbar-percent)) / 100);
-}
-
 .side .spin-needle {
   position: absolute;
   bottom: 50%;
