@@ -21,12 +21,18 @@
   <body>
     <div id="spin-container" class="spin-container">
       <div class="side side__front">
-        <div class="spin-progressbar">
+        <!-- TODO: web-component -->
+        <!-- <div class="spin-progressbar">
           <svg viewbox="0 0 140 140">
-            <circle cx="70" cy="70" r="70"></circle>
-            <circle cx="70" cy="70" r="70"></circle>
+            <circle cx="70" cy="70" r="60"></circle>
+            <circle cx="70" cy="70" r="60"></circle>
           </svg>
         </div>
+        <div id="spin-progressbar__percent" class="spin-progressbar__percent">
+          0%
+        </div> -->
+        <yu-progress-ring id="yuProgressRing"></yu-progress-ring>
+
         <div id="spin-needle" class="spin-needle"></div>
         <div id="people-container" class="people-container"></div>
         <button id="btn-turn" class="btn-turn"></button>
@@ -46,7 +52,7 @@
     </div>
 
     <div class="toast-hover-area">
-      <yu-toast id="toast"></yu-toast>
+      <yu-toast></yu-toast>
     </div>
   </body>
 </html>

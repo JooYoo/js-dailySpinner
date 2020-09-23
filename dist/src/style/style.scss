@@ -210,40 +210,47 @@ body {
     }
   }
 
-  .spin-progressbar {
-    position: absolute;
-    left: 50%;
-    transform: translate(-50%) rotate(-90deg);
+  // .spin-progressbar {
+  //   position: absolute;
+  //   left: 50%;
+  //   transform: translate(-50%) rotate(117deg);
 
-    width: 73%;
-    height: 73%;
+  //   width: 73%;
+  //   height: 73%;
 
-    & svg {
-      overflow: visible;
+  //   &__percent {
+  //     position: absolute;
+  //     bottom: 18%;
+  //     font: 0.8rem monospace;
+  //     color: rgba(0, 0, 0, 0.15);
+  //   }
 
-      & circle {
-        fill: none;
-        stroke-width: 3px;
-        stroke-dasharray: 440;
-        stroke-dashoffset: 440;
-        stroke-linecap: round;
-        overflow: visible;
-      }
+  //   & svg {
+  //     overflow: visible;
 
-      & circle:nth-child(1) {
-        stroke: rgba(0, 0, 0, 0.02);
-        stroke-dashoffset: 0;
-      }
-      & circle:nth-child(2) {
-        transition: stroke-dashoffset 2s ease-in-out;
-        stroke-width: 2px;
-        stroke: rgba(0, 0, 0, 0.15);
-        stroke-dashoffset: calc(
-          440 - (440 * var(--spin-progressbar-percent)) / 100
-        );
-      }
-    }
-  }
+  //     & circle {
+  //       fill: none;
+  //       stroke-width: 8px;
+  //       stroke-dasharray: 440;
+  //       // stroke-dashoffset: 1240;
+  //       stroke-linecap: round;
+  //       overflow: visible;
+  //     }
+
+  //     & circle:nth-child(1) {
+  //       stroke: rgba(0, 0, 0, 0.02);
+  //       stroke-dashoffset: 120;
+  //     }
+  //     & circle:nth-child(2) {
+  //       transition: stroke-dashoffset 2s ease-in-out;
+  //       stroke-width: 7px;
+  //       stroke: rgba(0, 0, 0, 0.15);
+  //       stroke-dashoffset: calc(
+  //         440 - (320 * var(--spin-progressbar-percent)) / 100
+  //       );
+  //     }
+  //   }
+  // }
 
   .spin-needle {
     position: absolute;
