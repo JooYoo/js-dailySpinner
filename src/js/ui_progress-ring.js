@@ -18,11 +18,6 @@ function setProgress(restPeople, allPeople) {
     progressDeg = 0;
   }
 
-  //TODO: use restPeople and allPeople to check timerStatus
-  setMainTimer(restPeople, allPeople);
-  // console.log('restPeople:', restPeople.length);
-  // console.log('allPeople:', allPeople.length);
-
   progressPercent = (progressDeg / 360) * 100;
 
   setProgressUi(progressPercent);
@@ -31,53 +26,6 @@ function setProgress(restPeople, allPeople) {
 function setProgressUi(progressPercent) {
   // set progress Ring
   setProgressRing(progressPercent);
-}
-
-/* ------------------------------ set mainTimer ----------------------------- */
-// TODO: those functions will be exported
-function setMainTimer(restPeople, allPeople) {
-  let mainTimerEl = document.querySelector('#mainTimer');
-  let timeCount = 0;
-  let mainTimer;
-
-  // get Timer state
-  let timerStatus = checkTimerStatus(restPeople.length, allPeople.length);
-  console.log('isTimerStop:', timerStatus);
-
-  //TODO: set MainTimer numericText
-
-  // get mainTimerValueEl
-  let mainTimerTextEl = mainTimerEl.shadowRoot.querySelector('#numeric-text');
-  // if (timerStatus == onTimer.START) {
-  //   // set mainTimerValue each second
-  //   mainTimer = setInterval(() => {
-  //     mainTimerTextEl.innerHTML = `${timeCount++}`;
-  //   }, 1000);
-  // }
-
-  //TODO: set MainTimer progressRing
-}
-
-const onTimer = {
-  START: 'start',
-  RUNNING: 'running',
-  LAST: 'last',
-  STOP: 'stop',
-};
-
-function checkTimerStatus(restPeopleLength, allPeopleLength) {
-  switch (true) {
-    case restPeopleLength == allPeopleLength - 1:
-      return onTimer.START;
-    case restPeopleLength < allPeopleLength && restPeopleLength !== 0:
-      return onTimer.RUNNING;
-    case restPeopleLength == 0:
-      return onTimer.LAST;
-    case restPeopleLength == allPeopleLength:
-      return onTimer.STOP;
-    default:
-      return onTimer.STOP;
-  }
 }
 
 /* ---------------------------- set progressRing ---------------------------- */
