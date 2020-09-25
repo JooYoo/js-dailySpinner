@@ -1,20 +1,20 @@
+import * as uiUtility from '../js/ui_utility.js';
+
 const template = document.createElement('template');
 template.innerHTML = `
 <style>
 :host{
+  --circle-r: 60;
+  --circle-bg-dashoffset: 120;
+  --numeric-height: 18%;
+  --progress-value: 0;
+
   position: absolute;
   height: 100%;
   width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
-}
-
-.spin-progressbar__percent {
-    position: absolute;
-    bottom: 18%;
-    font: 0.8rem monospace;
-    color: rgba(0, 0, 0, 0.15);
 }
 
 .spin-progressbar svg {
@@ -25,23 +25,31 @@ template.innerHTML = `
     fill: none;
     stroke-width: 8px;
     stroke-dasharray: 440;
-    // stroke-dashoffset: 1240;
     stroke-linecap: round;
     overflow: visible;
 }
 
 .spin-progressbar circle:nth-child(1) {
+    cx: 70;
+    cy: 70;
+    r: var(--circle-r);
+
     stroke: rgba(0, 0, 0, 0.02);
-    stroke-dashoffset: 120;
+    stroke-dashoffset: var(--circle-bg-dashoffset);
 }
 
 .spin-progressbar circle:nth-child(2) {
-    transition: stroke-dashoffset 2s ease-in-out;
+    cx: 70;
+    cy: 70;
+    r: var(--circle-r);
+
     stroke-width: 7px;
     stroke: rgba(0, 0, 0, 0.15);
     stroke-dashoffset: calc(
-      440 - (320 * var(--spin-progressbar-percent)) / 100
+      440 - ((440 - var(--circle-bg-dashoffset)) * var(--progress-value)) / 100
     );
+    
+    transition: stroke-dashoffset 2s ease-in-out;
 }
 
 .spin-progressbar {
@@ -51,16 +59,23 @@ template.innerHTML = `
 
     width: 73%;
     height: 73%;
-  }
+}
+
+.numeric-text {
+  position: absolute;
+  bottom: var(--numeric-height);
+  font: 0.8rem monospace;
+  color: rgba(0, 0, 0, 0.15);
+}
 </style>
 
 <div class="spin-progressbar">
     <svg viewbox="0 0 140 140">
-      <circle cx="70" cy="70" r="60"></circle>
-      <circle cx="70" cy="70" r="60"></circle>
+      <circle id="ring-bg"></circle>
+      <circle id="ring"></circle>
     </svg>
 </div>
-<div id="spin-progressbar__percent" class="spin-progressbar__percent">
+<div id="numeric-text" class="numeric-text">
     0%
 </div>
 `;
@@ -70,6 +85,60 @@ class YuProgressRing extends HTMLElement {
     super();
     this.attachShadow({ mode: 'open' });
     this.shadowRoot.appendChild(template.content.cloneNode(true));
+
+    /* ------------------------------ set ring size ----------------------------- */
+    // get circleR, circleDashOffset from DOM
+    let circleRAtt = this.getAttribute('circle-r');
+    let circleDashOffsetAtt = this.getAttribute('circle-dashoffset');
+    // set circleR, circleDashOffset to CSS var
+    uiUtility.setCssVarShadowRoot(
+      this.shadowRoot.host,
+      '--circle-r',
+      circleRAtt
+    );
+    uiUtility.setCssVarShadowRoot(
+      this.shadowRoot.host,
+      '--circle-bg-dashoffset',
+      circleDashOffsetAtt
+    );
+
+    /* -------------------------- set numeric position -------------------------- */
+    // get numeric-height from DOM
+    let numericAtt = this.getAttribute('numeric-height');
+    // set numeric-height to CSS var
+    uiUtility.setCssVarShadowRoot(
+      this.shadowRoot.host,
+      '--numeric-height',
+      numericAtt
+    );
+
+    /* ----------------------------- set ring color ----------------------------- */
+    // get high-light-color && ringColor from DOM
+    let ringEl = this.shadowRoot.querySelector('#ring');
+    let ringColor = this.getAttribute('high-light-color');
+    // set ringEl high-light-color
+    ringEl.style.stroke = ringColor;
+    // set ringBgEl color
+    let ringBgEl = this.shadowRoot.querySelector('#ring-bg');
+    ringBgEl.style.stroke = this.setRingBgColor(ringColor);
+
+    /* ---------------------------- set numeric text ---------------------------- */
+    let numericTextAtt = this.getAttribute('numeric-text');
+    let numericTextEl = this.shadowRoot.querySelector('#numeric-text');
+    numericTextEl.innerHTML = numericTextAtt;
+    numericTextEl.style.color = ringColor;
+  }
+
+  /* ----------------------------- help functions ----------------------------- */
+
+  setRingBgColor(ringColor) {
+    // split rgba by ','
+    let ringColorArr = ringColor.split(',');
+    // set new color to ringBg
+    ringColorArr[3] = ' 0.2)';
+    let ringBgColor = ringColorArr.toString();
+
+    return ringBgColor;
   }
 }
 

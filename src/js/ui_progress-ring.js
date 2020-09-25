@@ -1,4 +1,5 @@
 import * as dataPeople from './data_people.js';
+import * as uiUtility from '../js/ui_utility.js';
 
 function setProgress(restPeople, allPeople) {
   if (!restPeople) return;
@@ -16,27 +17,84 @@ function setProgress(restPeople, allPeople) {
   } else {
     progressDeg = 0;
   }
+
+  //TODO: use restPeople and allPeople to check timerStatus
+  setMainTimer(restPeople, allPeople);
+  // console.log('restPeople:', restPeople.length);
+  // console.log('allPeople:', allPeople.length);
+
   progressPercent = (progressDeg / 360) * 100;
 
   setProgressUi(progressPercent);
 }
 
 function setProgressUi(progressPercent) {
-  // set spin progressbar
-  document.documentElement.style.setProperty(
-    '--spin-progressbar-percent',
-    progressPercent
-  );
-
-  // set progressbar percent
-  setPercent(progressPercent);
+  // set progress Ring
+  setProgressRing(progressPercent);
 }
 
-function setPercent(targetNummber) {
+/* ------------------------------ set mainTimer ----------------------------- */
+// TODO: those functions will be exported
+function setMainTimer(restPeople, allPeople) {
+  let mainTimerEl = document.querySelector('#mainTimer');
+  let timeCount = 0;
+  let mainTimer;
+
+  // get Timer state
+  let timerStatus = checkTimerStatus(restPeople.length, allPeople.length);
+  console.log('isTimerStop:', timerStatus);
+
+  //TODO: set MainTimer numericText
+
+  // get mainTimerValueEl
+  let mainTimerTextEl = mainTimerEl.shadowRoot.querySelector('#numeric-text');
+  // if (timerStatus == onTimer.START) {
+  //   // set mainTimerValue each second
+  //   mainTimer = setInterval(() => {
+  //     mainTimerTextEl.innerHTML = `${timeCount++}`;
+  //   }, 1000);
+  // }
+
+  //TODO: set MainTimer progressRing
+}
+
+const onTimer = {
+  START: 'start',
+  RUNNING: 'running',
+  LAST: 'last',
+  STOP: 'stop',
+};
+
+function checkTimerStatus(restPeopleLength, allPeopleLength) {
+  switch (true) {
+    case restPeopleLength == allPeopleLength - 1:
+      return onTimer.START;
+    case restPeopleLength < allPeopleLength && restPeopleLength !== 0:
+      return onTimer.RUNNING;
+    case restPeopleLength == 0:
+      return onTimer.LAST;
+    case restPeopleLength == allPeopleLength:
+      return onTimer.STOP;
+    default:
+      return onTimer.STOP;
+  }
+}
+
+/* ---------------------------- set progressRing ---------------------------- */
+
+function setProgressRing(targetNummber) {
+  let yuProgressRingEl = document.querySelector('#progressRing');
+
+  // set progressRing value
+  uiUtility.setCssVarShadowRoot(
+    yuProgressRingEl.shadowRoot.host,
+    '--progress-value',
+    targetNummber
+  );
+
   // get progressPercentEl
-  let yuProgressRing = document.querySelector('#yuProgressRing');
-  let progressPercentEl = yuProgressRing.shadowRoot.querySelector(
-    '#spin-progressbar__percent'
+  let progressPercentEl = yuProgressRingEl.shadowRoot.querySelector(
+    '#numeric-text'
   );
 
   // get currentNum
