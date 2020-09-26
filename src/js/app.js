@@ -4,7 +4,6 @@ import * as uiBackSide from './ui_back-side.js';
 import * as uiShortcut from './ui_shortcut.js';
 import * as dataLocalStorage from './data_localstorage.js';
 import * as dataPeople from './data_people.js';
-import * as timer from './timer.js';
 
 import '../components/yu-toast.js';
 import '../components/yu-progress-ring.js';
@@ -22,9 +21,6 @@ const inputEl = backSidePeopleFormEl['new-name'];
 // create Person-Object
 let persons = [];
 let currentPersons = [];
-
-// timers
-let mainTimer;
 
 // validate if localStorage has data, otherwise push default people
 let preloadPeople = dataLocalStorage.loadPeople();
@@ -115,10 +111,6 @@ window.onload = () => {
       persons,
       currentPersons
     );
-    //TODO: need to get the real restPeople
-    console.log('rest:', currentPersons);
-    console.log('all:', persons);
-    mainTimer = timer.setMainTimer(currentPersons, persons, mainTimer);
   });
 
   /* -------------------------------------------------------------------------- */

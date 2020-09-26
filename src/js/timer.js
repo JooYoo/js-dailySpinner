@@ -1,4 +1,8 @@
 import * as datePeople from './data_people.js';
+import * as uiUtility from './ui_utility.js';
+
+let mainTimer;
+let mainTimeMinute = 1;
 
 const onTimer = {
   START: 'start',
@@ -9,13 +13,12 @@ const onTimer = {
 
 /* ------------------------------ set mainTimer ----------------------------- */
 
-function setMainTimer(restPeople, allPeople, mainTimer) {
+function setMainTimer(restPeople, allPeople) {
   let mainTimerEl = document.querySelector('#mainTimer');
   let tick = 0;
 
   // get Timer state
   let timerStatus = checkTimerStatus(restPeople, allPeople);
-  console.log('isTimerStop:', timerStatus);
 
   //set MainTimer numericText
   let mainTimerTextEl = mainTimerEl.shadowRoot.querySelector('#numeric-text');
@@ -24,18 +27,36 @@ function setMainTimer(restPeople, allPeople, mainTimer) {
   if (timerStatus == onTimer.START) {
     mainTimer = setInterval(() => {
       mainTimerTextEl.innerHTML = `${setTimerText(tick++)}`;
+      // set MainTimer progressRing
+      setMainTimerRing(mainTimeMinute, tick);
     }, 1000);
   } else if (timerStatus == onTimer.STOP) {
     clearInterval(mainTimer);
     mainTimerTextEl.innerHTML = '00:00';
   }
 
-  // TODO: reset
-
-  //TODO: set MainTimer progressRing
-
-  return mainTimer;
+  // hint: reset mainTimer
+  // flipToFront()
+  // resetAll()
 }
+
+/* ----------------------------- MainTimer Ring ----------------------------- */
+
+const setMainTimerRing = (targetMinutes, currentSecond) => {
+  // calc current time to percent
+  let totleSeconds = targetMinutes * 60;
+  let currentPercent = (currentSecond / totleSeconds) * 100;
+
+  // get mainTimerRingEl
+  let mainTimerRingEl = document.querySelector('#mainTimer');
+
+  // set ring by targetValue
+  uiUtility.setCssVarShadowRoot(
+    mainTimerRingEl.shadowRoot.host,
+    '--progress-value',
+    currentPercent
+  );
+};
 
 /* ---------------------------- formate timerText --------------------------- */
 
@@ -73,4 +94,4 @@ function checkTimerStatus(restPeople, allPeople) {
   }
 }
 
-export { setMainTimer };
+export { setMainTimer, mainTimer };

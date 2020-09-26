@@ -20,25 +20,17 @@ function setProgress(restPeople, allPeople) {
 
   progressPercent = (progressDeg / 360) * 100;
 
-  setProgressUi(progressPercent);
-}
-
-function setProgressUi(progressPercent) {
-  // set progress Ring
   setProgressRing(progressPercent);
 }
 
 /* ---------------------------- set progressRing ---------------------------- */
 
 function setProgressRing(targetNummber) {
+  // get progressRingEl
   let yuProgressRingEl = document.querySelector('#progressRing');
 
-  // set progressRing value
-  uiUtility.setCssVarShadowRoot(
-    yuProgressRingEl.shadowRoot.host,
-    '--progress-value',
-    targetNummber
-  );
+  // set progressRing UI
+  setProgressRingUi(targetNummber);
 
   // get progressPercentEl
   let progressPercentEl = yuProgressRingEl.shadowRoot.querySelector(
@@ -55,6 +47,18 @@ function setProgressRing(targetNummber) {
   // count up && down animation
   let displayNum = currentNum;
   countAnim(progressPercentEl, displayNum, targetNum);
+}
+
+function setProgressRingUi(targetNummber) {
+  // get progressRingEl
+  let yuProgressRingEl = document.querySelector('#progressRing');
+
+  // set progressRingUi by targetNummber
+  uiUtility.setCssVarShadowRoot(
+    yuProgressRingEl.shadowRoot.host,
+    '--progress-value',
+    targetNummber
+  );
 }
 
 function countAnim(progressPercentEl, displayNum, targetNum) {
@@ -75,4 +79,4 @@ function countAnim(progressPercentEl, displayNum, targetNum) {
   }
 }
 
-export { setProgressUi, setProgress };
+export { setProgressRing, setProgress };

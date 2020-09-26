@@ -2,6 +2,7 @@ import * as uiProgressRing from './ui_progress-ring.js';
 import * as uiFrontSide from './ui_front-side.js';
 import * as dataPeople from './data_people.js';
 import * as uiUtility from './ui_utility.js';
+import * as timer from './timer.js';
 
 let isTapDownPlate;
 let interactionType;
@@ -112,7 +113,7 @@ function flipToFront(
   resetNeedleUi(needleEl);
 
   // UI: reset ProgressUI
-  uiProgressRing.setProgressUi(0);
+  uiProgressRing.setProgressRing(0);
 
   // reset swipe sensetivity
   direCount = 0;
@@ -120,6 +121,9 @@ function flipToFront(
   // DT
   selectedPeople = dataPeople.getSelectedPeople(allPeople);
   restPeople = [...selectedPeople];
+
+  // set mainTimer
+  timer.setMainTimer(restPeople, allPeople);
 
   return restPeople;
 }
@@ -223,6 +227,10 @@ function resetAll(swipeEl, needleEl, allPeople) {
   // DT
   selectedPeople = dataPeople.getSelectedPeople(allPeople);
   restPeople = [...selectedPeople];
+
+  // set mainTimer
+  timer.setMainTimer(restPeople, allPeople);
+
   return restPeople;
 }
 
@@ -238,7 +246,7 @@ function swipeToResetUi(swipeEl, needleEl) {
   resetNeedleUi(needleEl);
 
   // reset ProgressUI
-  uiProgressRing.setProgressUi(0);
+  uiProgressRing.setProgressRing(0);
 
   // reset selectedPerson Anim
   uiFrontSide.resetSelectedPersonUI();

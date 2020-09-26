@@ -2,6 +2,7 @@ import * as uiUtility from './ui_utility.js';
 import * as uiProgressRing from './ui_progress-ring.js';
 import * as uiSwipe from './ui_swipe.js';
 import * as dataPeople from './data_people.js';
+import * as timer from './timer.js';
 
 /* -------------------------------------------------------------------------- */
 /*                            create front side UI                            */
@@ -112,6 +113,9 @@ function playSpinner(swipeEl, needleEl, allPeople, currentPeople) {
   needleEl.style.animation = 'none';
   needleEl.offsetHeight;
   needleEl.style.animation = null;
+
+  // main Timer
+  timer.setMainTimer(restPeople, allPeople);
 
   return restPeople;
 }
