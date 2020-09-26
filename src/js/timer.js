@@ -2,7 +2,7 @@ import * as datePeople from './data_people.js';
 import * as uiUtility from './ui_utility.js';
 
 let mainTimer;
-let mainTimeMinute = 1;
+let mainTimeMinute = 0.2;
 
 const onTimer = {
   START: 'start',
@@ -23,7 +23,7 @@ function setMainTimer(restPeople, allPeople) {
   //set MainTimer numericText
   let mainTimerTextEl = mainTimerEl.shadowRoot.querySelector('#numeric-text');
 
-  // set mainTimerValue each second
+  // set MainTimer value each second
   if (timerStatus == onTimer.START) {
     mainTimer = setInterval(() => {
       mainTimerTextEl.innerHTML = `${setTimerText(tick++)}`;
@@ -33,6 +33,8 @@ function setMainTimer(restPeople, allPeople) {
   } else if (timerStatus == onTimer.STOP) {
     clearInterval(mainTimer);
     mainTimerTextEl.innerHTML = '00:00';
+    // set MainTimer progressRing
+    setMainTimerRing(mainTimeMinute, tick);
   }
 
   // hint: reset mainTimer
@@ -51,11 +53,13 @@ const setMainTimerRing = (targetMinutes, currentSecond) => {
   let mainTimerRingEl = document.querySelector('#mainTimer');
 
   // set ring by targetValue
-  uiUtility.setCssVarShadowRoot(
-    mainTimerRingEl.shadowRoot.host,
-    '--progress-value',
-    currentPercent
-  );
+  if (currentPercent <= 100) {
+    uiUtility.setCssVarShadowRoot(
+      mainTimerRingEl.shadowRoot.host,
+      '--progress-value',
+      currentPercent
+    );
+  }
 };
 
 /* ---------------------------- formate timerText --------------------------- */
@@ -94,4 +98,4 @@ function checkTimerStatus(restPeople, allPeople) {
   }
 }
 
-export { setMainTimer, mainTimer };
+export { setMainTimer, setMainTimerRing, mainTimer };
