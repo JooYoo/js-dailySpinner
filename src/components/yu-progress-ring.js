@@ -49,7 +49,7 @@ template.innerHTML = `
       440 - ((440 - var(--circle-bg-dashoffset)) * var(--progress-value)) / 100
     );
     
-    transition: stroke-dashoffset 2s ease-in-out;
+    transition: stroke-dashoffset 1s ease-out;
 }
 
 .spin-progressbar {
@@ -64,7 +64,8 @@ template.innerHTML = `
 .numeric-text {
   position: absolute;
   bottom: var(--numeric-height);
-  font: 0.8rem monospace;
+  font-size: 0.7rem;
+  letter-spacing: .05rem;
   color: rgba(0, 0, 0, 0.15);
 }
 </style>

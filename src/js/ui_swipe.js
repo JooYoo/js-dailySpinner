@@ -125,6 +125,9 @@ function flipToFront(
   // set mainTimer
   timer.setMainTimer(restPeople, allPeople);
 
+  // set personTimer
+  timer.setPersonTimer(restPeople, allPeople);
+
   return restPeople;
 }
 
@@ -230,6 +233,9 @@ function resetAll(swipeEl, needleEl, allPeople) {
 
   // set mainTimer
   timer.setMainTimer(restPeople, allPeople);
+
+  // set personTimer
+  timer.setPersonTimer(restPeople, allPeople);
 
   return restPeople;
 }

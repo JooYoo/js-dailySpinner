@@ -114,8 +114,11 @@ function playSpinner(swipeEl, needleEl, allPeople, currentPeople) {
   needleEl.offsetHeight;
   needleEl.style.animation = null;
 
-  // main Timer
+  // MainTimer
   timer.setMainTimer(restPeople, allPeople);
+
+  // PersonTimer
+  timer.setPersonTimer(restPeople, allPeople);
 
   return restPeople;
 }
