@@ -21,17 +21,35 @@
   <body>
     <div id="spin-container" class="spin-container">
       <div class="side side__front">
-        <!-- TODO: web-component -->
-        <!-- <div class="spin-progressbar">
-          <svg viewbox="0 0 140 140">
-            <circle cx="70" cy="70" r="60"></circle>
-            <circle cx="70" cy="70" r="60"></circle>
-          </svg>
-        </div>
-        <div id="spin-progressbar__percent" class="spin-progressbar__percent">
-          0%
-        </div> -->
-        <yu-progress-ring id="yuProgressRing"></yu-progress-ring>
+        <!-- rgba(59, 210, 255, 0.6) -->
+        <yu-progress-ring
+          id="mainTimer"
+          high-light-color="rgba(170, 170, 170, 0.6)"
+          circle-r="60"
+          circle-dashoffset="119"
+          numeric-height="19%"
+          numeric-text="00:00"
+        ></yu-progress-ring>
+
+        <!-- rgba(47, 179, 123, 0.6) -->
+        <yu-progress-ring
+          id="progressRing"
+          high-light-color="rgba(170, 170, 170, 0.6)"
+          circle-r="50"
+          circle-dashoffset="173"
+          numeric-height="24%"
+          numeric-text="0%"
+        ></yu-progress-ring>
+
+        <!-- rgba(228, 30, 92, 0.6) -->
+        <yu-progress-ring
+          id="personTimer"
+          high-light-color="rgba(170, 170, 170, 0.6)"
+          circle-r="40"
+          circle-dashoffset="227"
+          numeric-height="29%"
+          numeric-text="00:00"
+        ></yu-progress-ring>
 
         <div id="spin-needle" class="spin-needle"></div>
         <div id="people-container" class="people-container"></div>
