@@ -33,6 +33,7 @@ body {
   justify-content: center;
   align-items: center;
   height: 100vh;
+  width: 100%;
   margin: 0;
   padding-bottom: 5vmin;
   background-color: #efeeee;
@@ -99,11 +100,12 @@ body {
       top: var(--people-list-top);
       width: var(--people-list-width);
       height: var(--people-list-height);
-      padding-bottom: 15vmin;
+      margin-top: var(--people-list-margin);
       border-radius: 50%;
       // border: 1px solid;
       border-top-left-radius: 0;
       border-top-right-radius: 0;
+      padding-bottom: 15vmin;
 
       &::before {
         content: '';
@@ -158,6 +160,10 @@ body {
         display: flex;
         justify-content: center;
         align-items: center;
+      }
+
+      &-item:first-child {
+        margin-top: 4vmin;
       }
 
       &-item__box-name-container {

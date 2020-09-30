@@ -82,11 +82,6 @@ function onSwipeTo(
     );
   } else if (swipeTo === Swipe.DOWN) {
     // DOWN: toast
-    // add <yu-toast> next to <spin-container>
-    let bodyEl = document.querySelector('body');
-
-    let toastEl = document.createElement('yu-toast');
-    uiUtility.insertAfter(swipeEl, toastEl);
   }
 
   return restPeople;
