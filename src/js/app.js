@@ -17,6 +17,10 @@ const mainStyle = document.createElement('style');
 const backSidePeopleEl = document.querySelector('#people-list');
 const backSidePeopleFormEl = document.querySelector('#people-list__form');
 const inputEl = backSidePeopleFormEl['new-name'];
+const modalBgEl = document.querySelector('#modal__bg');
+const slideUpPanelEl = document.querySelector('#slide-up-panel__container');
+const btnSlideUpEl = document.querySelector('#slide-up-panel__btn');
+const btnFlipEl = document.querySelector('#btn-flip');
 
 // create Person-Object
 let persons = [];
@@ -32,6 +36,9 @@ if (preloadPeople) {
 
 // inBeginning:
 currentPersons = dataPeople.getSelectedPeople(persons);
+
+// slide up
+let isUp = false;
 
 /* -------------------------------------------------------------------------- */
 /*                               Service Worker                               */
@@ -52,7 +59,7 @@ async function registerSW() {
 }
 
 /* -------------------------------------------------------------------------- */
-/*                     UI_SWIPE: flip + reset                                 */
+/*                             UI_SWIPE: flip + reset                         */
 /* -------------------------------------------------------------------------- */
 
 window.onload = () => {
@@ -203,4 +210,34 @@ window.onload = () => {
     );
     if (currentPeople) currentPersons = currentPeople;
   });
+};
+
+/* -------------------------------------------------------------------------- */
+/*                               slide up panel                               */
+/* -------------------------------------------------------------------------- */
+
+btnSlideUpEl.addEventListener('click', () => {
+  isUp = setSlidePanelUp(isUp, modalBgEl, slideUpPanelEl, btnFlipEl);
+});
+
+const setSlidePanelUp = (isUp, modalBgEl, slideUpPanelEl, btnFlipEl) => {
+  isUp = !isUp;
+  if (isUp) {
+    btnFlipEl.classList.remove('btn-flip-anim__visible');
+    btnFlipEl.classList.add('btn-flip-anim__hide');
+
+    slideUpPanelEl.classList.remove('slide-down-anim');
+    slideUpPanelEl.classList.add('slide-up-anim');
+
+    modalBgEl.style.display = 'block';
+  } else {
+    btnFlipEl.classList.remove('btn-flip-anim__hide');
+    btnFlipEl.classList.add('btn-flip-anim__visible');
+
+    slideUpPanelEl.classList.remove('slide-up-anim');
+    slideUpPanelEl.classList.add('slide-down-anim');
+
+    modalBgEl.style.display = 'none';
+  }
+  return isUp;
 };

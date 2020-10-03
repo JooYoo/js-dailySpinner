@@ -39,7 +39,6 @@ body {
   height: 100vh;
   width: 100%;
   margin: 0;
-  padding-top: 1%;
   background-color: #efeeee;
   font-family: 'Raleway Dots', cursive;
   font-weight: bold;
@@ -340,6 +339,18 @@ body {
           transform: translate(-50%, -50%);
 }
 
+/* -------------------------------------------------------------------------- */
+/*                               slide-up-panel                               */
+/* -------------------------------------------------------------------------- */
+.modal__bg {
+  display: none;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background-color: black;
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
 .btn-flip {
   position: absolute;
   left: 50%;
@@ -352,13 +363,20 @@ body {
   transition: -webkit-transform 0.2s ease-in-out;
   transition: transform 0.2s ease-in-out;
   transition: transform 0.2s ease-in-out, -webkit-transform 0.2s ease-in-out;
+}
+
+.btn-flip-anim__hide {
+  -webkit-transform: translateX(-50%) scale(0);
+          transform: translateX(-50%) scale(0);
+}
+
+.btn-flip-anim__visible {
+  -webkit-transform: translateX(-50%) scale(1);
+          transform: translateX(-50%) scale(1);
   -webkit-transition-delay: 0.5s;
           transition-delay: 0.5s;
 }
 
-/* -------------------------------------------------------------------------- */
-/*                               slide-up-panel                               */
-/* -------------------------------------------------------------------------- */
 .slide-up-panel__container {
   position: absolute;
   display: -webkit-box;
@@ -367,24 +385,21 @@ body {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
   width: 100%;
-  height: 10%;
+  height: 7%;
   bottom: 0;
   border: #fff 0.3vmin solid;
   border-radius: 100px 100px 0 0;
+  padding: 4vmin 0;
   background-color: #efeeee;
-  -webkit-box-shadow: 9px 9px 16px #d0cfcf, -9px -9px 16px #ffffff;
-          box-shadow: 9px 9px 16px #d0cfcf, -9px -9px 16px #ffffff;
 }
 
 .slide-up-panel__btn {
   height: 0.5vmin;
-  width: 10vmin;
-  -webkit-transform: translateY(2vmin);
-          transform: translateY(2vmin);
+  width: 30vmin;
   background-color: #efeeee;
   -webkit-box-shadow: 2px 2px #d0cfcf, -2px -2px #ffffff;
           box-shadow: 2px 2px #d0cfcf, -2px -2px #ffffff;
@@ -398,25 +413,25 @@ body {
 
 @-webkit-keyframes slide-up-anim {
   0% {
-    height: 15%;
+    height: 7%;
   }
   50% {
-    height: 10%;
+    height: 5%;
   }
   100% {
-    height: 75%;
+    height: 58%;
   }
 }
 
 @keyframes slide-up-anim {
   0% {
-    height: 15%;
+    height: 7%;
   }
   50% {
-    height: 10%;
+    height: 5%;
   }
   100% {
-    height: 75%;
+    height: 58%;
   }
 }
 
@@ -427,25 +442,25 @@ body {
 
 @-webkit-keyframes slide-down-anim {
   0% {
-    height: 75%;
+    height: 58%;
   }
   50% {
-    height: 78%;
+    height: 65%;
   }
   100% {
-    height: 15%;
+    height: 7%;
   }
 }
 
 @keyframes slide-down-anim {
   0% {
-    height: 75%;
+    height: 58%;
   }
   50% {
-    height: 78%;
+    height: 65%;
   }
   100% {
-    height: 15%;
+    height: 7%;
   }
 }
 
