@@ -6,10 +6,10 @@
   --card-shadow: 1px 1px 10px 5px rgba(0, 0, 0, 0.1);
   --card-shadow-transition: 1px 1px 10px 1px rgba(0, 0, 0, 0.08);
 
-  --spin-container-width: 85vmin;
-  --spin-container-height: 85vmin;
-  --spin-font-size: 4vmin;
-  --spin-turn-btn-padding: 6vmin;
+  --spin-container-width: 75vmin;
+  --spin-container-height: 75vmin;
+  --spin-font-size: 3.5vmin;
+  --spin-turn-btn-padding: 5vmin;
 
   --people-list-width: 80vmin;
   --people-list-height: 60vmin;
@@ -35,7 +35,7 @@ body {
   height: 100vh;
   width: 100%;
   margin: 0;
-  padding-bottom: 5vmin;
+  padding-top: 1%;
   background-color: #efeeee;
   font-family: 'Raleway Dots', cursive;
   font-weight: bold;
@@ -47,7 +47,6 @@ body {
 }
 
 .spin-container {
-  position: relative;
   height: var(--spin-container-height);
   width: var(--spin-container-width);
 
@@ -57,6 +56,7 @@ body {
     inset 0 -15px 15px rgba(255, 255, 255, 1), 0 15px 15px rgba(0, 0, 0, 0.1),
     inset 0 15px 15px rgba(0, 0, 0, 0.08);
 
+  transform: translateY(-15%);
   transform-style: preserve-3d;
   transition: transform 0.3s ease-in-out, box-shadow 0.2s ease-in-out;
 
@@ -260,31 +260,104 @@ body {
       background-size: 500vmin;
     }
   }
+}
 
-  .btn-turn {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+.neu-btn-round {
+  padding: var(--spin-turn-btn-padding);
 
-    padding: var(--spin-turn-btn-padding);
+  border-radius: 50%;
 
-    border-radius: 50%;
+  background: linear-gradient(145deg, #ffffff, #d7d6d6);
+  border: 1vmin solid rgba(239, 238, 238, 0.8);
+  box-shadow: 5px 5px 10px #d0cfcf, -5px -5px 10px #ffffff;
 
-    background: linear-gradient(145deg, #ffffff, #d7d6d6);
-    border: 1px solid rgba(255, 255, 255, 0.4);
-    box-shadow: 5px 5px 10px #d0cfcf, -5px -5px 10px #ffffff;
+  &:focus {
+    outline: 0;
+  }
 
-    &:focus {
-      outline: 0;
-    }
+  &:active {
+    background: #efeeee;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: -6px -6px 26px 0 rgba(255, 255, 255, 0.9),
+      6px 6px 16px 0 rgba(217, 210, 200, 0.5);
+  }
+}
 
-    &:active {
-      background: #efeeee;
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      box-shadow: -6px -6px 26px 0 rgba(255, 255, 255, 0.9),
-        6px 6px 16px 0 rgba(217, 210, 200, 0.5);
-    }
+.btn-turn {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.btn-flip {
+  position: absolute;
+  left: 50%;
+  bottom: 5%;
+  transform: translateX(-50%);
+  box-shadow: 5px 5px 10px #d0cfcf, -5px -5px 10px #ffffff;
+  transition: transform 0.2s ease-in-out;
+  transition-delay: 0.5s;
+}
+
+/* -------------------------------------------------------------------------- */
+/*                               slide-up-panel                               */
+/* -------------------------------------------------------------------------- */
+
+.slide-up-panel__container {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 10%;
+  bottom: 0;
+
+  border: #fff 0.3vmin solid;
+  border-radius: 100px 100px 0 0;
+
+  background-color: #efeeee;
+  box-shadow: 9px 9px 16px #d0cfcf, -9px -9px 16px #ffffff;
+}
+
+.slide-up-panel__btn {
+  height: 0.5vmin;
+  width: 10vmin;
+  transform: translateY(2vmin);
+  background-color: #efeeee;
+  box-shadow: 2px 2px #d0cfcf, -2px -2px #ffffff;
+  cursor: pointer;
+}
+
+.slide-up-anim {
+  animation: slide-up-anim 0.5s ease-in-out forwards;
+}
+
+@keyframes slide-up-anim {
+  0% {
+    height: 15%;
+  }
+  50% {
+    height: 10%;
+  }
+  100% {
+    height: 75%;
+  }
+}
+
+.slide-down-anim {
+  animation: slide-down-anim 0.5s ease-in-out forwards;
+}
+
+@keyframes slide-down-anim {
+  0% {
+    height: 75%;
+  }
+  50% {
+    height: 78%;
+  }
+  100% {
+    height: 15%;
   }
 }
 
