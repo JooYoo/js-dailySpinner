@@ -69,13 +69,56 @@
       </div>
     </div>
 
-    <!-- <div class="toast-hover-area">
-      <yu-toast></yu-toast>
-    </div> -->
-
     <div id="modal__bg" class="modal__bg"></div>
     <div id="slide-up-panel__container" class="slide-up-panel__container">
       <div id="slide-up-panel__btn" class="slide-up-panel__btn"></div>
+
+      <div
+        id="slide-up-panel__state-card-container"
+        class="slide-up-panel__state-card-container"
+      >
+        <!-- TODO: refactoring as component -->
+        <div id="slide-up-panel__state-card" class="slide-up-panel__state-card">
+          <img
+            class="slide-up-panel__state-card__icon"
+            src="https://www.flaticon.com/svg/static/icons/svg/783/783546.svg"
+          />
+
+          <div class="slide-up-panel__state-card__time-container">
+            <span class="slide-up-panel__state-card__time-number">15</span>
+            <span class="slide-up-panel__state-card__time-unit">min</span>
+            <div class="slide-up-panel__state-card__time-text">
+              daily main time
+            </div>
+          </div>
+
+          <div class="slide-up-panel__controls">
+            <label class="slide-up-panel__switch">
+              <input type="checkbox" />
+              <span class="slider"></span>
+            </label>
+
+            <div class="slide-up-panel__btns">
+              <button class="btn-plus">+</button>
+              <button class="btn-minus">-</button>
+            </div>
+          </div>
+        </div>
+
+        <div id="slide-up-panel__state-card" class="slide-up-panel__state-card">
+          2
+        </div>
+
+        <div id="slide-up-panel__state-card" class="slide-up-panel__state-card">
+          3
+        </div>
+
+        <div id="slide-up-panel__state-card" class="slide-up-panel__state-card">
+          4
+        </div>
+      </div>
+
+      <!-- TODO: optimize shortcut hint -->
     </div>
 
     <button id="btn-flip" class="btn-flip neu-btn-round"></button>
