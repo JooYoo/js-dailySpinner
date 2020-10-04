@@ -11,9 +11,9 @@
   --spin-font-size: 3.5vmin;
   --spin-turn-btn-padding: 5vmin;
 
-  --people-list-width: 80vmin;
-  --people-list-height: 60vmin;
-  --people-list-top: 3vmin;
+  --people-list-width: 70vmin;
+  --people-list-height: 50vmin;
+  --people-list-top: 2vmin;
   --people-list-padding-top: 3.5vmin;
   --people-list-margin: 10vmin;
   --people-list-item__box-name-container-left: 10vmin;
@@ -64,7 +64,7 @@ body {
 
   // backside__after-flip
   &__flip {
-    transform: rotateY(180deg);
+    transform: translateY(-15%) rotateY(180deg);
     box-shadow: var(--card-shadow-transition);
   }
 }
@@ -293,12 +293,13 @@ body {
 /*                               slide-up-panel                               */
 /* -------------------------------------------------------------------------- */
 .modal__bg {
-  display: none;
+  opacity: 0;
   position: fixed;
   width: 100%;
   height: 100%;
-  background-color: rgb(0, 0, 0);
   background-color: rgba(0, 0, 0, 0.2);
+  transition: opacity 1s ease-in-out;
+  pointer-events: none;
 }
 
 .btn-flip {
@@ -330,15 +331,15 @@ body {
 
   border: #fff 0.3vmin solid;
   border-radius: 100px 100px 0 0;
-  padding: 4vmin 0;
 
   background-color: #efeeee;
   // box-shadow: 9px 9px 16px #d0cfcf, -9px -9px 16px #ffffff;
 }
 
 .slide-up-panel__btn {
-  height: 0.5vmin;
+  height: 0.8vmin;
   width: 30vmin;
+  margin: 4vmin;
   background-color: #efeeee;
   box-shadow: 2px 2px #d0cfcf, -2px -2px #ffffff;
   cursor: pointer;
@@ -353,7 +354,7 @@ body {
     height: 7%;
   }
   50% {
-    height: 5%;
+    height: 1%;
   }
   100% {
     height: 58%;
@@ -387,13 +388,13 @@ body {
 
 @keyframes restSpinner {
   0% {
-    transform: rotateX(0deg);
+    transform: translateY(-15%) rotateX(0deg);
   }
   50% {
-    transform: rotateX(60deg);
+    transform: translateY(-15%) rotateX(60deg);
   }
   100% {
-    transform: rotateX(0deg);
+    transform: translateY(-15%) rotateX(0deg);
   }
 }
 

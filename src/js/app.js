@@ -223,21 +223,22 @@ btnSlideUpEl.addEventListener('click', () => {
 const setSlidePanelUp = (isUp, modalBgEl, slideUpPanelEl, btnFlipEl) => {
   isUp = !isUp;
   if (isUp) {
-    btnFlipEl.classList.remove('btn-flip-anim__visible');
-    btnFlipEl.classList.add('btn-flip-anim__hide');
+    toggleAnim(btnFlipEl, 'btn-flip-anim__visible', 'btn-flip-anim__hide');
+    toggleAnim(slideUpPanelEl, 'slide-down-anim', 'slide-up-anim');
 
-    slideUpPanelEl.classList.remove('slide-down-anim');
-    slideUpPanelEl.classList.add('slide-up-anim');
-
-    modalBgEl.style.display = 'block';
+    modalBgEl.style.opacity = '1';
+    modalBgEl.style.pointerEvents = 'auto';
   } else {
-    btnFlipEl.classList.remove('btn-flip-anim__hide');
-    btnFlipEl.classList.add('btn-flip-anim__visible');
+    toggleAnim(btnFlipEl, 'btn-flip-anim__hide', 'btn-flip-anim__visible');
+    toggleAnim(slideUpPanelEl, 'slide-up-anim', 'slide-down-anim');
 
-    slideUpPanelEl.classList.remove('slide-up-anim');
-    slideUpPanelEl.classList.add('slide-down-anim');
-
-    modalBgEl.style.display = 'none';
+    modalBgEl.style.opacity = '0';
+    modalBgEl.style.pointerEvents = 'none';
   }
   return isUp;
+};
+
+const toggleAnim = (el, removeClass, addClass) => {
+  el.classList.remove(removeClass);
+  el.classList.add(addClass);
 };
