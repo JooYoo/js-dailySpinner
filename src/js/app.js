@@ -2,6 +2,7 @@ import * as uiSwipe from './ui_swipe.js';
 import * as uiFrontSide from './ui_front-side.js';
 import * as uiBackSide from './ui_back-side.js';
 import * as uiShortcut from './ui_shortcut.js';
+import * as uiSlideupPanel from './ui_slideUpPanel.js';
 import * as dataLocalStorage from './data_localstorage.js';
 import * as dataPeople from './data_people.js';
 
@@ -216,29 +217,23 @@ window.onload = () => {
 /*                               slide up panel                               */
 /* -------------------------------------------------------------------------- */
 
+// click slideUpBtn to toggle slideupPannel
 btnSlideUpEl.addEventListener('click', () => {
-  isUp = setSlidePanelUp(isUp, modalBgEl, slideUpPanelEl, btnFlipEl);
+  isUp = uiSlideupPanel.setSlidePanelUp(
+    isUp,
+    modalBgEl,
+    slideUpPanelEl,
+    btnFlipEl
+  );
 });
 
-const setSlidePanelUp = (isUp, modalBgEl, slideUpPanelEl, btnFlipEl) => {
-  isUp = !isUp;
-  if (isUp) {
-    toggleAnim(btnFlipEl, 'btn-flip-anim__visible', 'btn-flip-anim__hide');
-    toggleAnim(slideUpPanelEl, 'slide-down-anim', 'slide-up-anim');
-
-    modalBgEl.style.opacity = '1';
-    modalBgEl.style.pointerEvents = 'auto';
-  } else {
-    toggleAnim(btnFlipEl, 'btn-flip-anim__hide', 'btn-flip-anim__visible');
-    toggleAnim(slideUpPanelEl, 'slide-up-anim', 'slide-down-anim');
-
-    modalBgEl.style.opacity = '0';
-    modalBgEl.style.pointerEvents = 'none';
-  }
-  return isUp;
-};
-
-const toggleAnim = (el, removeClass, addClass) => {
-  el.classList.remove(removeClass);
-  el.classList.add(addClass);
-};
+// click flipBtn to toggle plate flip
+btnFlipEl.addEventListener('click', (e) => {
+  currentPersons = uiSlideupPanel.clickToFlip(
+    swipeEl,
+    needleEl,
+    frontSidePeopleEl,
+    mainStyle,
+    persons
+  );
+});

@@ -28,7 +28,6 @@ const setPersonTimer = (restPeople, allPeople) => {
   );
 
   clearInterval(personTimer);
-  console.log(tick);
 
   if (timerStatus != onTimer.STOP) {
     personTimer = setInterval(() => {
