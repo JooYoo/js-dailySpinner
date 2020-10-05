@@ -129,4 +129,22 @@ function checkTimerStatus(restPeople, allPeople) {
   }
 }
 
-export { mainTimerRingMinute, setMainTimer, setPersonTimer };
+/* ---------------------------- set timer number ---------------------------- */
+
+const setPlusMainTime = () => {
+  mainTimerRingMinute++;
+};
+
+const setMinusMainTime = () => {
+  if (mainTimerRingMinute > 0) {
+    mainTimerRingMinute--;
+  }
+};
+
+export {
+  mainTimerRingMinute,
+  setMainTimer,
+  setPersonTimer,
+  setPlusMainTime,
+  setMinusMainTime,
+};

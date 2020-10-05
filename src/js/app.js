@@ -241,13 +241,32 @@ btnFlipEl.addEventListener('click', (e) => {
 /* -------------------------------------------------------------------------- */
 /*                             settings: main time                            */
 /* -------------------------------------------------------------------------- */
-import * as dataTimer from './timer.js';
+import * as timer from './timer.js';
 
-let mainTimeRingMinuts = dataTimer.mainTimerRingMinute;
-let isMainTimeRingDisplay = false;
-
-/* -------------------------- set main time minute -------------------------- */
 const stateCardTime = document.querySelector(
   '#slide-up-panel__state-card__time-number'
 );
-stateCardTime.innerHTML = mainTimeRingMinuts;
+const stateCardBtnPlus = document.querySelector(
+  '#slide-up-panel__state-card__btn--plus'
+);
+const stateCardBtnMinus = document.querySelector(
+  '#slide-up-panel__state-card__btn--minus'
+);
+
+let isMainTimeRingDisplay = false;
+
+/* -------------------------- set main time minute -------------------------- */
+
+stateCardTime.innerHTML = timer.mainTimerRingMinute;
+
+/* ------------------------- click btn--plus / minus ------------------------ */
+
+stateCardBtnPlus.addEventListener('click', () => {
+  timer.setPlusMainTime();
+  stateCardTime.innerHTML = timer.mainTimerRingMinute;
+});
+
+stateCardBtnMinus.addEventListener('click', () => {
+  timer.setMinusMainTime();
+  stateCardTime.innerHTML = timer.mainTimerRingMinute;
+});
