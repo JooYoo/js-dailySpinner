@@ -3,6 +3,8 @@ import * as uiUtility from './ui_utility.js';
 
 let mainTimer;
 let mainTimerRingMinute = 15;
+let isMainTimerActive = true;
+
 let personTimer;
 let personTimerRingMin = 3;
 
@@ -45,6 +47,9 @@ const setPersonTimer = (restPeople, allPeople) => {
 /* ------------------------------ set mainTimer ----------------------------- */
 
 function setMainTimer(restPeople, allPeople) {
+  // if isMainTimeActive then active MainTimer
+  if (!isMainTimerActive) return;
+
   let tick = 0;
 
   // get Timer state
@@ -131,14 +136,26 @@ function checkTimerStatus(restPeople, allPeople) {
 
 /* ---------------------------- set timer number ---------------------------- */
 
+const displayMainTime = (displayEl, displayValue) => {
+  displayEl.innerHTML = displayValue;
+};
+
 const setPlusMainTime = () => {
   mainTimerRingMinute++;
 };
 
 const setMinusMainTime = () => {
-  if (mainTimerRingMinute > 0) {
+  if (mainTimerRingMinute > 1) {
     mainTimerRingMinute--;
   }
+};
+
+const toggleIsMainTimerActive = () => {
+  const mainTimeRingEl = document.querySelector('#mainTimer');
+  isMainTimerActive = !isMainTimerActive;
+  isMainTimerActive
+    ? (mainTimeRingEl.style.display = 'inherit')
+    : (mainTimeRingEl.style.display = 'none');
 };
 
 export {
@@ -147,4 +164,6 @@ export {
   setPersonTimer,
   setPlusMainTime,
   setMinusMainTime,
+  displayMainTime,
+  toggleIsMainTimerActive,
 };
