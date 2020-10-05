@@ -80,12 +80,16 @@
         <!-- TODO: refactoring as component -->
         <div id="slide-up-panel__state-card" class="slide-up-panel__state-card">
           <img
-            class="slide-up-panel__state-card__icon"
+            class="icon-timer"
             src="https://www.flaticon.com/svg/static/icons/svg/783/783546.svg"
           />
 
           <div class="slide-up-panel__state-card__time-container">
-            <span class="slide-up-panel__state-card__time-number">15</span>
+            <span
+              id="slide-up-panel__state-card__time-number"
+              class="slide-up-panel__state-card__time-number"
+              >0</span
+            >
             <span class="slide-up-panel__state-card__time-unit">min</span>
             <div class="slide-up-panel__state-card__time-text">
               daily main time
@@ -99,11 +103,22 @@
             </label>
 
             <div class="slide-up-panel__btns">
-              <button class="btn-plus">+</button>
-              <button class="btn-minus">-</button>
+              <button
+                id="slide-up-panel__state-card__btn--plus"
+                class="btn-plus"
+              >
+                +
+              </button>
+              <button
+                id="slide-up-panel__state-card__btn--minus"
+                class="btn-minus"
+              >
+                -
+              </button>
             </div>
           </div>
         </div>
+        <!-- TODO: END refactoring as component -->
 
         <div id="slide-up-panel__state-card" class="slide-up-panel__state-card">
           2
@@ -121,6 +136,11 @@
       <!-- TODO: optimize shortcut hint -->
     </div>
 
-    <button id="btn-flip" class="btn-flip neu-btn-round"></button>
+    <button id="btn-flip" class="btn-flip neu-btn-round">
+      <img
+        class="icon-flip"
+        src="https://www.flaticon.com/svg/static/icons/svg/1250/1250694.svg"
+      />
+    </button>
   </body>
 </html>

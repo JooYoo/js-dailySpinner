@@ -129,4 +129,4 @@ function checkTimerStatus(restPeople, allPeople) {
   }
 }
 
-export { setMainTimer, setPersonTimer };
+export { mainTimerRingMinute, setMainTimer, setPersonTimer };

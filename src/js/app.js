@@ -237,3 +237,17 @@ btnFlipEl.addEventListener('click', (e) => {
     persons
   );
 });
+
+/* -------------------------------------------------------------------------- */
+/*                             settings: main time                            */
+/* -------------------------------------------------------------------------- */
+import * as dataTimer from './timer.js';
+
+let mainTimeRingMinuts = dataTimer.mainTimerRingMinute;
+let isMainTimeRingDisplay = false;
+
+/* -------------------------- set main time minute -------------------------- */
+const stateCardTime = document.querySelector(
+  '#slide-up-panel__state-card__time-number'
+);
+stateCardTime.innerHTML = mainTimeRingMinuts;

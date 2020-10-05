@@ -304,6 +304,9 @@ body {
 
 .btn-flip {
   position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   left: 50%;
   bottom: 5%;
   transform: translateX(-50%);
@@ -318,6 +321,12 @@ body {
     transform: translateX(-50%) scale(1);
     transition-delay: 0.5s;
   }
+
+  .icon-flip {
+    position: absolute;
+    width: 4vmin;
+    filter: invert(0.5);
+  }
 }
 
 .slide-up-panel__container {
@@ -326,9 +335,9 @@ body {
   justify-content: center;
   align-items: flex-start;
   width: 100%;
-  // FIXME: for dev
-  // height: 7%;
-  height: 58%;
+  // FIXME: dev
+  // height: 58%;
+  height: 7%;
   bottom: 0;
 
   border: #fff 0.3vmin solid;
@@ -390,9 +399,9 @@ body {
   overflow-x: auto;
   align-items: flex-start;
   margin-top: 10vmin;
-  height: 100%;
-  width: 150%;
-  border: 1px red solid;
+  width: 100%;
+  // FIXME: dev
+  // border: 1px red solid;
 }
 
 .slide-up-panel__state-card {
@@ -413,9 +422,9 @@ body {
   box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.15),
     -5px -5px 10px rgba(255, 255, 255, 0.3);
 
-  &__icon {
+  .icon-timer {
     width: 5vmin;
-    filter: invert(0.5);
+    filter: invert(0.6);
   }
 
   &__time-number {
@@ -460,7 +469,7 @@ body {
     height: 0;
 
     &:checked + .slider {
-      background-color: rgba(223, 222, 222, 1);
+      background-color: rgba(0, 0, 0, 0.5);
 
       &::before {
         transform: translateX(3vmin);
@@ -477,7 +486,7 @@ body {
     bottom: 0;
     border: 0.2vmin solid rgba(0, 0, 0, 0.1);
     border-radius: 34px;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(223, 222, 222, 1);
     transition: 0.2s;
 
     &::before {
@@ -511,7 +520,7 @@ body {
     border-radius: 50%;
 
     font-family: monospace;
-    font-size: 1.5vmin;
+    font-size: 3.5vmin;
     text-align: center;
 
     background: linear-gradient(145deg, #ffffff, #d7d6d6);
