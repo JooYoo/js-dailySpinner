@@ -516,7 +516,7 @@ body {
           box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.15), -5px -5px 10px rgba(255, 255, 255, 0.3);
 }
 
-.slide-up-panel__state-card .icon-timer {
+.icon-timer {
   width: 5vmin;
   -webkit-filter: invert(0.6);
           filter: invert(0.6);
@@ -611,6 +611,9 @@ body {
   transition: 0.2s;
 }
 
+/* -------------------------------------------------------------------------- */
+/*                                 btns + / -                                 */
+/* -------------------------------------------------------------------------- */
 .slide-up-panel__btns {
   display: -webkit-box;
   display: -ms-flexbox;

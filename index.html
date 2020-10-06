@@ -77,6 +77,15 @@
         id="slide-up-panel__state-card-container"
         class="slide-up-panel__state-card-container"
       >
+        <yu-settings-timer-card
+          id="mainTimerCard"
+          icon="https://www.flaticon.com/svg/static/icons/svg/783/783546.svg"
+          isToggleDisplay="true"
+          isPlusMinusBtnsDisplay="true"
+          timeUnit="mins"
+          timeDescription="meeting main time"
+        ></yu-settings-timer-card>
+
         <!-- TODO: refactoring as component -->
         <div id="slide-up-panel__state-card" class="slide-up-panel__state-card">
           <img
@@ -90,8 +99,15 @@
               class="slide-up-panel__state-card__time-number"
               >0</span
             >
-            <span class="slide-up-panel__state-card__time-unit">min</span>
-            <div class="slide-up-panel__state-card__time-text">
+            <span
+              id="slide-up-panel__state-card__time-unit"
+              class="slide-up-panel__state-card__time-unit"
+              >min</span
+            >
+            <div
+              id="slide-up-panel__state-card__time-text"
+              class="slide-up-panel__state-card__time-text"
+            >
               daily main time
             </div>
           </div>
@@ -102,7 +118,7 @@
               <span class="slider"></span>
             </label>
 
-            <div class="slide-up-panel__btns">
+            <div id="slide-up-panel__btns" class="slide-up-panel__btns">
               <button
                 id="slide-up-panel__state-card__btn--plus"
                 class="btn-plus"
@@ -120,7 +136,7 @@
         </div>
         <!-- TODO: END refactoring as component -->
 
-        <div id="slide-up-panel__state-card" class="slide-up-panel__state-card">
+        <!-- <div id="slide-up-panel__state-card" class="slide-up-panel__state-card">
           2
         </div>
 
@@ -130,7 +146,7 @@
 
         <div id="slide-up-panel__state-card" class="slide-up-panel__state-card">
           4
-        </div>
+        </div> -->
       </div>
 
       <!-- TODO: optimize shortcut hint -->

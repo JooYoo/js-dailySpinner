@@ -8,6 +8,7 @@ import * as dataPeople from './data_people.js';
 
 import '../components/yu-toast.js';
 import '../components/yu-progress-ring.js';
+import '../components/yu-settings-card-timer.js';
 
 // get UI elements
 const needleEl = document.querySelector('#spin-needle');
