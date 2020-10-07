@@ -243,6 +243,7 @@ btnFlipEl.addEventListener('click', (e) => {
 /*                             settings: main time                            */
 /* -------------------------------------------------------------------------- */
 import * as timer from './timer.js';
+import * as settings from './settings.js';
 
 const stateCardTimeEl = document.querySelector(
   '#slide-up-panel__state-card__time-number'
@@ -257,22 +258,22 @@ const stateCardToggleEl = document.querySelector('#slide-up-panel__toggle');
 
 /* -------------------------- set main time minute -------------------------- */
 
-timer.displayMainTime(stateCardTimeEl, timer.mainTimerRingMinute);
+settings.displayTimeNr(stateCardTimeEl, timer.mainTimerRingMinute);
 
 /* ------------------------- click btn--plus / minus ------------------------ */
 
 stateCardBtnPlus.addEventListener('click', () => {
   timer.setPlusMainTime();
-  timer.displayMainTime(stateCardTimeEl, timer.mainTimerRingMinute);
+  settings.displayTimeNr(stateCardTimeEl, timer.mainTimerRingMinute);
 });
 
 stateCardBtnMinus.addEventListener('click', () => {
   timer.setMinusMainTime();
-  timer.displayMainTime(stateCardTimeEl, timer.mainTimerRingMinute);
+  settings.displayTimeNr(stateCardTimeEl, timer.mainTimerRingMinute);
 });
 
 /* -------------------------- toggle main time ring ------------------------- */
 
 stateCardToggleEl.addEventListener('change', () => {
-  timer.toggleIsMainTimerActive();
+  timer.toggleMainTimeRingVisibility();
 });

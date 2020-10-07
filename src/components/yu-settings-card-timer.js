@@ -197,57 +197,87 @@ class YuSettingsTimerCard extends HTMLElement {
     // get current component ID
     let currentComponentId = this.shadowRoot.host.id;
 
-    /* -------------------------------- set icon -------------------------------- */
+    /* -------------------------------- init icon -------------------------------- */
     // get iconAtt from instance in DOM
     let iconAtt = this.getAttribute('icon');
-    // set this TimerCard icon
-    settings.setTimerIcon(currentComponentId, iconAtt);
+    // init this TimerCard icon
+    settings.initTimerIcon(currentComponentId, iconAtt);
 
-    /* ------------------------------- set toggle ------------------------------- */
+    /* ------------------------------- init / set toggle ------------------------------- */
     // get isToggleDisplayAtt from instance in DOM
     let isToggleDisplayAtt = this.getAttribute('isToggleDisplay');
     // set this TimeCard toggle visibility
-    settings.setElVisibility(
+    settings.initElVisibility(
       currentComponentId,
       'slide-up-panel__toggle-container',
       isToggleDisplayAtt
     );
-    //TODO: set toggle function
 
-    /* ----------------------------- set time number ---------------------------- */
+    // get toggleEl
+    const toggleEl = this.shadowRoot.getElementById('slide-up-panel__toggle');
+    // set ring visibility
+    toggleEl.addEventListener('change', () => {
+      settings.setTimeRingToggle(currentComponentId);
+    });
 
-    // TODO: time function
-
-    /* ------------------------------ set time unit ----------------------------- */
+    /* ------------------------------ init time unit ----------------------------- */
     // get timeUnitAtt from instance in DOM
     let timeUnitAtt = this.getAttribute('timeUnit');
     // set this TimeCard timeUnit
-    settings.setTimerText(
+    settings.initCardText(
       currentComponentId,
       'slide-up-panel__state-card__time-unit',
       timeUnitAtt
     );
 
-    /* -------------------------------- set btns -------------------------------- */
-    // get isPlusMinusBtnsDisplayAtt from instance in DOM
-    let isPlusMinusBtnsDisplayAtt = this.getAttribute('isPlusMinusBtnsDisplay');
-    // set this TimeCard +/- btns visibility
-    settings.setElVisibility(
-      currentComponentId,
-      'slide-up-panel__btns',
-      isPlusMinusBtnsDisplayAtt
-    );
-    // TODO: +/- btns function
-
-    /* ----------------------------- set description ---------------------------- */
+    /* ----------------------------- init description ---------------------------- */
     // get timeDescriptionAtt from instance in DOM
     let timeDescriptionAtt = this.getAttribute('timeDescription');
     // set this TimeCard timeDescription
-    settings.setTimerText(
+    settings.initCardText(
       currentComponentId,
       'slide-up-panel__state-card__time-text',
       timeDescriptionAtt
     );
+
+    /* -------------------------------- init btns -------------------------------- */
+    // get isPlusMinusBtnsDisplayAtt from instance in DOM
+    let isPlusMinusBtnsDisplayAtt = this.getAttribute('isPlusMinusBtnsDisplay');
+    // set this TimeCard +/- btns visibility
+    settings.initElVisibility(
+      currentComponentId,
+      'slide-up-panel__btns',
+      isPlusMinusBtnsDisplayAtt
+    );
+
+    /* ----------------------------- set time number ---------------------------- */
+    // get timeNrEl
+    const timeNrEl = this.shadowRoot.getElementById(
+      'slide-up-panel__state-card__time-number'
+    );
+    // set time number
+    settings.setTimeNr(currentComponentId, timeNrEl);
+
+    /* -------------------------------- set btns -------------------------------- */
+    // get plusBtnEl / minusBtnEl
+    const plusBtnEl = this.shadowRoot.getElementById(
+      'slide-up-panel__state-card__btn--plus'
+    );
+    const minusBtnEl = this.shadowRoot.getElementById(
+      'slide-up-panel__state-card__btn--minus'
+    );
+
+    // on + btn click
+    plusBtnEl.addEventListener('click', () => {
+      settings.onCardBtnClick(currentComponentId, 'plusBtn');
+      settings.setTimeNr(currentComponentId, timeNrEl);
+    });
+
+    // on - btn click
+    minusBtnEl.addEventListener('click', () => {
+      settings.onCardBtnClick(currentComponentId, 'minusBtn');
+      settings.setTimeNr(currentComponentId, timeNrEl);
+    });
   }
 }
 

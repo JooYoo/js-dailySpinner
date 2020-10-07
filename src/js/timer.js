@@ -134,12 +134,11 @@ function checkTimerStatus(restPeople, allPeople) {
   }
 }
 
-/* ---------------------------- set timer number ---------------------------- */
+/* -------------------------------------------------------------------------- */
+/*                                  settings                                  */
+/* -------------------------------------------------------------------------- */
 
-const displayMainTime = (displayEl, displayValue) => {
-  displayEl.innerHTML = displayValue;
-};
-
+/* ----------------------------- settings__btns ----------------------------- */
 const setPlusMainTime = () => {
   mainTimerRingMinute++;
 };
@@ -149,14 +148,17 @@ const setMinusMainTime = () => {
     mainTimerRingMinute--;
   }
 };
+// TODO: write new one for personTime
 
-const toggleIsMainTimerActive = () => {
+/* -------------------------- settings__card-toggle ------------------------- */
+const toggleMainTimeRingVisibility = () => {
   const mainTimeRingEl = document.querySelector('#mainTimer');
   isMainTimerActive = !isMainTimerActive;
   isMainTimerActive
     ? (mainTimeRingEl.style.display = 'inherit')
     : (mainTimeRingEl.style.display = 'none');
 };
+// TODO: write also for another rings
 
 export {
   mainTimerRingMinute,
@@ -164,6 +166,5 @@ export {
   setPersonTimer,
   setPlusMainTime,
   setMinusMainTime,
-  displayMainTime,
-  toggleIsMainTimerActive,
+  toggleMainTimeRingVisibility,
 };
