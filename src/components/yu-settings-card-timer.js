@@ -7,10 +7,10 @@ template.innerHTML = `
 /*                                 state-card                                 */
 /* -------------------------------------------------------------------------- */
 
-.slide-up-panel__state-card {
+:host {
   position: relative;
   flex: 0 0 auto;
-  /* height: 25vmin;*/
+  height: 25vmin;
   width: 40vmin;
   margin: 3vmin;
   border-radius: 20px;
