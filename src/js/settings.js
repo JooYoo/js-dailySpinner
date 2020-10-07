@@ -98,5 +98,4 @@ export {
   initCardText,
   setTimeRingToggle,
   onCardBtnClick,
-  displayTimeNr,
 };
