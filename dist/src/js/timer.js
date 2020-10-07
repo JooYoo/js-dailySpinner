@@ -3,6 +3,8 @@ import * as uiUtility from './ui_utility.js';
 
 let mainTimer;
 let mainTimerRingMinute = 15;
+let isMainTimerActive = true;
+
 let personTimer;
 let personTimerRingMin = 3;
 
@@ -28,7 +30,6 @@ const setPersonTimer = (restPeople, allPeople) => {
   );
 
   clearInterval(personTimer);
-  console.log(tick);
 
   if (timerStatus != onTimer.STOP) {
     personTimer = setInterval(() => {
@@ -46,6 +47,9 @@ const setPersonTimer = (restPeople, allPeople) => {
 /* ------------------------------ set mainTimer ----------------------------- */
 
 function setMainTimer(restPeople, allPeople) {
+  // if isMainTimeActive then active MainTimer
+  if (!isMainTimerActive) return;
+
   let tick = 0;
 
   // get Timer state
@@ -130,4 +134,37 @@ function checkTimerStatus(restPeople, allPeople) {
   }
 }
 
-export { setMainTimer, setPersonTimer };
+/* -------------------------------------------------------------------------- */
+/*                                  settings                                  */
+/* -------------------------------------------------------------------------- */
+
+/* ----------------------------- settings__btns ----------------------------- */
+const setPlusMainTime = () => {
+  mainTimerRingMinute++;
+};
+
+const setMinusMainTime = () => {
+  if (mainTimerRingMinute > 1) {
+    mainTimerRingMinute--;
+  }
+};
+// TODO: write new one for personTime
+
+/* -------------------------- settings__card-toggle ------------------------- */
+const toggleMainTimeRingVisibility = () => {
+  const mainTimeRingEl = document.querySelector('#mainTimer');
+  isMainTimerActive = !isMainTimerActive;
+  isMainTimerActive
+    ? (mainTimeRingEl.style.display = 'inherit')
+    : (mainTimeRingEl.style.display = 'none');
+};
+// TODO: write also for another rings
+
+export {
+  mainTimerRingMinute,
+  setMainTimer,
+  setPersonTimer,
+  setPlusMainTime,
+  setMinusMainTime,
+  toggleMainTimeRingVisibility,
+};
