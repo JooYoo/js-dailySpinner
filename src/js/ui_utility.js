@@ -25,10 +25,17 @@ function insertAfter(referenceNode, newNode) {
   referenceNode.parentNode.insertBefore(newNode, referenceNode.nextSibling);
 }
 
+// toggle animation
+const toggleAnim = (el, removeClass, addClass) => {
+  el.classList.remove(removeClass);
+  el.classList.add(addClass);
+};
+
 export {
   getCssVar,
   getCssVarShadowRoot,
   setCssVar,
   setCssVarShadowRoot,
   insertAfter,
+  toggleAnim,
 };

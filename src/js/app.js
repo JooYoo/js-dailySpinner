@@ -2,11 +2,13 @@ import * as uiSwipe from './ui_swipe.js';
 import * as uiFrontSide from './ui_front-side.js';
 import * as uiBackSide from './ui_back-side.js';
 import * as uiShortcut from './ui_shortcut.js';
+import * as uiSlideupPanel from './ui_slideUpPanel.js';
 import * as dataLocalStorage from './data_localstorage.js';
 import * as dataPeople from './data_people.js';
 
 import '../components/yu-toast.js';
 import '../components/yu-progress-ring.js';
+import '../components/yu-settings-card-timer.js';
 
 // get UI elements
 const needleEl = document.querySelector('#spin-needle');
@@ -17,6 +19,10 @@ const mainStyle = document.createElement('style');
 const backSidePeopleEl = document.querySelector('#people-list');
 const backSidePeopleFormEl = document.querySelector('#people-list__form');
 const inputEl = backSidePeopleFormEl['new-name'];
+const modalBgEl = document.querySelector('#modal__bg');
+const slideUpPanelEl = document.querySelector('#slide-up-panel__container');
+const btnSlideUpEl = document.querySelector('#slide-up-panel__btn');
+const btnFlipEl = document.querySelector('#btn-flip');
 
 // create Person-Object
 let persons = [];
@@ -32,6 +38,9 @@ if (preloadPeople) {
 
 // inBeginning:
 currentPersons = dataPeople.getSelectedPeople(persons);
+
+// slide up
+let isUp = false;
 
 /* -------------------------------------------------------------------------- */
 /*                               Service Worker                               */
@@ -52,7 +61,7 @@ async function registerSW() {
 }
 
 /* -------------------------------------------------------------------------- */
-/*                     UI_SWIPE: flip + reset                                 */
+/*                             UI_SWIPE: flip + reset                         */
 /* -------------------------------------------------------------------------- */
 
 window.onload = () => {
@@ -204,3 +213,28 @@ window.onload = () => {
     if (currentPeople) currentPersons = currentPeople;
   });
 };
+
+/* -------------------------------------------------------------------------- */
+/*                               slide up panel                               */
+/* -------------------------------------------------------------------------- */
+
+// click slideUpBtn to toggle slideupPannel
+btnSlideUpEl.addEventListener('click', () => {
+  isUp = uiSlideupPanel.setSlidePanelUp(
+    isUp,
+    modalBgEl,
+    slideUpPanelEl,
+    btnFlipEl
+  );
+});
+
+// click flipBtn to toggle plate flip
+btnFlipEl.addEventListener('click', (e) => {
+  currentPersons = uiSlideupPanel.clickToFlip(
+    swipeEl,
+    needleEl,
+    frontSidePeopleEl,
+    mainStyle,
+    persons
+  );
+});
