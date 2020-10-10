@@ -41,7 +41,7 @@ const setTimeRingToggle = (currentComponentId) => {
       break;
 
     case 'progressRingCard':
-      console.log('settings: setTimeRingToggle', 'progressRingCard');
+      timer.toggleProgressRingVisibility();
       break;
 
     default:
@@ -61,6 +61,7 @@ const setTimeNr = (currentComponentId, timerNrEl) => {
 
     case 'progressRingCard':
       console.log('settings: setTimeNr', 'progressRingCard');
+      displayTimeNr(timerNrEl, timer.progressRingNum);
       break;
 
     default:
@@ -76,7 +77,6 @@ const onCardBtnClick = (currentComponentId, btnType) => {
       break;
 
     case 'personTimerCard':
-      console.log('settings: onCardBtnClick', 'personTimerCard');
       btnType == 'plusBtn' ? timer.setPlusPersonTime() : '';
       btnType == 'minusBtn' ? timer.setMinusPersonTime() : '';
       break;

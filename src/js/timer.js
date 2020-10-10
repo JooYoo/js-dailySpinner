@@ -9,6 +9,9 @@ let personTimer;
 let personTimerRingMin = 3;
 let isPersonTimerActive = true;
 
+let progressRingNum = 100;
+let isProgressRingActive = true;
+
 const onTimer = {
   START: 'start',
   RUNNING: 'running',
@@ -163,9 +166,6 @@ const setMinusPersonTime = () => {
   }
 }
 
-
-// TODO: write new one for personTime
-
 /* -------------------------- settings__card-toggle ------------------------- */
 // Main-Timer
 const toggleMainTimeRingVisibility = () => {
@@ -185,12 +185,19 @@ const togglePersonTimeRingVisibility = () => {
     : (personTimeRingEl.style.display='none');
 }
 
-// TODO: write also for another rings
-
+// Progress-Ring
+const toggleProgressRingVisibility = () =>{
+  const progressRingEl = document.querySelector('#progressRing');
+  isProgressRingActive = !isProgressRingActive;
+  isProgressRingActive
+    ? (progressRingEl.style.display='inherit')
+    : (progressRingEl.style.display='none');
+}
 
 export {
   mainTimerRingMinute,
   personTimerRingMin,
+  progressRingNum,
   setMainTimer,
   setPersonTimer,
   setPlusPersonTime,
@@ -198,5 +205,6 @@ export {
   setPlusMainTime,
   setMinusMainTime,
   toggleMainTimeRingVisibility,
-  togglePersonTimeRingVisibility
+  togglePersonTimeRingVisibility,
+  toggleProgressRingVisibility
 };

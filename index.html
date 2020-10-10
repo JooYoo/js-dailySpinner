@@ -1,109 +1,75 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Daily Spinner</title>
-    <link
-      href="https://fonts.googleapis.com/css2?family=Raleway+Dots&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="./src/style/style.css" />
-    <link rel="manifest" href="./manifest.json" />
-    <link rel="apple-touch-icon" href="./src/assets/icon-192x192.png" />
-    <link rel="shortcut icon" href="./favicon.ico" type="image/x-icon" />
-    <meta name="theme-color" content="#fff" />
 
-    <script type="module" defer src="./src/js/app.js"></script>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Daily Spinner</title>
+  <link href="https://fonts.googleapis.com/css2?family=Raleway+Dots&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="./src/style/style.css" />
+  <link rel="manifest" href="./manifest.json" />
+  <link rel="apple-touch-icon" href="./src/assets/icon-192x192.png" />
+  <link rel="shortcut icon" href="./favicon.ico" type="image/x-icon" />
+  <meta name="theme-color" content="#fff" />
 
-    <noscript>This app requir JavaScript support :(</noscript>
-  </head>
-  <body>
-    <div id="spin-container" class="spin-container">
-      <div class="side side__front">
-        <!-- rgba(59, 210, 255, 0.6) -->
-        <yu-progress-ring
-          id="mainTimer"
-          high-light-color="rgba(170, 170, 170, 0.6)"
-          circle-r="60"
-          circle-dashoffset="119"
-          numeric-height="19%"
-          numeric-text="00:00"
-        ></yu-progress-ring>
+  <script type="module" defer src="./src/js/app.js"></script>
 
-        <!-- rgba(47, 179, 123, 0.6) -->
-        <yu-progress-ring
-          id="progressRing"
-          high-light-color="rgba(170, 170, 170, 0.6)"
-          circle-r="50"
-          circle-dashoffset="173"
-          numeric-height="24%"
-          numeric-text="0%"
-        ></yu-progress-ring>
+  <noscript>This app requir JavaScript support :(</noscript>
+</head>
 
-        <!-- rgba(228, 30, 92, 0.6) -->
-        <yu-progress-ring
-          id="personTimer"
-          high-light-color="rgba(170, 170, 170, 0.6)"
-          circle-r="40"
-          circle-dashoffset="227"
-          numeric-height="29%"
-          numeric-text="00:00"
-        ></yu-progress-ring>
+<body>
+  <div id="spin-container" class="spin-container">
+    <div class="side side__front">
+      <!-- rgba(59, 210, 255, 0.6) -->
+      <yu-progress-ring id="mainTimer" high-light-color="rgba(170, 170, 170, 0.6)" circle-r="60" circle-dashoffset="119"
+        numeric-height="19%" numeric-text="00:00"></yu-progress-ring>
 
-        <div id="spin-needle" class="spin-needle"></div>
-        <div id="people-container" class="people-container"></div>
-        <button id="btn-turn" class="btn-turn neu-btn-round"></button>
-      </div>
+      <!-- rgba(47, 179, 123, 0.6) -->
+      <yu-progress-ring id="progressRing" high-light-color="rgba(170, 170, 170, 0.6)" circle-r="50"
+        circle-dashoffset="173" numeric-height="24%" numeric-text="0%"></yu-progress-ring>
 
-      <div class="side side__back">
-        <form id="people-list__form" class="people-list__textbox">
-          <input
-            type="text"
-            name="new-name"
-            id=""
-            placeholder="e.g. Jason..."
-          />
-        </form>
-        <ul id="people-list" class="people-list"></ul>
-      </div>
+      <!-- rgba(228, 30, 92, 0.6) -->
+      <yu-progress-ring id="personTimer" high-light-color="rgba(170, 170, 170, 0.6)" circle-r="40"
+        circle-dashoffset="227" numeric-height="29%" numeric-text="00:00"></yu-progress-ring>
+
+      <div id="spin-needle" class="spin-needle"></div>
+      <div id="people-container" class="people-container"></div>
+      <button id="btn-turn" class="btn-turn neu-btn-round"></button>
     </div>
 
-    <div id="modal__bg" class="modal__bg"></div>
-    <div id="slide-up-panel__container" class="slide-up-panel__container">
-      <div id="slide-up-panel__btn" class="slide-up-panel__btn"></div>
+    <div class="side side__back">
+      <form id="people-list__form" class="people-list__textbox">
+        <input type="text" name="new-name" id="" placeholder="e.g. Jason..." />
+      </form>
+      <ul id="people-list" class="people-list"></ul>
+    </div>
+  </div>
 
-      <div
-        id="slide-up-panel__state-card-container"
-        class="slide-up-panel__state-card-container"
-      >
-        <yu-settings-timer-card
-          id="mainTimerCard"
-          icon="https://www.flaticon.com/svg/static/icons/svg/1584/1584905.svg"
-          isToggleDisplay="true"
-          isPlusMinusBtnsDisplay="true"
-          timeUnit="mins"
-          timeDescription="meeting time"
-        ></yu-settings-timer-card>
+  <div id="modal__bg" class="modal__bg"></div>
+  <div id="slide-up-panel__container" class="slide-up-panel__container">
+    <div id="slide-up-panel__btn" class="slide-up-panel__btn"></div>
 
-        <yu-settings-timer-card
-          id="personTimerCard"
-          icon="https://www.flaticon.com/svg/static/icons/svg/1232/1232746.svg"
-          isToggleDisplay="true"
-          isPlusMinusBtnsDisplay="true"
-          timeUnit="mins"
-          timeDescription="individual time"
-        ></yu-settings-timer-card>
-      </div>
+    <div id="slide-up-panel__state-card-container" class="slide-up-panel__state-card-container">
+      <yu-settings-timer-card id="mainTimerCard" icon="https://www.flaticon.com/svg/static/icons/svg/1584/1584905.svg"
+        isToggleDisplay="true" isPlusMinusBtnsDisplay="true" timeUnit="mins" timeDescription="meeting time">
+      </yu-settings-timer-card>
 
-      <!-- TODO: optimize shortcut hint -->
+      <yu-settings-timer-card id="personTimerCard" icon="https://www.flaticon.com/svg/static/icons/svg/1232/1232746.svg"
+        isToggleDisplay="true" isPlusMinusBtnsDisplay="true" timeUnit="mins" timeDescription="individual time">
+      </yu-settings-timer-card>
+
+      <yu-settings-timer-card id="progressRingCard"
+        icon="https://www.flaticon.com/svg/static/icons/svg/1152/1152888.svg" isToggleDisplay="true"
+        isPlusMinusBtnsDisplay="false" timeUnit="%" timeDescription="progress ring"></yu-settings-timer-card>
+
     </div>
 
-    <button id="btn-flip" class="btn-flip neu-btn-round">
-      <img
-        class="icon-flip"
-        src="https://www.flaticon.com/svg/static/icons/svg/1250/1250694.svg"
-      />
-    </button>
-  </body>
+    <!-- TODO: optimize shortcut hint -->
+  </div>
+
+  <button id="btn-flip" class="btn-flip neu-btn-round">
+    <img class="icon-flip" src="https://www.flaticon.com/svg/static/icons/svg/1250/1250694.svg" />
+  </button>
+</body>
+
 </html>

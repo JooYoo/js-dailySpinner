@@ -490,11 +490,16 @@ body {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  left: 0;
-  overflow-x: auto;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   -webkit-box-align: start;
       -ms-flex-align: start;
           align-items: flex-start;
+  left: 0;
+  overflow-x: auto;
   margin-top: 10vmin;
   width: 100%;
 }
