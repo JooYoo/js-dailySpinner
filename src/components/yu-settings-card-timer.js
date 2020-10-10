@@ -215,9 +215,14 @@ class YuSettingsTimerCard extends HTMLElement {
 
     // get toggleEl
     const toggleEl = this.shadowRoot.getElementById('slide-up-panel__toggle');
+    // get timeNrEl
+    const timeNrEl = this.shadowRoot.getElementById(
+      'slide-up-panel__state-card__time-number'
+    );
+
     // set ring visibility
     toggleEl.addEventListener('change', () => {
-      settings.setTimeRingToggle(currentComponentId);
+      settings.setTimeRingToggle(currentComponentId, timeNrEl);
     });
 
     /* ------------------------------ init time unit ----------------------------- */
@@ -250,11 +255,7 @@ class YuSettingsTimerCard extends HTMLElement {
       isPlusMinusBtnsDisplayAtt
     );
 
-    /* ----------------------------- set time number ---------------------------- */
-    // get timeNrEl
-    const timeNrEl = this.shadowRoot.getElementById(
-      'slide-up-panel__state-card__time-number'
-    );
+    /* ----------------------------- set time number ---------------------------- */   
     // set time number
     settings.setTimeNr(currentComponentId, timeNrEl);
 

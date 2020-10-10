@@ -21,6 +21,26 @@
   --people-selected-effect-bg: url(../assets/faveEffect.png);
   --people-selected-effect-bg-size: 15vmin;
   --people-selected-effect-bg-frame: 28;
+
+/* -------------------------------------------------------------------------- */
+/*                                    color                                   */
+/* -------------------------------------------------------------------------- */
+
+  // light
+  --theme-light-background: #efeeee;
+
+
+  // dark
+  --theme-dark-background: #1b1b1b;
+ 
+}
+
+.theme-light {
+  --color-body-background: var(--theme-light-background);
+}
+
+.theme-dark {
+  --color-body-background: var(--theme-dark-background);
 }
 
 * {
@@ -35,7 +55,7 @@ body {
   height: 100vh;
   width: 100%;
   margin: 0;
-  background-color: #efeeee;
+  background-color: var(--color-body-background);
   font-family: 'Raleway Dots', cursive;
   font-weight: bold;
 
@@ -49,7 +69,7 @@ body {
   height: var(--spin-container-height);
   width: var(--spin-container-width);
 
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  border: 2px solid rgba(255, 255, 255, 0.2);
   border-radius: 50%;
   box-shadow: 0 -15px 15px rgba(255, 255, 255, 0.1),
     inset 0 -15px 15px rgba(255, 255, 255, 1), 0 15px 15px rgba(0, 0, 0, 0.1),

@@ -1,4 +1,5 @@
 import * as timer from './timer.js';
+import * as theme from "./theme.js";
 
 /* ---------------------- init via DOM attribute ---------------------- */
 
@@ -30,7 +31,7 @@ const initCardText = (timerCardElId, textElId, text) => {
 
 /* -------------------------- timer settings via UI ------------------------- */
 
-const setTimeRingToggle = (currentComponentId) => {
+const setTimeRingToggle = (currentComponentId, timeNrEl) => {
   switch (currentComponentId) {
     case 'mainTimerCard':
       timer.toggleMainTimeRingVisibility();
@@ -42,6 +43,11 @@ const setTimeRingToggle = (currentComponentId) => {
 
     case 'progressRingCard':
       timer.toggleProgressRingVisibility();
+      break;
+
+    case 'themeCard':
+      theme.toggleTheme();
+      displayTimeNr(timeNrEl, theme.themeText);
       break;
 
     default:
@@ -60,8 +66,11 @@ const setTimeNr = (currentComponentId, timerNrEl) => {
       break;
 
     case 'progressRingCard':
-      console.log('settings: setTimeNr', 'progressRingCard');
       displayTimeNr(timerNrEl, timer.progressRingNum);
+      break;
+
+    case 'themeCard':
+      displayTimeNr(timerNrEl, theme.themeText);
       break;
 
     default:

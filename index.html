@@ -17,7 +17,7 @@
   <noscript>This app requir JavaScript support :(</noscript>
 </head>
 
-<body>
+<body class="theme-light">
   <div id="spin-container" class="spin-container">
     <div class="side side__front">
       <!-- rgba(59, 210, 255, 0.6) -->
@@ -54,14 +54,18 @@
         isToggleDisplay="true" isPlusMinusBtnsDisplay="true" timeUnit="mins" timeDescription="meeting time">
       </yu-settings-timer-card>
 
+      <yu-settings-timer-card id="progressRingCard"
+        icon="https://www.flaticon.com/svg/static/icons/svg/1152/1152888.svg" isToggleDisplay="true"
+        isPlusMinusBtnsDisplay="false" timeUnit="%" timeDescription="progress ring">
+      </yu-settings-timer-card>
+
       <yu-settings-timer-card id="personTimerCard" icon="https://www.flaticon.com/svg/static/icons/svg/1232/1232746.svg"
         isToggleDisplay="true" isPlusMinusBtnsDisplay="true" timeUnit="mins" timeDescription="individual time">
       </yu-settings-timer-card>
 
-      <yu-settings-timer-card id="progressRingCard"
-        icon="https://www.flaticon.com/svg/static/icons/svg/1152/1152888.svg" isToggleDisplay="true"
-        isPlusMinusBtnsDisplay="false" timeUnit="%" timeDescription="progress ring"></yu-settings-timer-card>
-
+      <yu-settings-timer-card id="themeCard" icon="https://www.flaticon.com/svg/static/icons/svg/1606/1606014.svg"
+        isToggleDisplay="true" isPlusMinusBtnsDisplay="false" timeUnit="" timeDescription="theme">
+      </yu-settings-timer-card>
     </div>
 
     <!-- TODO: optimize shortcut hint -->
