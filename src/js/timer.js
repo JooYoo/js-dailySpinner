@@ -143,15 +143,27 @@ function checkTimerStatus(restPeople, allPeople) {
 /* -------------------------------------------------------------------------- */
 
 /* ----------------------------- settings__btns ----------------------------- */
+// Main-Timer
 const setPlusMainTime = () => {
   mainTimerRingMinute++;
 };
-
 const setMinusMainTime = () => {
   if (mainTimerRingMinute > 1) {
     mainTimerRingMinute--;
   }
 };
+
+// Personal-Timer
+const setPlusPersonTime = () => {
+  personTimerRingMin++;
+}
+const setMinusPersonTime = () => {
+  if (personTimerRingMin > 1) {
+    personTimerRingMin--;
+  }
+}
+
+
 // TODO: write new one for personTime
 
 /* -------------------------- settings__card-toggle ------------------------- */
@@ -181,6 +193,8 @@ export {
   personTimerRingMin,
   setMainTimer,
   setPersonTimer,
+  setPlusPersonTime,
+  setMinusPersonTime,
   setPlusMainTime,
   setMinusMainTime,
   toggleMainTimeRingVisibility,

@@ -56,7 +56,6 @@ const setTimeNr = (currentComponentId, timerNrEl) => {
       break;
 
     case 'personTimerCard':
-      console.log('settings: setTimeNr', 'personTimerCard');
       displayTimeNr(timerNrEl, timer.personTimerRingMin);
       break;
 
@@ -78,6 +77,8 @@ const onCardBtnClick = (currentComponentId, btnType) => {
 
     case 'personTimerCard':
       console.log('settings: onCardBtnClick', 'personTimerCard');
+      btnType == 'plusBtn' ? timer.setPlusPersonTime() : '';
+      btnType == 'minusBtn' ? timer.setMinusPersonTime() : '';
       break;
 
     default:
