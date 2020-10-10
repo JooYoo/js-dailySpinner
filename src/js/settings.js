@@ -37,7 +37,7 @@ const setTimeRingToggle = (currentComponentId) => {
       break;
 
     case 'personTimerCard':
-      console.log('settings: setTimeRingToggle', 'personTimerCard');
+      timer.togglePersonTimeRingVisibility();
       break;
 
     case 'progressRingCard':
@@ -57,6 +57,7 @@ const setTimeNr = (currentComponentId, timerNrEl) => {
 
     case 'personTimerCard':
       console.log('settings: setTimeNr', 'personTimerCard');
+      displayTimeNr(timerNrEl, timer.personTimerRingMin);
       break;
 
     case 'progressRingCard':

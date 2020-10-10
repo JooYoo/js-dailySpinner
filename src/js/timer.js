@@ -7,6 +7,7 @@ let isMainTimerActive = true;
 
 let personTimer;
 let personTimerRingMin = 3;
+let isPersonTimerActive = true;
 
 const onTimer = {
   START: 'start',
@@ -18,6 +19,9 @@ const onTimer = {
 /* ----------------------------- set personTimer ---------------------------- */
 
 const setPersonTimer = (restPeople, allPeople) => {
+  // if isPersonTimerActive then active PersonTimer
+  if(!isPersonTimerActive) return;
+
   let tick = 0;
 
   // get Timer status
@@ -151,6 +155,7 @@ const setMinusMainTime = () => {
 // TODO: write new one for personTime
 
 /* -------------------------- settings__card-toggle ------------------------- */
+// Main-Timer
 const toggleMainTimeRingVisibility = () => {
   const mainTimeRingEl = document.querySelector('#mainTimer');
   isMainTimerActive = !isMainTimerActive;
@@ -158,13 +163,26 @@ const toggleMainTimeRingVisibility = () => {
     ? (mainTimeRingEl.style.display = 'inherit')
     : (mainTimeRingEl.style.display = 'none');
 };
+
+// Personal-Timer
+const togglePersonTimeRingVisibility = () => {
+  const personTimeRingEl = document.querySelector('#personTimer');
+  isPersonTimerActive = ! isPersonTimerActive;
+  isPersonTimerActive
+    ? (personTimeRingEl.style.display = 'inherit')
+    : (personTimeRingEl.style.display='none');
+}
+
 // TODO: write also for another rings
+
 
 export {
   mainTimerRingMinute,
+  personTimerRingMin,
   setMainTimer,
   setPersonTimer,
   setPlusMainTime,
   setMinusMainTime,
   toggleMainTimeRingVisibility,
+  togglePersonTimeRingVisibility
 };
