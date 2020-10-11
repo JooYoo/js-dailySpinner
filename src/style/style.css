@@ -34,6 +34,15 @@
   --theme-light-neu-btn-round-box-shadow-active: -6px -6px 26px 0 rgba(255, 255, 255, 0.9), 6px 6px 16px 0 rgba(217, 210, 200, 0.5);
   --theme-light-front-people-name-pick-before: rgba(0, 0, 0, 0.2);
   --theme-light-front-people-name-pick-after: rgba(0,0,0,1);
+  --theme-light-ring-main-timer: rgba(170, 170, 170, 0.6);
+  --theme-light-ring-main-timer-bg: rgba(170, 170, 170, 0.2);
+  --theme-light-ring-main-timer-text: rgba(170, 170, 170, 0.6);
+  --theme-light-ring-individual-timer: rgba(170, 170, 170, 0.6);
+  --theme-light-ring-individual-timer-bg: rgba(170, 170, 170, 0.2);
+  --theme-light-ring-individual-timer-text: rgba(170, 170, 170, 0.6);
+  --theme-light-ring-progress: rgba(170, 170, 170, 0.6);
+  --theme-light-ring-progress-bg: rgba(170, 170, 170, 0.2);
+  --theme-light-ring-progress-text: rgba(170, 170, 170, 0.6);
   --theme-light-slide-up-modal: rgba(0, 0, 0, 0.2);
   --theme-light-slide-up-border: rgba(255, 255, 255, 1);
   --theme-light-slide-up-background: rgba(239, 238, 238, 1);
@@ -47,6 +56,10 @@
   --theme-light-slide-up-card-toogle-border: rgba(0, 0, 0, 0.1);
   --theme-light-slide-up-card-toggle-right: rgba(0, 0, 0, 0.5);
   --theme-light-slide-up-card-toggle-left: rgba(223, 222, 222, 1);
+  --theme-light-slide-up-card-icon-filter-main-timer: invert(0.6);
+  --theme-light-slide-up-card-icon-filter-individual-timer: invert(0.6);
+  --theme-light-slide-up-card-icon-filter-progress: invert(0.6);
+  --theme-light-slide-up-card-icon-filter-theme: invert(0.6);
   /* ---------------------------------- Dark Mode ---------------------------------- */
   --theme-dark-background: #1b1b1b;
   --theme-dark-forecolor: rgba(255,255,255,1);
@@ -65,6 +78,15 @@
   --theme-dark-neu-btn-round-box-shadow-active: -6px -6px 26px 0 rgba(0, 0, 0, 1), 6px 6px 16px 0 rgba(80, 80, 80, 0.2);
   --theme-dark-front-people-name-pick-before: rgba(255, 255, 255, 0.3);
   --theme-dark-front-people-name-pick-after: rgba(255,255,255,1);
+  --theme-dark-ring-main-timer: rgba(59, 210, 255, 0.6);
+  --theme-dark-ring-main-timer-bg: rgba(59, 210, 255, 0.2);
+  --theme-dark-ring-main-timer-text: rgba(59, 210, 255, 0.6);
+  --theme-dark-ring-individual-timer: rgba(47, 179, 123, 0.6);
+  --theme-dark-ring-individual-timer-bg: rgba(47, 179, 123, 0.2);
+  --theme-dark-ring-individual-timer-text: rgba(47, 179, 123, 0.6);
+  --theme-dark-ring-progress: rgba(228, 30, 92, 0.6);
+  --theme-dark-ring-progress-bg: rgba(228, 30, 92, 0.2);
+  --theme-dark-ring-progress-text: rgba(228, 30, 92, 0.6);
   --theme-dark-slide-up-modal: rgba(0, 0, 0, 0.6);
   --theme-dark-slide-up-border: rgba(0, 0, 0, 0.4);
   --theme-dark-slide-up-background: rgba(27, 27, 27, 1);
@@ -78,6 +100,10 @@
   --theme-dark-slide-up-card-toogle-border: rgba(255, 255, 255, 1);
   --theme-dark-slide-up-card-toggle-right: rgba(255, 255, 255, 0.2);
   --theme-dark-slide-up-card-toggle-left: rgba(150, 150, 150, 1);
+  --theme-dark-slide-up-card-icon-filter-main-timer: invert(79%) sepia(27%) saturate(6526%) hue-rotate(167deg) brightness(105%) contrast(106%);
+  --theme-dark-slide-up-card-icon-filter-individual-timer: invert(61%) sepia(20%) saturate(1310%) hue-rotate(103deg) brightness(93%) contrast(86%);
+  --theme-dark-slide-up-card-icon-filter-progress: invert(23%) sepia(88%) saturate(5208%) hue-rotate(331deg) brightness(93%) contrast(91%);
+  --theme-dark-slide-up-card-icon-filter-theme: invert(100%) sepia(3%) saturate(0%) hue-rotate(219deg) brightness(102%) contrast(100%);
 }
 
 .theme-light {
@@ -95,6 +121,15 @@
   --color-neu-btn-round-box-shadow-active: var(--theme-light-neu-btn-round-box-shadow-active);
   --color-front-people-name-pick-before: var(--theme-light-front-people-name-pick-before);
   --color-front-people-name-pick-after: var(--theme-light-front-people-name-pick-after);
+  --color-ring-main-timer: var(--theme-light-ring-main-timer);
+  --color-ring-main-timer-bg: var(--theme-light-ring-main-timer-bg);
+  --color-ring-main-timer-text: var(--theme-light-ring-main-timer-text);
+  --color-ring-individual-timer: var(--theme-light-ring-individual-timer);
+  --color-ring-individual-timer-bg: var(--theme-light-ring-individual-timer-bg);
+  --color-ring-individual-timer-text: var(--theme-light-ring-individual-timer-text);
+  --color-ring-progress: var(--theme-light-ring-progress);
+  --color-ring-progress-bg: var(--theme-light-ring-progress-bg);
+  --color-ring-progress-text: var(--theme-light-ring-progress-text);
   --color-slide-up-modal: var(--theme-light-slide-up-modal);
   --color-slide-up-border: var(--theme-light-slide-up-border);
   --color-slide-up-background: var(--theme-light-slide-up-background);
@@ -108,6 +143,10 @@
   --color-slide-up-card-toogle-border: var(--theme-light-slide-up-card-toogle-border);
   --color-slide-up-card-toggle-right: var(--theme-light-slide-up-card-toggle-right);
   --color-slide-up-card-toggle-left: var(--theme-light-slide-up-card-toggle-left);
+  --color-slide-up-card-icon-filter-main-timer: var(--theme-light-slide-up-card-icon-filter-main-timer);
+  --color-slide-up-card-icon-filter-individual-timer: var(--theme-light-slide-up-card-icon-filter-individual-timer);
+  --color-slide-up-card-icon-filter-progress: var(--theme-light-slide-up-card-icon-filter-progress);
+  --color-slide-up-card-icon-filter-theme: var(--theme-light-slide-up-card-icon-filter-theme);
 }
 
 .theme-dark {
@@ -125,6 +164,15 @@
   --color-neu-btn-round-box-shadow-active: var(--theme-dark-neu-btn-round-box-shadow-active);
   --color-front-people-name-pick-before: var(--theme-dark-front-people-name-pick-before);
   --color-front-people-name-pick-after: var(--theme-dark-front-people-name-pick-after);
+  --color-ring-main-timer: var(--theme-dark-ring-main-timer);
+  --color-ring-main-timer-bg: var(--theme-dark-ring-main-timer-bg);
+  --color-ring-main-timer-text: var(--theme-dark-ring-main-timer-text);
+  --color-ring-individual-timer: var(--theme-dark-ring-individual-timer);
+  --color-ring-individual-timer-bg: var(--theme-dark-ring-individual-timer-bg);
+  --color-ring-individual-timer-text: var(--theme-dark-ring-individual-timer-text);
+  --color-ring-progress: var(--theme-dark-ring-progress);
+  --color-ring-progress-bg: var(--theme-dark-ring-progress-bg);
+  --color-ring-progress-text: var(--theme-dark-ring-progress-text);
   --color-slide-up-modal: var(--theme-dark-slide-up-modal);
   --color-slide-up-border: var(--theme-dark-slide-up-border);
   --color-slide-up-background: var(--theme-dark-slide-up-background);
@@ -138,6 +186,10 @@
   --color-slide-up-card-toogle-border: var(--theme-dark-slide-up-card-toogle-border);
   --color-slide-up-card-toggle-right: var(--theme-dark-slide-up-card-toggle-right);
   --color-slide-up-card-toggle-left: var(--theme-dark-slide-up-card-toggle-left);
+  --color-slide-up-card-icon-filter-main-timer: var(--theme-dark-slide-up-card-icon-filter-main-timer);
+  --color-slide-up-card-icon-filter-individual-timer: var(--theme-dark-slide-up-card-icon-filter-individual-timer);
+  --color-slide-up-card-icon-filter-progress: var(--theme-dark-slide-up-card-icon-filter-progress);
+  --color-slide-up-card-icon-filter-theme: var(--theme-dark-slide-up-card-icon-filter-theme);
 }
 
 * {
