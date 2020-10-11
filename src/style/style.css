@@ -3,8 +3,6 @@
   --rotate-from: 0deg;
   --rotate-to: 0deg;
   --person-position: 0;
-  --card-shadow: 1px 1px 10px 5px rgba(0, 0, 0, 0.1);
-  --card-shadow-transition: 1px 1px 10px 1px rgba(0, 0, 0, 0.08);
   --spin-container-width: 75vmin;
   --spin-container-height: 75vmin;
   --spin-font-size: 3.5vmin;
@@ -18,19 +16,128 @@
   --people-selected-effect-bg: url(../assets/faveEffect.png);
   --people-selected-effect-bg-size: 15vmin;
   --people-selected-effect-bg-frame: 28;
-  /* -------------------------------------------------------------------------- */
-  /*                                    color                                   */
-  /* -------------------------------------------------------------------------- */
+  /* ---------------------------------- Light Mode --------------------------------- */
   --theme-light-background: #efeeee;
+  --theme-light-forecolor: rgba(0,0,0,1);
+  --theme-light-spin-container-border: rgba(255, 255, 255, 0.2);
+  --theme-light-spin-container-box-shadow: 0 -15px 15px rgba(255, 255, 255, 0.1),
+                                           inset 0 -15px 15px rgba(255, 255, 255, 1), 
+                                           0 15px 15px rgba(0, 0, 0, 0.1),
+                                           inset 0 15px 15px rgba(0, 0, 0, 0.08);
+  --theme-light-spin-container-flip-box-shadow: rgba(0, 0, 0, 0.08);
+  --theme-light-side-back-background: rgba(255, 255, 255, 0.5);
+  --theme-light-people-list-before: rgba(0, 0, 0, 0.2);
+  --theme-light-neu-btn-round-border: rgba(239, 238, 238, 0.8);
+  --theme-light-neu-btn-round-background: linear-gradient(145deg, rgba(255, 255, 255, 1), rgba(215, 214, 214, 1));
+  --theme-light-neu-btn-round-box-shadow: 5px 5px 10px rgba(208, 207, 207, 1), -5px -5px 10px rgba(255, 255, 255, 1);
+  --theme-light-neu-btn-round-background-active: rgba(239, 238, 238, 1);
+  --theme-light-neu-btn-round-box-shadow-active: -6px -6px 26px 0 rgba(255, 255, 255, 0.9), 6px 6px 16px 0 rgba(217, 210, 200, 0.5);
+  --theme-light-front-people-name-pick-before: rgba(0, 0, 0, 0.2);
+  --theme-light-front-people-name-pick-after: rgba(0,0,0,1);
+  --theme-light-slide-up-modal: rgba(0, 0, 0, 0.2);
+  --theme-light-slide-up-border: rgba(255, 255, 255, 1);
+  --theme-light-slide-up-background: rgba(239, 238, 238, 1);
+  --theme-light-slide-up-btn-background: rgba(239, 238, 238, 1);
+  --theme-light-slide-up-btn-box-shadow: 2px 2px rgba(208, 207, 207, 1), -2px -2px rgba(255, 255, 255, 1);
+  --theme-light-slide-up-card-border: rgba(255, 255, 255, 1);
+  --theme-light-slide-up-card-background: rgba(239, 238, 238, 1);
+  --theme-light-slide-up-card-gradient: linear-gradient( -45deg, rgba(0, 0, 0, 0.02), rgba(255, 255, 255, 1) );
+  --theme-light-slide-up-card-box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.15), -5px -5px 10px rgba(255, 255, 255, 0.3);
+  --theme-light-slide-up-card-button-forecolor: rgba(0, 0, 0, 1);
+  --theme-light-slide-up-card-toogle-border: rgba(0, 0, 0, 0.1);
+  --theme-light-slide-up-card-toggle-right: rgba(0, 0, 0, 0.5);
+  --theme-light-slide-up-card-toggle-left: rgba(223, 222, 222, 1);
+  /* ---------------------------------- Dark Mode ---------------------------------- */
   --theme-dark-background: #1b1b1b;
+  --theme-dark-forecolor: rgba(255,255,255,1);
+  --theme-dark-spin-container-border: rgba(0, 0, 0, 0.4);
+  --theme-dark-spin-container-box-shadow: 0 -15px 15px rgba(255, 255, 255, 0.05),
+                                          inset 0 -15px 15px rgba(255, 255, 255, 0.05), 
+                                          0 15px 15px rgba(0, 0, 0, 0.3),
+                                          inset 0 15px 15px rgba(0, 0, 0, 0.3);
+  --theme-dark-spin-container-flip-box-shadow: rgba(255, 255, 255, 0.01);
+  --theme-dark-side-back-background: rgba(255, 255, 255, 0.02);
+  --theme-dark-people-list-before: rgba(0, 0, 0, 0.6);
+  --theme-dark-neu-btn-round-border: rgba(60, 60, 60, 1);
+  --theme-dark-neu-btn-round-background: linear-gradient(-45deg, rgba(0, 0, 0, 1), rgba(90, 90, 90, 1));
+  --theme-dark-neu-btn-round-box-shadow: 5px 5px 10px rgba(0, 0, 0, 1), -5px -5px 10px rgba(30, 30, 30, 1);
+  --theme-dark-neu-btn-round-background-active: rgba(30, 30, 30, 1);
+  --theme-dark-neu-btn-round-box-shadow-active: -6px -6px 26px 0 rgba(0, 0, 0, 1), 6px 6px 16px 0 rgba(80, 80, 80, 0.2);
+  --theme-dark-front-people-name-pick-before: rgba(255, 255, 255, 0.3);
+  --theme-dark-front-people-name-pick-after: rgba(255,255,255,1);
+  --theme-dark-slide-up-modal: rgba(0, 0, 0, 0.6);
+  --theme-dark-slide-up-border: rgba(0, 0, 0, 0.4);
+  --theme-dark-slide-up-background: rgba(27, 27, 27, 1);
+  --theme-dark-slide-up-btn-background: rgba(27, 27, 27, 1);
+  --theme-dark-slide-up-btn-box-shadow: 2px 2px rgba(60, 60, 60, 1), -2px -2px rgba(0, 0, 0, 1);
+  --theme-dark-slide-up-card-border: rgba(0, 0, 0, 0.6);
+  --theme-dark-slide-up-card-background: rgba(27, 27, 27, 1);
+  --theme-dark-slide-up-card-gradient: linear-gradient( -45deg, rgba(0, 0, 0, 1), rgba(50, 50, 50, 1) );
+  --theme-dark-slide-up-card-box-shadow: 12px 12px 16px rgba(0, 0, 0, 0.25), -2px -2px 10px rgba(55, 55, 55, 0.5);
+  --theme-dark-slide-up-card-button-forecolor: rgba(255, 255, 255, 0.8);
+  --theme-dark-slide-up-card-toogle-border: rgba(255, 255, 255, 1);
+  --theme-dark-slide-up-card-toggle-right: rgba(255, 255, 255, 0.2);
+  --theme-dark-slide-up-card-toggle-left: rgba(150, 150, 150, 1);
 }
 
 .theme-light {
   --color-body-background: var(--theme-light-background);
+  --color-body-forecolor: var(--theme-light-forecolor);
+  --color-spin-container-border: var(--theme-light-spin-container-border);
+  --color-spin-container-box-shadow: var(--theme-light-spin-container-box-shadow);
+  --color-spin-container-flip-box-shadow: var(--theme-light-spin-container-flip-box-shadow);
+  --color-side-back-background: var(--theme-light-side-back-background);
+  --color-people-list-before: var(--theme-light-people-list-before);
+  --color-neu-btn-round-border: var(--theme-light-neu-btn-round-border);
+  --color-neu-btn-round-background: var(--theme-light-neu-btn-round-background);
+  --color-neu-btn-round-box-shadow: var(--theme-light-neu-btn-round-box-shadow);
+  --color-neu-btn-round-background-active: var(--theme-light-neu-btn-round-background-active);
+  --color-neu-btn-round-box-shadow-active: var(--theme-light-neu-btn-round-box-shadow-active);
+  --color-front-people-name-pick-before: var(--theme-light-front-people-name-pick-before);
+  --color-front-people-name-pick-after: var(--theme-light-front-people-name-pick-after);
+  --color-slide-up-modal: var(--theme-light-slide-up-modal);
+  --color-slide-up-border: var(--theme-light-slide-up-border);
+  --color-slide-up-background: var(--theme-light-slide-up-background);
+  --color-slide-up-btn-background: var(--theme-light-slide-up-btn-background);
+  --color-slide-up-btn-box-shadow: var(--theme-light-slide-up-btn-box-shadow);
+  --color-slide-up-card-border: var(--theme-light-slide-up-card-border);
+  --color-slide-up-card-background: var(--theme-light-slide-up-card-background);
+  --color-slide-up-card-gradient: var(--theme-light-slide-up-card-gradient);
+  --color-slide-up-card-box-shadow: var(--theme-light-slide-up-card-box-shadow);
+  --color-slide-up-card-button-forecolor: var(--theme-light-slide-up-card-button-forecolor);
+  --color-slide-up-card-toogle-border: var(--theme-light-slide-up-card-toogle-border);
+  --color-slide-up-card-toggle-right: var(--theme-light-slide-up-card-toggle-right);
+  --color-slide-up-card-toggle-left: var(--theme-light-slide-up-card-toggle-left);
 }
 
 .theme-dark {
   --color-body-background: var(--theme-dark-background);
+  --color-body-forecolor: var(--theme-dark-forecolor);
+  --color-spin-container-border: var(--theme-dark-spin-container-border);
+  --color-spin-container-box-shadow: var(--theme-dark-spin-container-box-shadow);
+  --color-spin-container-flip-box-shadow: var(--theme-dark-spin-container-flip-box-shadow);
+  --color-side-back-background: var(--theme-dark-side-back-background);
+  --color-people-list-before: var(--theme-dark-people-list-before);
+  --color-neu-btn-round-border: var(--theme-dark-neu-btn-round-border);
+  --color-neu-btn-round-background: var(--theme-dark-neu-btn-round-background);
+  --color-neu-btn-round-box-shadow: var(--theme-dark-neu-btn-round-box-shadow);
+  --color-neu-btn-round-background-active: var(--theme-dark-neu-btn-round-background-active);
+  --color-neu-btn-round-box-shadow-active: var(--theme-dark-neu-btn-round-box-shadow-active);
+  --color-front-people-name-pick-before: var(--theme-dark-front-people-name-pick-before);
+  --color-front-people-name-pick-after: var(--theme-dark-front-people-name-pick-after);
+  --color-slide-up-modal: var(--theme-dark-slide-up-modal);
+  --color-slide-up-border: var(--theme-dark-slide-up-border);
+  --color-slide-up-background: var(--theme-dark-slide-up-background);
+  --color-slide-up-btn-background: var(--theme-dark-slide-up-btn-background);
+  --color-slide-up-btn-box-shadow: var(--theme-dark-slide-up-btn-box-shadow);
+  --color-slide-up-card-border: var(--theme-dark-slide-up-card-border);
+  --color-slide-up-card-background: var(--theme-dark-slide-up-card-background);
+  --color-slide-up-card-gradient: var(--theme-dark-slide-up-card-gradient);
+  --color-slide-up-card-box-shadow: var(--theme-dark-slide-up-card-box-shadow);
+  --color-slide-up-card-button-forecolor: var(--theme-dark-slide-up-card-button-forecolor);
+  --color-slide-up-card-toogle-border: var(--theme-dark-slide-up-card-toogle-border);
+  --color-slide-up-card-toggle-right: var(--theme-dark-slide-up-card-toggle-right);
+  --color-slide-up-card-toggle-left: var(--theme-dark-slide-up-card-toggle-left);
 }
 
 * {
@@ -56,6 +163,7 @@ body {
   font-family: 'Raleway Dots', cursive;
   font-weight: bold;
   font-size: var(--spin-font-size);
+  color: var(--color-body-forecolor);
   -ms-touch-action: none;
       touch-action: none;
   overflow: hidden;
@@ -66,10 +174,10 @@ body {
 .spin-container {
   height: var(--spin-container-height);
   width: var(--spin-container-width);
-  border: 2px solid rgba(255, 255, 255, 0.2);
+  border: 5px solid var(--color-spin-container-border);
   border-radius: 50%;
-  -webkit-box-shadow: 0 -15px 15px rgba(255, 255, 255, 0.1), inset 0 -15px 15px white, 0 15px 15px rgba(0, 0, 0, 0.1), inset 0 15px 15px rgba(0, 0, 0, 0.08);
-          box-shadow: 0 -15px 15px rgba(255, 255, 255, 0.1), inset 0 -15px 15px white, 0 15px 15px rgba(0, 0, 0, 0.1), inset 0 15px 15px rgba(0, 0, 0, 0.08);
+  -webkit-box-shadow: var(--color-spin-container-box-shadow);
+          box-shadow: var(--color-spin-container-box-shadow);
   -webkit-transform: translateY(-15%);
           transform: translateY(-15%);
   -webkit-transform-style: preserve-3d;
@@ -83,8 +191,8 @@ body {
 .spin-container__flip {
   -webkit-transform: translateY(-15%) rotateY(180deg);
           transform: translateY(-15%) rotateY(180deg);
-  -webkit-box-shadow: var(--card-shadow-transition);
-          box-shadow: var(--card-shadow-transition);
+  -webkit-box-shadow: 1px 1px 10px 1px var(--color-spin-container-flip-box-shadow);
+          box-shadow: 1px 1px 10px 1px var(--color-spin-container-flip-box-shadow);
 }
 
 .side {
@@ -124,7 +232,7 @@ body {
   -webkit-transform: rotateY(180deg);
           transform: rotateY(180deg);
   border-radius: 50%;
-  background-color: rgba(255, 255, 255, 0.5);
+  background-color: var(--color-side-back-background);
   overflow: hidden;
 }
 
@@ -151,8 +259,8 @@ body {
   width: 100%;
   height: 100%;
   border-radius: 50%;
-  -webkit-box-shadow: inset 0 -36px 77px -23px rgba(0, 0, 0, 0.2);
-          box-shadow: inset 0 -36px 77px -23px rgba(0, 0, 0, 0.2);
+  -webkit-box-shadow: inset 0 -36px 77px -23px var(--color-people-list-before);
+          box-shadow: inset 0 -36px 77px -23px var(--color-people-list-before);
   z-index: -1;
 }
 
@@ -302,7 +410,7 @@ body {
   text-align: center;
   -webkit-transform: rotate(var(--person-position));
           transform: rotate(var(--person-position));
-  color: rgba(0, 0, 0, 0.2);
+  color: var(--color-front-people-name-pick-before);
 }
 
 .side .people-container .fave-effect {
@@ -327,10 +435,10 @@ body {
 .neu-btn-round {
   padding: var(--spin-turn-btn-padding);
   border-radius: 50%;
-  background: linear-gradient(145deg, #ffffff, #d7d6d6);
-  border: 1vmin solid rgba(239, 238, 238, 0.8);
-  -webkit-box-shadow: 5px 5px 10px #d0cfcf, -5px -5px 10px #ffffff;
-          box-shadow: 5px 5px 10px #d0cfcf, -5px -5px 10px #ffffff;
+  border: 1vmin solid var(--color-neu-btn-round-border);
+  background: var(--color-neu-btn-round-background);
+  -webkit-box-shadow: var(--color-neu-btn-round-box-shadow);
+          box-shadow: var(--color-neu-btn-round-box-shadow);
 }
 
 .neu-btn-round:focus {
@@ -338,10 +446,10 @@ body {
 }
 
 .neu-btn-round:active {
-  background: #efeeee;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  -webkit-box-shadow: -6px -6px 26px 0 rgba(255, 255, 255, 0.9), 6px 6px 16px 0 rgba(217, 210, 200, 0.5);
-          box-shadow: -6px -6px 26px 0 rgba(255, 255, 255, 0.9), 6px 6px 16px 0 rgba(217, 210, 200, 0.5);
+  border: 1px solid var(--color-neu-btn-round-border);
+  background: var(--color-neu-btn-round-background-active);
+  -webkit-box-shadow: var(--color-neu-btn-round-box-shadow-active);
+          box-shadow: var(--color-neu-btn-round-box-shadow-active);
 }
 
 .btn-turn {
@@ -360,7 +468,7 @@ body {
   position: fixed;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.2);
+  background-color: var(--color-slide-up-modal);
   -webkit-transition: opacity 1s ease-in-out;
   transition: opacity 1s ease-in-out;
   pointer-events: none;
@@ -381,8 +489,6 @@ body {
   bottom: 5%;
   -webkit-transform: translateX(-50%);
           transform: translateX(-50%);
-  -webkit-box-shadow: 5px 5px 10px #d0cfcf, -5px -5px 10px #ffffff;
-          box-shadow: 5px 5px 10px #d0cfcf, -5px -5px 10px #ffffff;
   -webkit-transition: -webkit-transform 0.2s ease-in-out;
   transition: -webkit-transform 0.2s ease-in-out;
   transition: transform 0.2s ease-in-out;
@@ -422,18 +528,18 @@ body {
   width: 100%;
   height: 7%;
   bottom: 0;
-  border: #fff 0.3vmin solid;
   border-radius: 10vmin 10vmin 0 0;
-  background-color: #efeeee;
+  border: 0.3vmin solid var(--color-slide-up-border);
+  background-color: var(--color-slide-up-background);
 }
 
 .slide-up-panel__btn {
   height: 0.8vmin;
   width: 30vmin;
   margin: 4vmin;
-  background-color: #efeeee;
-  -webkit-box-shadow: 2px 2px #d0cfcf, -2px -2px #ffffff;
-          box-shadow: 2px 2px #d0cfcf, -2px -2px #ffffff;
+  background-color: var(--color-slide-up-btn-background);
+  -webkit-box-shadow: var(--color-slide-up-btn-box-shadow);
+          box-shadow: var(--color-slide-up-btn-box-shadow);
   cursor: pointer;
 }
 
@@ -573,7 +679,7 @@ body {
   100% {
     font-size: var(--spin-font-size);
     background-position-x: 100%;
-    color: black;
+    color: var(--color-front-people-name-pick-after);
   }
 }
 
@@ -588,7 +694,7 @@ body {
   100% {
     font-size: var(--spin-font-size);
     background-position-x: 100%;
-    color: black;
+    color: var(--color-front-people-name-pick-after);
   }
 }
 

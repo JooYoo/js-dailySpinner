@@ -1,5 +1,5 @@
 let isThemeLight = true;
-let themeText = 'Light';
+let themeText = 'light';
 
 
 const toggleTheme = () =>{
@@ -9,11 +9,11 @@ const toggleTheme = () =>{
     if (isThemeLight) {
         bodyEl.classList.add('theme-light');
         bodyEl.classList.remove('theme-dark');
-        themeText = 'Light';
+        themeText = 'light';
     } else {
         bodyEl.classList.add('theme-dark');
         bodyEl.classList.remove('theme-light');
-        themeText = 'Dark';
+        themeText = 'dark';
     }
 }
 

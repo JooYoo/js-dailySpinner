@@ -14,16 +14,11 @@ template.innerHTML = `
   width: 40vmin;
   margin: 3vmin;
   border-radius: 20px;
-  border: #fff 0.2vmin solid;
+  border: 0.2vmin solid var(--color-slide-up-card-border);
   padding: 2vmin;
-  background-color: #efeeee;
-  background: linear-gradient(
-    -45deg,
-    rgba(0, 0, 0, 0.02),
-    rgba(255, 255, 255, 1)
-  );
-  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.15),
-    -5px -5px 10px rgba(255, 255, 255, 0.3);
+  background-color: var(--color-slide-up-card-background);
+  background: var(--color-slide-up-card-gradient);
+  box-shadow: var(--color-slide-up-card-box-shadow);
 }
 
 .timer-card__icon {
@@ -78,7 +73,7 @@ template.innerHTML = `
 }
 
 .slide-up-panel__toggle-container input:checked + .slider {
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: var(--color-slide-up-card-toggle-right);
 }
 
 .slide-up-panel__toggle-container input:checked + .slider::before {
@@ -92,9 +87,9 @@ template.innerHTML = `
   left: 0;
   right: 0;
   bottom: 0;
-  border: 0.2vmin solid rgba(0, 0, 0, 0.1);
+  border: 0.2vmin solid var(--color-slide-up-card-toogle-border);
   border-radius: 34px;
-  background-color: rgba(223, 222, 222, 1);
+  background-color: var(--color-slide-up-card-toggle-left);
   transition: 0.2s;
 }
 
@@ -128,25 +123,25 @@ template.innerHTML = `
   height: 6vmin;
 
   margin: 0 1vmin;
-  border: 0.2vmin #ffffff solid;
   border-radius: 50%;
+  border: 0.2vmin solid var(--color-neu-btn-round-border);
 
   font-family: monospace;
   font-size: 3.5vmin;
   text-align: center;
+  color: var(--color-slide-up-card-button-forecolor);
 
-  background: linear-gradient(145deg, #ffffff, #d7d6d6);
-  box-shadow: 5px 5px 10px #d0cfcf, -5px -5px 10px #ffffff;
+  background: var(--color-neu-btn-round-background);
+  box-shadow: var(--color-neu-btn-round-box-shadow);
 }
 
 .slide-up-panel__btns button:focus {
   outline: 0;
 }
 .slide-up-panel__btns button:active {
-  background: #efeeee;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  box-shadow: -6px -6px 26px 0 rgba(255, 255, 255, 0.9),
-    6px 6px 16px 0 rgba(217, 210, 200, 0.5);
+  border: 1px solid var(--color-neu-btn-round-border);
+  background: var(--color-neu-btn-round-background-active);
+  box-shadow: var(--color-neu-btn-round-box-shadow-active);
 }
 
 .slide-up-panel__btns .btn-minus {
