@@ -31,8 +31,13 @@
                                            inset 0 15px 15px rgba(0, 0, 0, 0.08);
   --theme-light-spin-container-flip-box-shadow: rgba(0, 0, 0, 0.08);
   --theme-light-side-back-background: rgba(255, 255, 255, 0.5);
-  // people-list
+  // back-people-list
   --theme-light-people-list-before: rgba(0, 0, 0, 0.2);
+  --theme-light-back-people-radio-border: rgba(0, 0, 0, 0.1);
+  --theme-light-back-people-radio-bg: rgba(0, 0, 0, 0.05);
+  --theme-light-back-people-text-active: black;
+  --theme-light-back-people-text-deactive: gainsboro;
+  --theme-light-back-people-delete: gainsboro;
   // btn-round
   --theme-light-neu-btn-round-border: rgba(239, 238, 238, 0.8);
   --theme-light-neu-btn-round-background: linear-gradient(145deg, rgba(255, 255, 255, 1), rgba(215, 214, 214, 1));
@@ -85,8 +90,13 @@
                                           inset 0 15px 15px rgba(0, 0, 0, 0.3);
   --theme-dark-spin-container-flip-box-shadow: rgba(255, 255, 255, 0.01);
   --theme-dark-side-back-background: rgba(255, 255, 255, 0.02);
-  // people-list
+  // back-people-list
   --theme-dark-people-list-before: rgba(0, 0, 0, 0.6);
+  --theme-dark-back-people-radio-border: rgba(0, 0, 0, 0.5);
+  --theme-dark-back-people-radio-bg: rgba(255, 255, 255, 0.1);
+  --theme-dark-back-people-text-active: rgba(255, 255, 255, 1);
+  --theme-dark-back-people-text-deactive: rgba(255, 255, 255, 0.3);
+  --theme-dark-back-people-delete: rgba(255, 255, 255, 0.5);
   // btn
   --theme-dark-neu-btn-round-border: rgba(60, 60, 60, 1);
   --theme-dark-neu-btn-round-background: linear-gradient(-45deg, rgba(0, 0, 0, 1), rgba(90, 90, 90, 1));
@@ -138,6 +148,11 @@
   --color-spin-container-flip-box-shadow: var(--theme-light-spin-container-flip-box-shadow);
   --color-side-back-background: var(--theme-light-side-back-background);
   --color-people-list-before: var(--theme-light-people-list-before);
+  --color-back-people-radio-border: var(--theme-light-back-people-radio-border);
+  --color-back-people-radio-bg: var(--theme-light-back-people-radio-bg);
+  --color-back-people-text-active: var(--theme-light-back-people-text-active);
+  --color-back-people-text-deactive: var(--theme-light-back-people-text-deactive);
+  --color-back-people-delete: var(--theme-light-back-people-delete);
   --color-neu-btn-round-border: var(--theme-light-neu-btn-round-border);
   --color-neu-btn-round-background: var(--theme-light-neu-btn-round-background);
   --color-neu-btn-round-box-shadow: var(--theme-light-neu-btn-round-box-shadow);
@@ -182,6 +197,11 @@
   --color-spin-container-flip-box-shadow: var(--theme-dark-spin-container-flip-box-shadow);
   --color-side-back-background: var(--theme-dark-side-back-background);
   --color-people-list-before: var(--theme-dark-people-list-before);
+  --color-back-people-radio-border: var(--theme-dark-back-people-radio-border);
+  --color-back-people-radio-bg: var(--theme-dark-back-people-radio-bg);
+  --color-back-people-text-active: var(--theme-dark-back-people-text-active);
+  --color-back-people-text-deactive: var(--theme-dark-back-people-text-deactive);
+  --color-back-people-delete: var(--theme-dark-back-people-delete);
   --color-neu-btn-round-border: var(--theme-dark-neu-btn-round-border);
   --color-neu-btn-round-background: var(--theme-dark-neu-btn-round-background);
   --color-neu-btn-round-box-shadow: var(--theme-dark-neu-btn-round-box-shadow);
@@ -255,7 +275,7 @@ body {
   transition: transform 0.3s ease-in-out, box-shadow 0.2s ease-in-out;
 
   // FIXME: remove after side__back finish
-  //transform: rotateY(180deg);
+  // transform: rotateY(180deg);
 
   // backside__after-flip
   &__flip {
@@ -369,12 +389,12 @@ body {
       &-item__checkbox[type='checkbox'] {
         appearance: none;
         border-radius: 50%;
-        background: rgba(0, 0, 0, 0.05);
+        background: var(--color-back-people-radio-bg);
         width: 1rem;
         height: 1rem;
 
         &:checked {
-          border: 5px solid rgba(0, 0, 0, 0.1);
+          border: 5px solid var(--color-back-people-radio-border);
           border-radius: 1rem;
           padding: 2px;
 
@@ -399,7 +419,7 @@ body {
         border: 0;
         font-weight: lighter;
         font-size: 4vmin;
-        color: gainsboro;
+        color: var(--color-back-people-delete);
 
         &:focus {
           outline: 0;
@@ -452,6 +472,16 @@ body {
       background: var(--people-selected-effect-bg) no-repeat;
       background-size: 500vmin;
     }
+  }
+}
+
+.side-back__people-text-attend {
+  &--active {
+    color: var(--color-back-people-text-active);
+  }
+
+  &--deactive {
+    color: var(--color-back-people-text-deactive);
   }
 }
 

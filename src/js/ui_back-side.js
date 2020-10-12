@@ -1,4 +1,5 @@
 import * as UiFrontSide from './ui_front-side.js';
+import * as uiUtility from "./ui_utility.js";
 import * as dataLocalStorage from './data_localstorage.js';
 import * as dataPeople from './data_people.js';
 
@@ -16,7 +17,7 @@ function renderBackSide(backSidePeopleEl, allPeople) {
                 class="people-list-item__checkbox" 
                 type="checkbox" 
                 ${person.isAttend ? 'checked' : ''}/>
-              <label class="people-list-item__text" 
+              <label class="people-list-item__text side-back__people-text-attend--active" 
                 for="${person.name}">${person.name}
               </label>
             </div>
@@ -90,9 +91,11 @@ function setPersonAttend(e, clickedPersonName, allPeople) {
 function setPersonAttendUI(parentEl, isAttend) {
   let personEl = parentEl.children[1];
   if (isAttend) {
-    personEl.style.color = 'black';
+    personEl.classList.remove('side-back__people-text-attend--deactive');
+    personEl.classList.add('side-back__people-text-attend--active')
   } else {
-    personEl.style.color = 'gainsboro';
+    personEl.classList.remove('side-back__people-text-attend--active');
+    personEl.classList.add('side-back__people-text-attend--deactive')
   }
 }
 
