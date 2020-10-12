@@ -55,6 +55,7 @@
   --theme-light-ring-progress-bg: rgba(170, 170, 170, 0.2);
   --theme-light-ring-progress-text: rgba(170, 170, 170, 0.6);
   // slide-up
+  --theme-light-slide-up-shadow-up: rgba(239, 238, 238, 1);
   --theme-light-slide-up-modal: rgba(0, 0, 0, 0.2);
   --theme-light-slide-up-border: rgba(255, 255, 255, 1);
   --theme-light-slide-up-background: rgba(239, 238, 238, 1);
@@ -109,6 +110,7 @@
   --theme-dark-ring-progress-text: rgba(228, 30, 92, 0.6);
 
   // slide-up
+  --theme-dark-slide-up-shadow-up: rgba(27, 27, 27, 1);
   --theme-dark-slide-up-modal: rgba(0, 0, 0, 0.6);
   --theme-dark-slide-up-border: rgba(0, 0, 0, 0.4);
   --theme-dark-slide-up-background: rgba(27, 27, 27, 1);
@@ -152,6 +154,7 @@
   --color-ring-progress: var(--theme-light-ring-progress);
   --color-ring-progress-bg: var(--theme-light-ring-progress-bg);
   --color-ring-progress-text: var(--theme-light-ring-progress-text);
+  --color-slide-up-shadow-up: var(--theme-light-slide-up-shadow-up);
   --color-slide-up-modal: var(--theme-light-slide-up-modal);
   --color-slide-up-border: var(--theme-light-slide-up-border);
   --color-slide-up-background: var(--theme-light-slide-up-background);
@@ -195,6 +198,7 @@
   --color-ring-progress: var(--theme-dark-ring-progress);
   --color-ring-progress-bg: var(--theme-dark-ring-progress-bg);
   --color-ring-progress-text: var(--theme-dark-ring-progress-text);
+  --color-slide-up-shadow-up: var(--theme-dark-slide-up-shadow-up);
   --color-slide-up-modal: var(--theme-dark-slide-up-modal);
   --color-slide-up-border: var(--theme-dark-slide-up-border);
   --color-slide-up-background: var(--theme-dark-slide-up-background);
@@ -541,6 +545,7 @@ body {
   margin: 4vmin;
   background-color: var(--color-slide-up-btn-background);
   box-shadow: var(--color-slide-up-btn-box-shadow);
+  z-index: 2;
   cursor: pointer;
 }
 
@@ -580,16 +585,43 @@ body {
 /*                                 state-card                                 */
 /* -------------------------------------------------------------------------- */
 
+.slide-up-panel__shadow--up {
+  position: absolute;
+  width: 85vmin;
+  height: 1vmin;
+  top: 7vmin;
+  background-color: var(--color-slide-up-shadow-up);
+  box-shadow: 0 1vmin 33px 2vmin var(--color-slide-up-shadow-up);
+  z-index: 1;
+}
+
+.slide-up-panel__shadow--bottom {
+  position: absolute;
+  width: 85vmin;
+  height: 1vmin;
+  bottom: -1vmin;
+  background-color: var(--color-slide-up-shadow-up);
+  box-shadow: 0 -1vmin 33px 2vmin var(--color-slide-up-shadow-up);
+  z-index: 1;
+}
+
+.slide-up-panel__scroll {
+  position: absolute;
+  width: 100%;
+  height: 95%;
+  margin-top: 7vmin;
+  overflow-y: auto;
+}
+
 .slide-up-panel__state-card-container {
   position: absolute;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   align-items: flex-start;
-  left: 0;
-  overflow-x: auto;
-  margin-top: 10vmin;
   width: 100%;
+  padding-bottom: 5vmin;
+  overflow-x: auto;
   // FIXME: dev
   // border: 1px red solid;
 }
