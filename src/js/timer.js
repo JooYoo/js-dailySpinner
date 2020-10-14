@@ -7,6 +7,10 @@ let isMainTimerActive = true;
 
 let personTimer;
 let personTimerRingMin = 3;
+let isPersonTimerActive = true;
+
+let progressRingNum = 100;
+let isProgressRingActive = true;
 
 const onTimer = {
   START: 'start',
@@ -18,6 +22,9 @@ const onTimer = {
 /* ----------------------------- set personTimer ---------------------------- */
 
 const setPersonTimer = (restPeople, allPeople) => {
+  // if isPersonTimerActive then active PersonTimer
+  if(!isPersonTimerActive) return;
+
   let tick = 0;
 
   // get Timer status
@@ -139,18 +146,28 @@ function checkTimerStatus(restPeople, allPeople) {
 /* -------------------------------------------------------------------------- */
 
 /* ----------------------------- settings__btns ----------------------------- */
+// Main-Timer
 const setPlusMainTime = () => {
   mainTimerRingMinute++;
 };
-
 const setMinusMainTime = () => {
   if (mainTimerRingMinute > 1) {
     mainTimerRingMinute--;
   }
 };
-// TODO: write new one for personTime
+
+// Personal-Timer
+const setPlusPersonTime = () => {
+  personTimerRingMin++;
+}
+const setMinusPersonTime = () => {
+  if (personTimerRingMin > 1) {
+    personTimerRingMin--;
+  }
+}
 
 /* -------------------------- settings__card-toggle ------------------------- */
+// Main-Timer
 const toggleMainTimeRingVisibility = () => {
   const mainTimeRingEl = document.querySelector('#mainTimer');
   isMainTimerActive = !isMainTimerActive;
@@ -158,13 +175,36 @@ const toggleMainTimeRingVisibility = () => {
     ? (mainTimeRingEl.style.display = 'inherit')
     : (mainTimeRingEl.style.display = 'none');
 };
-// TODO: write also for another rings
+
+// Personal-Timer
+const togglePersonTimeRingVisibility = () => {
+  const personTimeRingEl = document.querySelector('#personTimer');
+  isPersonTimerActive = ! isPersonTimerActive;
+  isPersonTimerActive
+    ? (personTimeRingEl.style.display = 'inherit')
+    : (personTimeRingEl.style.display='none');
+}
+
+// Progress-Ring
+const toggleProgressRingVisibility = () =>{
+  const progressRingEl = document.querySelector('#progressRing');
+  isProgressRingActive = !isProgressRingActive;
+  isProgressRingActive
+    ? (progressRingEl.style.display='inherit')
+    : (progressRingEl.style.display='none');
+}
 
 export {
   mainTimerRingMinute,
+  personTimerRingMin,
+  progressRingNum,
   setMainTimer,
   setPersonTimer,
+  setPlusPersonTime,
+  setMinusPersonTime,
   setPlusMainTime,
   setMinusMainTime,
   toggleMainTimeRingVisibility,
+  togglePersonTimeRingVisibility,
+  toggleProgressRingVisibility
 };

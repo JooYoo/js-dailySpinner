@@ -1,4 +1,6 @@
 import * as timer from './timer.js';
+import * as theme from './theme.js';
+import * as uiUtility from './ui_utility.js';
 
 /* ---------------------- init via DOM attribute ---------------------- */
 
@@ -8,6 +10,39 @@ const initTimerIcon = (timerCardElId, iconSrc) => {
   let iconEl = timerCardEl.shadowRoot.querySelector('#timer-card__icon');
   // set img src
   iconEl.src = iconSrc;
+  // set icon color
+  initTimerCardIconColor(timerCardElId, iconEl);
+};
+
+const initTimerCardIconColor = (timerCardElId, iconEl) => {
+  switch (timerCardElId) {
+    case 'mainTimerCard':
+      iconEl.style.filter = uiUtility.getCssVar(
+        '--color-slide-up-card-icon-filter-main-timer',
+      );
+      break;
+
+    case 'personTimerCard':
+      iconEl.style.filter = uiUtility.getCssVar(
+        '--color-slide-up-card-icon-filter-individual-timer',
+      );
+      break;
+
+    case 'progressRingCard':
+      iconEl.style.filter = uiUtility.getCssVar(
+        '--color-slide-up-card-icon-filter-progress',
+      );
+      break;
+
+    case 'themeCard':
+      iconEl.style.filter = uiUtility.getCssVar(
+        '--color-slide-up-card-icon-filter-theme',
+      );
+      break;
+
+    default:
+      break;
+  }
 };
 
 const initElVisibility = (timerCardElId, elId, isDisplay) => {
@@ -30,18 +65,23 @@ const initCardText = (timerCardElId, textElId, text) => {
 
 /* -------------------------- timer settings via UI ------------------------- */
 
-const setTimeRingToggle = (currentComponentId) => {
+const setTimeRingToggle = (currentComponentId, timeNrEl) => {
   switch (currentComponentId) {
     case 'mainTimerCard':
       timer.toggleMainTimeRingVisibility();
       break;
 
     case 'personTimerCard':
-      console.log('settings: setTimeRingToggle', 'personTimerCard');
+      timer.togglePersonTimeRingVisibility();
       break;
 
     case 'progressRingCard':
-      console.log('settings: setTimeRingToggle', 'progressRingCard');
+      timer.toggleProgressRingVisibility();
+      break;
+
+    case 'themeCard':
+      theme.toggleTheme();
+      displayTimeNr(timeNrEl, theme.themeText);
       break;
 
     default:
@@ -56,11 +96,15 @@ const setTimeNr = (currentComponentId, timerNrEl) => {
       break;
 
     case 'personTimerCard':
-      console.log('settings: setTimeNr', 'personTimerCard');
+      displayTimeNr(timerNrEl, timer.personTimerRingMin);
       break;
 
     case 'progressRingCard':
-      console.log('settings: setTimeNr', 'progressRingCard');
+      displayTimeNr(timerNrEl, timer.progressRingNum);
+      break;
+
+    case 'themeCard':
+      displayTimeNr(timerNrEl, theme.themeText);
       break;
 
     default:
@@ -76,7 +120,8 @@ const onCardBtnClick = (currentComponentId, btnType) => {
       break;
 
     case 'personTimerCard':
-      console.log('settings: onCardBtnClick', 'personTimerCard');
+      btnType == 'plusBtn' ? timer.setPlusPersonTime() : '';
+      btnType == 'minusBtn' ? timer.setMinusPersonTime() : '';
       break;
 
     default:
