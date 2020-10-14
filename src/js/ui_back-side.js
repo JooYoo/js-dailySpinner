@@ -1,5 +1,5 @@
 import * as UiFrontSide from './ui_front-side.js';
-import * as uiUtility from "./ui_utility.js";
+import * as uiUtility from './ui_utility.js';
 import * as dataLocalStorage from './data_localstorage.js';
 import * as dataPeople from './data_people.js';
 
@@ -23,7 +23,7 @@ function renderBackSide(backSidePeopleEl, allPeople) {
             </div>
             <button class="people-list-item__delete-btn">X</button>
           </li>
-        `
+        `,
     )
     .join('');
 }
@@ -38,7 +38,7 @@ function addPerson(
   backSidePeopleFormEl,
   mainStyle,
   inputVal,
-  allPeople
+  allPeople,
 ) {
   // DT: save to localStorage
   dataPeople.addNewPerson(inputVal, allPeople);
@@ -92,10 +92,10 @@ function setPersonAttendUI(parentEl, isAttend) {
   let personEl = parentEl.children[1];
   if (isAttend) {
     personEl.classList.remove('side-back__people-text-attend--deactive');
-    personEl.classList.add('side-back__people-text-attend--active')
+    personEl.classList.add('side-back__people-text-attend--active');
   } else {
     personEl.classList.remove('side-back__people-text-attend--active');
-    personEl.classList.add('side-back__people-text-attend--deactive')
+    personEl.classList.add('side-back__people-text-attend--deactive');
   }
 }
 
@@ -108,7 +108,7 @@ function removePerson(
   backSidePeopleEl,
   newStyle,
   e,
-  allPeople
+  allPeople,
 ) {
   let restPeople;
   let deleElId;

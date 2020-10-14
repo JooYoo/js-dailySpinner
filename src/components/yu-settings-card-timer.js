@@ -205,14 +205,14 @@ class YuSettingsTimerCard extends HTMLElement {
     settings.initElVisibility(
       currentComponentId,
       'slide-up-panel__toggle-container',
-      isToggleDisplayAtt
+      isToggleDisplayAtt,
     );
 
     // get toggleEl
     const toggleEl = this.shadowRoot.getElementById('slide-up-panel__toggle');
     // get timeNrEl
     const timeNrEl = this.shadowRoot.getElementById(
-      'slide-up-panel__state-card__time-number'
+      'slide-up-panel__state-card__time-number',
     );
 
     // set ring visibility
@@ -227,7 +227,7 @@ class YuSettingsTimerCard extends HTMLElement {
     settings.initCardText(
       currentComponentId,
       'slide-up-panel__state-card__time-unit',
-      timeUnitAtt
+      timeUnitAtt,
     );
 
     /* ----------------------------- init description ---------------------------- */
@@ -237,7 +237,7 @@ class YuSettingsTimerCard extends HTMLElement {
     settings.initCardText(
       currentComponentId,
       'slide-up-panel__state-card__time-text',
-      timeDescriptionAtt
+      timeDescriptionAtt,
     );
 
     /* -------------------------------- init btns -------------------------------- */
@@ -247,20 +247,20 @@ class YuSettingsTimerCard extends HTMLElement {
     settings.initElVisibility(
       currentComponentId,
       'slide-up-panel__btns',
-      isPlusMinusBtnsDisplayAtt
+      isPlusMinusBtnsDisplayAtt,
     );
 
-    /* ----------------------------- set time number ---------------------------- */   
+    /* ----------------------------- set time number ---------------------------- */
     // set time number
     settings.setTimeNr(currentComponentId, timeNrEl);
 
     /* -------------------------------- set btns -------------------------------- */
     // get plusBtnEl / minusBtnEl
     const plusBtnEl = this.shadowRoot.getElementById(
-      'slide-up-panel__state-card__btn--plus'
+      'slide-up-panel__state-card__btn--plus',
     );
     const minusBtnEl = this.shadowRoot.getElementById(
-      'slide-up-panel__state-card__btn--minus'
+      'slide-up-panel__state-card__btn--minus',
     );
 
     // on + btn click

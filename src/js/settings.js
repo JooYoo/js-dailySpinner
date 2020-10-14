@@ -1,5 +1,6 @@
 import * as timer from './timer.js';
-import * as theme from "./theme.js";
+import * as theme from './theme.js';
+import * as uiUtility from './ui_utility.js';
 
 /* ---------------------- init via DOM attribute ---------------------- */
 
@@ -9,6 +10,39 @@ const initTimerIcon = (timerCardElId, iconSrc) => {
   let iconEl = timerCardEl.shadowRoot.querySelector('#timer-card__icon');
   // set img src
   iconEl.src = iconSrc;
+  // set icon color
+  initTimerCardIconColor(timerCardElId, iconEl);
+};
+
+const initTimerCardIconColor = (timerCardElId, iconEl) => {
+  switch (timerCardElId) {
+    case 'mainTimerCard':
+      iconEl.style.filter = uiUtility.getCssVar(
+        '--color-slide-up-card-icon-filter-main-timer',
+      );
+      break;
+
+    case 'personTimerCard':
+      iconEl.style.filter = uiUtility.getCssVar(
+        '--color-slide-up-card-icon-filter-individual-timer',
+      );
+      break;
+
+    case 'progressRingCard':
+      iconEl.style.filter = uiUtility.getCssVar(
+        '--color-slide-up-card-icon-filter-progress',
+      );
+      break;
+
+    case 'themeCard':
+      iconEl.style.filter = uiUtility.getCssVar(
+        '--color-slide-up-card-icon-filter-theme',
+      );
+      break;
+
+    default:
+      break;
+  }
 };
 
 const initElVisibility = (timerCardElId, elId, isDisplay) => {
