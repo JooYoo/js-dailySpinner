@@ -87,6 +87,9 @@ class YuProgressRing extends HTMLElement {
     this.attachShadow({ mode: 'open' });
     this.shadowRoot.appendChild(template.content.cloneNode(true));
 
+    // get component ID
+    let currentComponentId = this.shadowRoot.host.id;
+
     /* ------------------------------ set ring size ----------------------------- */
     // get circleR, circleDashOffset from DOM
     let circleRAtt = this.getAttribute('circle-r');
@@ -117,6 +120,7 @@ class YuProgressRing extends HTMLElement {
     // get high-light-color && ringColor from DOM
     let ringEl = this.shadowRoot.querySelector('#ring');
     let ringColor = this.getAttribute('high-light-color');
+    // let ringColor = this.getRingColor(currentComponentId);
     // set ringEl high-light-color
     ringEl.style.stroke = ringColor;
     // set ringBgEl color
@@ -131,6 +135,28 @@ class YuProgressRing extends HTMLElement {
   }
 
   /* ----------------------------- help functions ----------------------------- */
+
+  getRingColor(thisComponentId) {
+    let thisColor;
+    switch (thisComponentId) {
+      case "mainTimer":
+        thisColor = uiUtility.getCssVar('--color-ring-main-timer');
+        break;
+      
+      case "progressRing":
+        thisColor = uiUtility.getCssVar('--color-ring-individual-timer');
+        break;
+
+      case "personTimer":
+        thisColor = uiUtility.getCssVar('--color-ring-progress');
+        break;
+      
+        default:
+          break;
+    }
+
+    return thisColor;
+  }
 
   setRingBgColor(ringColor) {
     // split rgba by ','
