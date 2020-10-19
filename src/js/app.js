@@ -81,7 +81,7 @@ window.onload = () => {
       needleEl,
       frontSidePeopleEl,
       mainStyle,
-      persons
+      persons,
     );
     if (restPeople) currentPersons = restPeople;
   });
@@ -92,7 +92,7 @@ window.onload = () => {
       needleEl,
       frontSidePeopleEl,
       mainStyle,
-      persons
+      persons,
     );
     if (restPeople) currentPersons = restPeople;
   });
@@ -118,7 +118,7 @@ window.onload = () => {
       swipeEl,
       needleEl,
       persons,
-      currentPersons
+      currentPersons,
     );
   });
 
@@ -147,7 +147,7 @@ window.onload = () => {
         backSidePeopleFormEl,
         mainStyle,
         inputVal,
-        persons
+        persons,
       );
 
       // press Enter: invalid text
@@ -174,7 +174,7 @@ window.onload = () => {
       backSidePeopleEl,
       mainStyle,
       e,
-      persons
+      persons,
     );
   });
 
@@ -194,7 +194,7 @@ window.onload = () => {
       needleEl,
       e,
       persons,
-      currentPersons
+      currentPersons,
     );
     if (currentPeople) currentPersons = currentPeople;
   });
@@ -208,7 +208,7 @@ window.onload = () => {
       frontSidePeopleEl,
       e,
       mainStyle,
-      persons
+      persons,
     );
     if (currentPeople) currentPersons = currentPeople;
   });
@@ -224,7 +224,7 @@ btnSlideUpEl.addEventListener('click', () => {
     isUp,
     modalBgEl,
     slideUpPanelEl,
-    btnFlipEl
+    btnFlipEl,
   );
 });
 
@@ -235,6 +235,6 @@ btnFlipEl.addEventListener('click', (e) => {
     needleEl,
     frontSidePeopleEl,
     mainStyle,
-    persons
+    persons,
   );
 });
