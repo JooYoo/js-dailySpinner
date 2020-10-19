@@ -228,6 +228,16 @@ btnSlideUpEl.addEventListener('click', () => {
   );
 });
 
+// click modalBg to close slideupPannel
+modalBgEl.addEventListener('click', () => {
+  isUp = uiSlideupPanel.setSlidePanelUp(
+    isUp,
+    modalBgEl,
+    slideUpPanelEl,
+    btnFlipEl,
+  );
+});
+
 // click flipBtn to toggle plate flip
 btnFlipEl.addEventListener('click', (e) => {
   currentPersons = uiSlideupPanel.clickToFlip(
