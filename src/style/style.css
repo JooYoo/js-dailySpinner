@@ -18,12 +18,11 @@
   --people-selected-effect-bg-frame: 28;
   /* ---------------------------------- Light Mode --------------------------------- */
   --theme-light-background: #efeeee;
-  --theme-light-forecolor: rgba(0,0,0,1);
+  --theme-light-forecolor: rgba(0, 0, 0, 1);
   --theme-light-spin-container-border: rgba(255, 255, 255, 0.2);
   --theme-light-spin-container-box-shadow: 0 -15px 15px rgba(255, 255, 255, 0.1),
-                                           inset 0 -15px 15px rgba(255, 255, 255, 1), 
-                                           0 15px 15px rgba(0, 0, 0, 0.1),
-                                           inset 0 15px 15px rgba(0, 0, 0, 0.08);
+    inset 0 -15px 15px rgba(255, 255, 255, 1), 0 15px 15px rgba(0, 0, 0, 0.1),
+    inset 0 15px 15px rgba(0, 0, 0, 0.08);
   --theme-light-spin-container-flip-box-shadow: rgba(0, 0, 0, 0.08);
   --theme-light-side-back-background: rgba(255, 255, 255, 0.5);
   --theme-light-people-list-before: rgba(0, 0, 0, 0.2);
@@ -33,12 +32,18 @@
   --theme-light-back-people-text-deactive: gainsboro;
   --theme-light-back-people-delete: gainsboro;
   --theme-light-neu-btn-round-border: rgba(239, 238, 238, 0.8);
-  --theme-light-neu-btn-round-background: linear-gradient(145deg, rgba(255, 255, 255, 1), rgba(215, 214, 214, 1));
-  --theme-light-neu-btn-round-box-shadow: 5px 5px 10px rgba(208, 207, 207, 1), -5px -5px 10px rgba(255, 255, 255, 1);
+  --theme-light-neu-btn-round-background: linear-gradient(
+    145deg,
+    rgba(255, 255, 255, 1),
+    rgba(215, 214, 214, 1)
+  );
+  --theme-light-neu-btn-round-box-shadow: 5px 5px 10px rgba(208, 207, 207, 1),
+    -5px -5px 10px rgba(255, 255, 255, 1);
   --theme-light-neu-btn-round-background-active: rgba(239, 238, 238, 1);
-  --theme-light-neu-btn-round-box-shadow-active: -6px -6px 26px 0 rgba(255, 255, 255, 0.9), 6px 6px 16px 0 rgba(217, 210, 200, 0.5);
+  --theme-light-neu-btn-round-box-shadow-active: -6px -6px 26px 0 rgba(255, 255, 255, 0.9),
+    6px 6px 16px 0 rgba(217, 210, 200, 0.5);
   --theme-light-front-people-name-pick-before: rgba(0, 0, 0, 0.2);
-  --theme-light-front-people-name-pick-after: rgba(0,0,0,1);
+  --theme-light-front-people-name-pick-after: rgba(0, 0, 0, 1);
   --theme-light-ring-main-timer: rgba(170, 170, 170, 0.6);
   --theme-light-ring-main-timer-bg: rgba(170, 170, 170, 0.2);
   --theme-light-ring-main-timer-text: rgba(170, 170, 170, 0.6);
@@ -53,11 +58,17 @@
   --theme-light-slide-up-border: rgba(255, 255, 255, 1);
   --theme-light-slide-up-background: rgba(239, 238, 238, 1);
   --theme-light-slide-up-btn-background: rgba(239, 238, 238, 1);
-  --theme-light-slide-up-btn-box-shadow: 2px 2px rgba(208, 207, 207, 1), -2px -2px rgba(255, 255, 255, 1);
+  --theme-light-slide-up-btn-box-shadow: 2px 2px rgba(208, 207, 207, 1),
+    -2px -2px rgba(255, 255, 255, 1);
   --theme-light-slide-up-card-border: rgba(255, 255, 255, 1);
   --theme-light-slide-up-card-background: rgba(239, 238, 238, 1);
-  --theme-light-slide-up-card-gradient: linear-gradient( -45deg, rgba(0, 0, 0, 0.02), rgba(255, 255, 255, 1) );
-  --theme-light-slide-up-card-box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.15), -5px -5px 10px rgba(255, 255, 255, 0.3);
+  --theme-light-slide-up-card-gradient: linear-gradient(
+    -45deg,
+    rgba(0, 0, 0, 0.02),
+    rgba(255, 255, 255, 1)
+  );
+  --theme-light-slide-up-card-box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.15),
+    -5px -5px 10px rgba(255, 255, 255, 0.3);
   --theme-light-slide-up-card-button-forecolor: rgba(0, 0, 0, 1);
   --theme-light-slide-up-card-toogle-border: rgba(0, 0, 0, 0.1);
   --theme-light-slide-up-card-toggle-right: rgba(0, 0, 0, 0.5);
@@ -68,12 +79,11 @@
   --theme-light-slide-up-card-icon-filter-theme: invert(0.6);
   /* ---------------------------------- Dark Mode ---------------------------------- */
   --theme-dark-background: #1b1b1b;
-  --theme-dark-forecolor: rgba(255,255,255,1);
+  --theme-dark-forecolor: rgba(255, 255, 255, 1);
   --theme-dark-spin-container-border: rgba(0, 0, 0, 0.4);
   --theme-dark-spin-container-box-shadow: 0 -15px 15px rgba(255, 255, 255, 0.05),
-                                          inset 0 -15px 15px rgba(255, 255, 255, 0.05), 
-                                          0 15px 15px rgba(0, 0, 0, 0.3),
-                                          inset 0 15px 15px rgba(0, 0, 0, 0.3);
+    inset 0 -15px 15px rgba(255, 255, 255, 0.05), 0 15px 15px rgba(0, 0, 0, 0.3),
+    inset 0 15px 15px rgba(0, 0, 0, 0.3);
   --theme-dark-spin-container-flip-box-shadow: rgba(255, 255, 255, 0.01);
   --theme-dark-side-back-background: rgba(255, 255, 255, 0.02);
   --theme-dark-people-list-before: rgba(0, 0, 0, 0.6);
@@ -83,12 +93,18 @@
   --theme-dark-back-people-text-deactive: rgba(255, 255, 255, 0.3);
   --theme-dark-back-people-delete: rgba(255, 255, 255, 0.5);
   --theme-dark-neu-btn-round-border: rgba(60, 60, 60, 1);
-  --theme-dark-neu-btn-round-background: linear-gradient(-45deg, rgba(0, 0, 0, 1), rgba(90, 90, 90, 1));
-  --theme-dark-neu-btn-round-box-shadow: 5px 5px 10px rgba(0, 0, 0, 1), -5px -5px 10px rgba(30, 30, 30, 1);
+  --theme-dark-neu-btn-round-background: linear-gradient(
+    -45deg,
+    rgba(0, 0, 0, 1),
+    rgba(90, 90, 90, 1)
+  );
+  --theme-dark-neu-btn-round-box-shadow: 5px 5px 10px rgba(0, 0, 0, 1),
+    -5px -5px 10px rgba(30, 30, 30, 1);
   --theme-dark-neu-btn-round-background-active: rgba(30, 30, 30, 1);
-  --theme-dark-neu-btn-round-box-shadow-active: -6px -6px 26px 0 rgba(0, 0, 0, 1), 6px 6px 16px 0 rgba(80, 80, 80, 0.2);
+  --theme-dark-neu-btn-round-box-shadow-active: -6px -6px 26px 0 rgba(0, 0, 0, 1),
+    6px 6px 16px 0 rgba(80, 80, 80, 0.2);
   --theme-dark-front-people-name-pick-before: rgba(255, 255, 255, 0.3);
-  --theme-dark-front-people-name-pick-after: rgba(255,255,255,1);
+  --theme-dark-front-people-name-pick-after: rgba(255, 255, 255, 1);
   --theme-dark-ring-main-timer: rgba(59, 210, 255, 0.6);
   --theme-dark-ring-main-timer-bg: rgba(59, 210, 255, 0.2);
   --theme-dark-ring-main-timer-text: rgba(59, 210, 255, 0.6);
@@ -103,47 +119,73 @@
   --theme-dark-slide-up-border: rgba(0, 0, 0, 0.4);
   --theme-dark-slide-up-background: rgba(27, 27, 27, 1);
   --theme-dark-slide-up-btn-background: rgba(27, 27, 27, 1);
-  --theme-dark-slide-up-btn-box-shadow: 2px 2px rgba(60, 60, 60, 1), -2px -2px rgba(0, 0, 0, 1);
+  --theme-dark-slide-up-btn-box-shadow: 2px 2px rgba(60, 60, 60, 1),
+    -2px -2px rgba(0, 0, 0, 1);
   --theme-dark-slide-up-card-border: rgba(0, 0, 0, 0.6);
   --theme-dark-slide-up-card-background: rgba(27, 27, 27, 1);
-  --theme-dark-slide-up-card-gradient: linear-gradient( -45deg, rgba(0, 0, 0, 1), rgba(50, 50, 50, 1) );
-  --theme-dark-slide-up-card-box-shadow: 12px 12px 16px rgba(0, 0, 0, 0.25), -2px -2px 10px rgba(55, 55, 55, 0.5);
+  --theme-dark-slide-up-card-gradient: linear-gradient(
+    -45deg,
+    rgba(0, 0, 0, 1),
+    rgba(50, 50, 50, 1)
+  );
+  --theme-dark-slide-up-card-box-shadow: 12px 12px 16px rgba(0, 0, 0, 0.25),
+    -2px -2px 10px rgba(55, 55, 55, 0.5);
   --theme-dark-slide-up-card-button-forecolor: rgba(255, 255, 255, 0.8);
   --theme-dark-slide-up-card-toogle-border: rgba(255, 255, 255, 1);
   --theme-dark-slide-up-card-toggle-right: rgba(255, 255, 255, 0.2);
   --theme-dark-slide-up-card-toggle-left: rgba(150, 150, 150, 1);
-  --theme-dark-slide-up-card-icon-filter-main-timer: invert(79%) sepia(27%) saturate(6526%) hue-rotate(167deg) brightness(105%) contrast(106%);
-  --theme-dark-slide-up-card-icon-filter-individual-timer: invert(61%) sepia(20%) saturate(1310%) hue-rotate(103deg) brightness(93%) contrast(86%);
-  --theme-dark-slide-up-card-icon-filter-progress: invert(23%) sepia(88%) saturate(5208%) hue-rotate(331deg) brightness(93%) contrast(91%);
-  --theme-dark-slide-up-card-icon-filter-theme: invert(100%) sepia(3%) saturate(0%) hue-rotate(219deg) brightness(102%) contrast(100%);
+  --theme-dark-slide-up-card-icon-filter-main-timer: invert(79%) sepia(27%)
+    saturate(6526%) hue-rotate(167deg) brightness(105%) contrast(106%);
+  --theme-dark-slide-up-card-icon-filter-individual-timer: invert(61%)
+    sepia(20%) saturate(1310%) hue-rotate(103deg) brightness(93%) contrast(86%);
+  --theme-dark-slide-up-card-icon-filter-progress: invert(23%) sepia(88%)
+    saturate(5208%) hue-rotate(331deg) brightness(93%) contrast(91%);
+  --theme-dark-slide-up-card-icon-filter-theme: invert(100%) sepia(3%)
+    saturate(0%) hue-rotate(219deg) brightness(102%) contrast(100%);
 }
 
 .theme-light {
   --color-body-background: var(--theme-light-background);
   --color-body-forecolor: var(--theme-light-forecolor);
   --color-spin-container-border: var(--theme-light-spin-container-border);
-  --color-spin-container-box-shadow: var(--theme-light-spin-container-box-shadow);
-  --color-spin-container-flip-box-shadow: var(--theme-light-spin-container-flip-box-shadow);
+  --color-spin-container-box-shadow: var(
+    --theme-light-spin-container-box-shadow
+  );
+  --color-spin-container-flip-box-shadow: var(
+    --theme-light-spin-container-flip-box-shadow
+  );
   --color-side-back-background: var(--theme-light-side-back-background);
   --color-people-list-before: var(--theme-light-people-list-before);
   --color-back-people-radio-border: var(--theme-light-back-people-radio-border);
   --color-back-people-radio-bg: var(--theme-light-back-people-radio-bg);
   --color-back-people-text-active: var(--theme-light-back-people-text-active);
-  --color-back-people-text-deactive: var(--theme-light-back-people-text-deactive);
+  --color-back-people-text-deactive: var(
+    --theme-light-back-people-text-deactive
+  );
   --color-back-people-delete: var(--theme-light-back-people-delete);
   --color-neu-btn-round-border: var(--theme-light-neu-btn-round-border);
   --color-neu-btn-round-background: var(--theme-light-neu-btn-round-background);
   --color-neu-btn-round-box-shadow: var(--theme-light-neu-btn-round-box-shadow);
-  --color-neu-btn-round-background-active: var(--theme-light-neu-btn-round-background-active);
-  --color-neu-btn-round-box-shadow-active: var(--theme-light-neu-btn-round-box-shadow-active);
-  --color-front-people-name-pick-before: var(--theme-light-front-people-name-pick-before);
-  --color-front-people-name-pick-after: var(--theme-light-front-people-name-pick-after);
+  --color-neu-btn-round-background-active: var(
+    --theme-light-neu-btn-round-background-active
+  );
+  --color-neu-btn-round-box-shadow-active: var(
+    --theme-light-neu-btn-round-box-shadow-active
+  );
+  --color-front-people-name-pick-before: var(
+    --theme-light-front-people-name-pick-before
+  );
+  --color-front-people-name-pick-after: var(
+    --theme-light-front-people-name-pick-after
+  );
   --color-ring-main-timer: var(--theme-light-ring-main-timer);
   --color-ring-main-timer-bg: var(--theme-light-ring-main-timer-bg);
   --color-ring-main-timer-text: var(--theme-light-ring-main-timer-text);
   --color-ring-individual-timer: var(--theme-light-ring-individual-timer);
   --color-ring-individual-timer-bg: var(--theme-light-ring-individual-timer-bg);
-  --color-ring-individual-timer-text: var(--theme-light-ring-individual-timer-text);
+  --color-ring-individual-timer-text: var(
+    --theme-light-ring-individual-timer-text
+  );
   --color-ring-progress: var(--theme-light-ring-progress);
   --color-ring-progress-bg: var(--theme-light-ring-progress-bg);
   --color-ring-progress-text: var(--theme-light-ring-progress-text);
@@ -157,42 +199,74 @@
   --color-slide-up-card-background: var(--theme-light-slide-up-card-background);
   --color-slide-up-card-gradient: var(--theme-light-slide-up-card-gradient);
   --color-slide-up-card-box-shadow: var(--theme-light-slide-up-card-box-shadow);
-  --color-slide-up-card-button-forecolor: var(--theme-light-slide-up-card-button-forecolor);
-  --color-slide-up-card-toogle-border: var(--theme-light-slide-up-card-toogle-border);
-  --color-slide-up-card-toggle-right: var(--theme-light-slide-up-card-toggle-right);
-  --color-slide-up-card-toggle-left: var(--theme-light-slide-up-card-toggle-left);
-  --color-slide-up-card-icon-filter-main-timer: var(--theme-light-slide-up-card-icon-filter-main-timer);
-  --color-slide-up-card-icon-filter-individual-timer: var(--theme-light-slide-up-card-icon-filter-individual-timer);
-  --color-slide-up-card-icon-filter-progress: var(--theme-light-slide-up-card-icon-filter-progress);
-  --color-slide-up-card-icon-filter-theme: var(--theme-light-slide-up-card-icon-filter-theme);
+  --color-slide-up-card-button-forecolor: var(
+    --theme-light-slide-up-card-button-forecolor
+  );
+  --color-slide-up-card-toogle-border: var(
+    --theme-light-slide-up-card-toogle-border
+  );
+  --color-slide-up-card-toggle-right: var(
+    --theme-light-slide-up-card-toggle-right
+  );
+  --color-slide-up-card-toggle-left: var(
+    --theme-light-slide-up-card-toggle-left
+  );
+  --color-slide-up-card-icon-filter-main-timer: var(
+    --theme-light-slide-up-card-icon-filter-main-timer
+  );
+  --color-slide-up-card-icon-filter-individual-timer: var(
+    --theme-light-slide-up-card-icon-filter-individual-timer
+  );
+  --color-slide-up-card-icon-filter-progress: var(
+    --theme-light-slide-up-card-icon-filter-progress
+  );
+  --color-slide-up-card-icon-filter-theme: var(
+    --theme-light-slide-up-card-icon-filter-theme
+  );
 }
 
 .theme-dark {
   --color-body-background: var(--theme-dark-background);
   --color-body-forecolor: var(--theme-dark-forecolor);
   --color-spin-container-border: var(--theme-dark-spin-container-border);
-  --color-spin-container-box-shadow: var(--theme-dark-spin-container-box-shadow);
-  --color-spin-container-flip-box-shadow: var(--theme-dark-spin-container-flip-box-shadow);
+  --color-spin-container-box-shadow: var(
+    --theme-dark-spin-container-box-shadow
+  );
+  --color-spin-container-flip-box-shadow: var(
+    --theme-dark-spin-container-flip-box-shadow
+  );
   --color-side-back-background: var(--theme-dark-side-back-background);
   --color-people-list-before: var(--theme-dark-people-list-before);
   --color-back-people-radio-border: var(--theme-dark-back-people-radio-border);
   --color-back-people-radio-bg: var(--theme-dark-back-people-radio-bg);
   --color-back-people-text-active: var(--theme-dark-back-people-text-active);
-  --color-back-people-text-deactive: var(--theme-dark-back-people-text-deactive);
+  --color-back-people-text-deactive: var(
+    --theme-dark-back-people-text-deactive
+  );
   --color-back-people-delete: var(--theme-dark-back-people-delete);
   --color-neu-btn-round-border: var(--theme-dark-neu-btn-round-border);
   --color-neu-btn-round-background: var(--theme-dark-neu-btn-round-background);
   --color-neu-btn-round-box-shadow: var(--theme-dark-neu-btn-round-box-shadow);
-  --color-neu-btn-round-background-active: var(--theme-dark-neu-btn-round-background-active);
-  --color-neu-btn-round-box-shadow-active: var(--theme-dark-neu-btn-round-box-shadow-active);
-  --color-front-people-name-pick-before: var(--theme-dark-front-people-name-pick-before);
-  --color-front-people-name-pick-after: var(--theme-dark-front-people-name-pick-after);
+  --color-neu-btn-round-background-active: var(
+    --theme-dark-neu-btn-round-background-active
+  );
+  --color-neu-btn-round-box-shadow-active: var(
+    --theme-dark-neu-btn-round-box-shadow-active
+  );
+  --color-front-people-name-pick-before: var(
+    --theme-dark-front-people-name-pick-before
+  );
+  --color-front-people-name-pick-after: var(
+    --theme-dark-front-people-name-pick-after
+  );
   --color-ring-main-timer: var(--theme-dark-ring-main-timer);
   --color-ring-main-timer-bg: var(--theme-dark-ring-main-timer-bg);
   --color-ring-main-timer-text: var(--theme-dark-ring-main-timer-text);
   --color-ring-individual-timer: var(--theme-dark-ring-individual-timer);
   --color-ring-individual-timer-bg: var(--theme-dark-ring-individual-timer-bg);
-  --color-ring-individual-timer-text: var(--theme-dark-ring-individual-timer-text);
+  --color-ring-individual-timer-text: var(
+    --theme-dark-ring-individual-timer-text
+  );
   --color-ring-progress: var(--theme-dark-ring-progress);
   --color-ring-progress-bg: var(--theme-dark-ring-progress-bg);
   --color-ring-progress-text: var(--theme-dark-ring-progress-text);
@@ -206,14 +280,30 @@
   --color-slide-up-card-background: var(--theme-dark-slide-up-card-background);
   --color-slide-up-card-gradient: var(--theme-dark-slide-up-card-gradient);
   --color-slide-up-card-box-shadow: var(--theme-dark-slide-up-card-box-shadow);
-  --color-slide-up-card-button-forecolor: var(--theme-dark-slide-up-card-button-forecolor);
-  --color-slide-up-card-toogle-border: var(--theme-dark-slide-up-card-toogle-border);
-  --color-slide-up-card-toggle-right: var(--theme-dark-slide-up-card-toggle-right);
-  --color-slide-up-card-toggle-left: var(--theme-dark-slide-up-card-toggle-left);
-  --color-slide-up-card-icon-filter-main-timer: var(--theme-dark-slide-up-card-icon-filter-main-timer);
-  --color-slide-up-card-icon-filter-individual-timer: var(--theme-dark-slide-up-card-icon-filter-individual-timer);
-  --color-slide-up-card-icon-filter-progress: var(--theme-dark-slide-up-card-icon-filter-progress);
-  --color-slide-up-card-icon-filter-theme: var(--theme-dark-slide-up-card-icon-filter-theme);
+  --color-slide-up-card-button-forecolor: var(
+    --theme-dark-slide-up-card-button-forecolor
+  );
+  --color-slide-up-card-toogle-border: var(
+    --theme-dark-slide-up-card-toogle-border
+  );
+  --color-slide-up-card-toggle-right: var(
+    --theme-dark-slide-up-card-toggle-right
+  );
+  --color-slide-up-card-toggle-left: var(
+    --theme-dark-slide-up-card-toggle-left
+  );
+  --color-slide-up-card-icon-filter-main-timer: var(
+    --theme-dark-slide-up-card-icon-filter-main-timer
+  );
+  --color-slide-up-card-icon-filter-individual-timer: var(
+    --theme-dark-slide-up-card-icon-filter-individual-timer
+  );
+  --color-slide-up-card-icon-filter-progress: var(
+    --theme-dark-slide-up-card-icon-filter-progress
+  );
+  --color-slide-up-card-icon-filter-theme: var(
+    --theme-dark-slide-up-card-icon-filter-theme
+  );
 }
 
 * {
@@ -323,6 +413,7 @@ body {
   border-top-left-radius: 0;
   border-top-right-radius: 0;
   padding-bottom: 15vmin;
+  scrollbar-width: none;
 }
 
 .side__back .people-list::before {
