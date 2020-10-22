@@ -27,7 +27,7 @@ function initPeople(people) {
     new Person('Yu'),
     new Person('Ali'),
     new Person('Felix'),
-    new Person('Slawa')
+    new Person('Slawa'),
   );
 
   return people;
@@ -38,6 +38,9 @@ function getSelectedPeople(allPeople) {
 }
 
 function addNewPerson(inputValue, allPeople) {
+  // prevent WhiteSpace
+  if (inputValue.trim() === '') return;
+  // set new Id
   let newPersonId = allPeople.length + 1;
   let isIdExist = allPeople.find((person) => person.id == newPersonId);
   while (isIdExist) {
