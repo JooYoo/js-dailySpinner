@@ -411,6 +411,12 @@ body {
       padding-bottom: 15vmin;
       scrollbar-width: none;
 
+      &::after {
+        content: '';
+        display: block;
+        padding-bottom: 15vmin;
+      }
+
       &::before {
         content: '';
         position: fixed;
