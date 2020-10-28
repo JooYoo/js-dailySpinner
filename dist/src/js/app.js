@@ -189,6 +189,9 @@ window.onload = () => {
 
   // // press 'Enter' to start spin
   window.addEventListener('keydown', (e) => {
+    // remove turnBtnEl focus to avoid turn two times
+    document.activeElement.blur();
+    // turn needle
     let currentPeople = uiShortcut.kbStart(
       swipeEl,
       needleEl,

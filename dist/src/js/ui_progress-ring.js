@@ -1,5 +1,4 @@
 import * as dataPeople from './data_people.js';
-import * as uiUtility from '../js/ui_utility.js';
 
 function setProgress(restPeople, allPeople) {
   if (!restPeople) return;
@@ -30,11 +29,11 @@ function setProgressRing(targetNummber) {
   let yuProgressRingEl = document.querySelector('#progressRing');
 
   // set progressRing UI
-  setProgressRingUi(targetNummber);
+  setProgressRingUi(yuProgressRingEl, targetNummber);
 
   // get progressPercentEl
   let progressPercentEl = yuProgressRingEl.shadowRoot.querySelector(
-    '#numeric-text'
+    '#numeric-text',
   );
 
   // get currentNum
@@ -49,16 +48,16 @@ function setProgressRing(targetNummber) {
   countAnim(progressPercentEl, displayNum, targetNum);
 }
 
-function setProgressRingUi(targetNummber) {
-  // get progressRingEl
-  let yuProgressRingEl = document.querySelector('#progressRing');
+function setProgressRingUi(hostElement, targetNummber) {
+  // get ringEl
+  const ringEl = hostElement.shadowRoot.getElementById('ring');
+
+  // get circle-dashoffset from hostEl
+  let circleDashOffsetAtt = hostElement.getAttribute('circle-dashoffset');
 
   // set progressRingUi by targetNummber
-  uiUtility.setCssVarShadowRoot(
-    yuProgressRingEl.shadowRoot.host,
-    '--progress-value',
-    targetNummber
-  );
+  let strokeOffset = 440 - ((440 - circleDashOffsetAtt) * targetNummber) / 100;
+  ringEl.style.strokeDashoffset = strokeOffset;
 }
 
 function countAnim(progressPercentEl, displayNum, targetNum) {
@@ -79,4 +78,4 @@ function countAnim(progressPercentEl, displayNum, targetNum) {
   }
 }
 
-export { setProgressRing, setProgress };
+export { setProgressRingUi, setProgressRing, setProgress };

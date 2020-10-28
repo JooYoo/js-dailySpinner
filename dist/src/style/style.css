@@ -416,6 +416,12 @@ body {
   scrollbar-width: none;
 }
 
+.side__back .people-list::after {
+  content: '';
+  display: block;
+  padding-bottom: 15vmin;
+}
+
 .side__back .people-list::before {
   content: '';
   position: fixed;

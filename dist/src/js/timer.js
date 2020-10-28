@@ -1,5 +1,5 @@
 import * as datePeople from './data_people.js';
-import * as uiUtility from './ui_utility.js';
+import * as uiRing from './ui_progress-ring.js';
 
 let mainTimer;
 let mainTimerRingMinute = 15;
@@ -23,7 +23,7 @@ const onTimer = {
 
 const setPersonTimer = (restPeople, allPeople) => {
   // if isPersonTimerActive then active PersonTimer
-  if(!isPersonTimerActive) return;
+  if (!isPersonTimerActive) return;
 
   let tick = 0;
 
@@ -33,7 +33,7 @@ const setPersonTimer = (restPeople, allPeople) => {
   //set PersonTimer numericText
   let personTimerEl = document.querySelector('#personTimer');
   let personTimerTextEl = personTimerEl.shadowRoot.querySelector(
-    '#numeric-text'
+    '#numeric-text',
   );
 
   clearInterval(personTimer);
@@ -79,10 +79,6 @@ function setMainTimer(restPeople, allPeople) {
     // set MainTimer progressRing
     setTimerRing(mainTimerRingMinute, tick, '#mainTimer');
   }
-
-  // hint: reset mainTimer
-  // flipToFront()
-  // resetAll()
 }
 
 /* ----------------------------- Timer Ring ----------------------------- */
@@ -97,11 +93,7 @@ const setTimerRing = (targetMinutes, currentSecond, elementId) => {
 
   // set ring by targetValue
   if (currentPercent <= 100) {
-    uiUtility.setCssVarShadowRoot(
-      timerRingEl.shadowRoot.host,
-      '--progress-value',
-      currentPercent
-    );
+    uiRing.setProgressRingUi(timerRingEl.shadowRoot.host, currentPercent);
   }
 };
 
@@ -159,12 +151,12 @@ const setMinusMainTime = () => {
 // Personal-Timer
 const setPlusPersonTime = () => {
   personTimerRingMin++;
-}
+};
 const setMinusPersonTime = () => {
   if (personTimerRingMin > 1) {
     personTimerRingMin--;
   }
-}
+};
 
 /* -------------------------- settings__card-toggle ------------------------- */
 // Main-Timer
@@ -179,20 +171,20 @@ const toggleMainTimeRingVisibility = () => {
 // Personal-Timer
 const togglePersonTimeRingVisibility = () => {
   const personTimeRingEl = document.querySelector('#personTimer');
-  isPersonTimerActive = ! isPersonTimerActive;
+  isPersonTimerActive = !isPersonTimerActive;
   isPersonTimerActive
     ? (personTimeRingEl.style.display = 'inherit')
-    : (personTimeRingEl.style.display='none');
-}
+    : (personTimeRingEl.style.display = 'none');
+};
 
 // Progress-Ring
-const toggleProgressRingVisibility = () =>{
+const toggleProgressRingVisibility = () => {
   const progressRingEl = document.querySelector('#progressRing');
   isProgressRingActive = !isProgressRingActive;
   isProgressRingActive
-    ? (progressRingEl.style.display='inherit')
-    : (progressRingEl.style.display='none');
-}
+    ? (progressRingEl.style.display = 'inherit')
+    : (progressRingEl.style.display = 'none');
+};
 
 export {
   mainTimerRingMinute,
@@ -206,5 +198,5 @@ export {
   setMinusMainTime,
   toggleMainTimeRingVisibility,
   togglePersonTimeRingVisibility,
-  toggleProgressRingVisibility
+  toggleProgressRingVisibility,
 };
