@@ -187,10 +187,8 @@ window.onload = () => {
     if (currentPeople) currentPersons = currentPeople;
   });
 
-  // // press 'Enter' to start spin
+  // press 'Space' to start spin
   window.addEventListener('keydown', (e) => {
-    // remove turnBtnEl focus to avoid turn two times
-    document.activeElement.blur();
     // turn needle
     let currentPeople = uiShortcut.kbStart(
       swipeEl,
@@ -202,7 +200,7 @@ window.onload = () => {
     if (currentPeople) currentPersons = currentPeople;
   });
 
-  // // press 'F' to flip
+  // press 'F' to flip
   window.addEventListener('keydown', (e) => {
     let currentPeople = uiShortcut.kbFlip(
       swipeEl,

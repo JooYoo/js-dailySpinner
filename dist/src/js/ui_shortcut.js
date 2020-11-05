@@ -8,12 +8,14 @@ function kbRest(swipeElement, needleElement, e, allPeople) {
 }
 
 function kbStart(swipeElement, needleElement, e, allPeople, currentPeople) {
-  if (e.keyCode === 13 && !uiSwipe.isBack(swipeElement)) {
+  if (e.keyCode === 32 && !uiSwipe.isBack(swipeElement)) {
+    // remove turnBtnEl focus to avoid turn two times in Chrome
+    document.activeElement.blur();
     return uiFrontSide.playSpinner(
       swipeElement,
       needleElement,
       allPeople,
-      currentPeople
+      currentPeople,
     );
   }
 }
@@ -25,7 +27,7 @@ function kbFlip(
   frontSidePeopleElement,
   e,
   mainStyle,
-  allPeople
+  allPeople,
 ) {
   let isBack;
 
@@ -43,7 +45,7 @@ function kbFlip(
         needleElement,
         frontSidePeopleElement,
         mainStyle,
-        allPeople
+        allPeople,
       );
     }
   }
