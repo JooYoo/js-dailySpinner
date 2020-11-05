@@ -9,9 +9,9 @@
   --spin-turn-btn-padding: 5vmin;
   --people-list-width: 70vmin;
   --people-list-height: 50vmin;
-  --people-list-top: 2vmin;
+  --people-list-top: 1vmin;
   --people-list-padding-top: 3.5vmin;
-  --people-list-margin: 10vmin;
+  --people-list-margin: 9.4vmin;
   --people-list-item__box-name-container-left: 10vmin;
   --people-selected-effect-bg: url(../assets/faveEffect.png);
   --people-selected-effect-bg-size: 15vmin;
@@ -412,14 +412,7 @@ body {
   border-radius: 50%;
   border-top-left-radius: 0;
   border-top-right-radius: 0;
-  padding-bottom: 15vmin;
   scrollbar-width: none;
-}
-
-.side__back .people-list::after {
-  content: '';
-  display: block;
-  padding-bottom: 15vmin;
 }
 
 .side__back .people-list::before {
@@ -485,7 +478,7 @@ body {
 
 .side__back .people-list-item {
   list-style: none;
-  margin-top: var(--people-list-margin);
+  padding-bottom: var(--people-list-margin);
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
