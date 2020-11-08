@@ -364,7 +364,7 @@ body {
   transform-style: preserve-3d;
   transition: transform 0.3s ease-in-out, box-shadow 0.2s ease-in-out;
 
-  // FIXME: remove after side__back finish
+  // FIXME: dev: side__back
   // transform: rotateY(180deg);
 
   // backside__after-flip
@@ -559,7 +559,7 @@ body {
       width: var(--people-selected-effect-bg-size);
       top: 7%;
       left: 50%;
-      background: var(--people-selected-effect-bg) no-repeat;
+      background: url(../assets/faveEffect.png) no-repeat;
       background-size: 500vmin;
     }
   }
