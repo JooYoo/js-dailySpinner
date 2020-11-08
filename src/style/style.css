@@ -594,7 +594,7 @@ body {
   width: var(--people-selected-effect-bg-size);
   top: 7%;
   left: 50%;
-  background: var(--people-selected-effect-bg) no-repeat;
+  background: url(../assets/faveEffect.png) no-repeat;
   background-size: 500vmin;
 }
 
