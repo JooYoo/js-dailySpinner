@@ -89,6 +89,7 @@
   --theme-light-slide-up-card-icon-filter-individual-timer: invert(0.6);
   --theme-light-slide-up-card-icon-filter-progress: invert(0.6);
   --theme-light-slide-up-card-icon-filter-theme: invert(0.6);
+  --theme-light-slide-up-card-info-shortcut-background: rgb(237, 237, 235);
 
   /* ---------------------------------- Dark Mode ---------------------------------- */
   --theme-dark-background: #1b1b1b;
@@ -164,6 +165,7 @@
     saturate(5208%) hue-rotate(331deg) brightness(93%) contrast(91%);
   --theme-dark-slide-up-card-icon-filter-theme: invert(100%) sepia(3%)
     saturate(0%) hue-rotate(219deg) brightness(102%) contrast(100%);
+  --theme-dark-slide-up-card-info-shortcut-background: rgb(60, 64, 65);
 }
 
 .theme-light {
@@ -245,6 +247,9 @@
   --color-slide-up-card-icon-filter-theme: var(
     --theme-light-slide-up-card-icon-filter-theme
   );
+  --color-slide-up-card-info-shortcut-background: var(
+    --theme-light-slide-up-card-info-shortcut-background
+  );
 }
 
 .theme-dark {
@@ -325,6 +330,9 @@
   );
   --color-slide-up-card-icon-filter-theme: var(
     --theme-dark-slide-up-card-icon-filter-theme
+  );
+  --color-slide-up-card-info-shortcut-background: var(
+    --theme-dark-slide-up-card-info-shortcut-background
   );
 }
 
@@ -744,6 +752,24 @@ body {
   overflow-x: auto;
   // FIXME: dev
   // border: 1px red solid;
+}
+
+.shortcut-action {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.shortcut-key {
+  display: block;
+  margin-top: 0.5vmin;
+  border-radius: 5px;
+  padding: 0.5vmin 2vmin;
+  font-family: monospace;
+  font-size: 2.3vmin;
+  font-weight: lighter;
+  color: rgb(247, 79, 79);
+  background-color: var(--color-slide-up-card-info-shortcut-background);
 }
 
 /* -------------------------------------------------------------------------- */

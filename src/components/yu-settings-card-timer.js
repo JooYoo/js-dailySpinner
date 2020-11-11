@@ -147,18 +147,37 @@ template.innerHTML = `
 .slide-up-panel__btns .btn-minus {
   margin-top: 2vmin;
 }
+
+/* -------------------------------------------------------------------------- */
+/*                                 slot style                                 */
+/* -------------------------------------------------------------------------- */
+
+::slotted(*){
+  position: absolute;
+  top: 9vmin;
+  display: flex;
+  justify-content: space-between;
+  width: 80%;
+  font-size: 2.5vmin;
+  line-height: 3.5vmin;
+}
+
 </style>
 
 <div id="slide-up-panel__state-card" class="slide-up-panel__state-card">
   <img id="timer-card__icon" class="timer-card__icon"/>
 
   <div class="slide-up-panel__state-card__time-container">
+    <slot name="shortcut"></slot>
+
     <span
       id="slide-up-panel__state-card__time-number"
-      class="slide-up-panel__state-card__time-number">0</span>
+      class="slide-up-panel__state-card__time-number"></span>
+
     <span
       id="slide-up-panel__state-card__time-unit"
       class="slide-up-panel__state-card__time-unit"></span>
+    
     <div
       id="slide-up-panel__state-card__time-text"
       class="slide-up-panel__state-card__time-text"></div>
