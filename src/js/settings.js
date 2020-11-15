@@ -1,5 +1,6 @@
 import * as timer from './timer.js';
 import * as theme from './theme.js';
+import * as sound from './sound.js';
 import * as uiUtility from './ui_utility.js';
 
 /* ---------------------- init via DOM attribute ---------------------- */
@@ -82,6 +83,10 @@ const setTimeRingToggle = (currentComponentId, timeNrEl) => {
     case 'themeCard':
       theme.toggleTheme();
       displayTimeNr(timeNrEl, theme.themeText);
+      break;
+
+    case 'soundCard':
+      sound.toggleSound();
       break;
 
     default:

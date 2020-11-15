@@ -1,7 +1,9 @@
 import * as datePeople from './data_people.js';
 import * as uiRing from './ui_progress-ring.js';
+import * as sound from './sound.js';
 
 let mainTimer;
+//TODO: dev: mainTimerRingMinute = 15
 let mainTimerRingMinute = 15;
 let isMainTimerActive = true;
 
@@ -69,9 +71,14 @@ function setMainTimer(restPeople, allPeople) {
   // set MainTimer text && ring
   if (timerStatus == onTimer.START) {
     mainTimer = setInterval(() => {
-      mainTimerTextEl.innerHTML = `${setTimerText(tick++)}`;
+      // tick -> min:sec
+      let displayTime = setTimerText(tick++);
+      // display mainTime
+      mainTimerTextEl.innerHTML = displayTime;
       // set MainTimer progressRing
       setTimerRing(mainTimerRingMinute, tick, '#mainTimer');
+      // check if play timeOverAudio
+      mainTimeAudioHandler(tick, minutesToTick(mainTimerRingMinute), sound);
     }, 1000);
   } else if (timerStatus == onTimer.STOP) {
     clearInterval(mainTimer);
@@ -80,6 +87,12 @@ function setMainTimer(restPeople, allPeople) {
     setTimerRing(mainTimerRingMinute, tick, '#mainTimer');
   }
 }
+
+const mainTimeAudioHandler = (currentTick, mainTimeTick, soundPlayer) => {
+  if (currentTick === mainTimeTick) {
+    soundPlayer.playTimeOverAudio(soundPlayer.mainAudioPlayer);
+  }
+};
 
 /* ----------------------------- Timer Ring ----------------------------- */
 
@@ -99,12 +112,12 @@ const setTimerRing = (targetMinutes, currentSecond, elementId) => {
 
 /* ---------------------------- formate timerText --------------------------- */
 
-const setTimerText = (timerText) => {
-  if (timerText < 60) {
-    return `00:${setTwoDigits(timerText)}`;
-  } else if (timerText >= 60) {
-    let minite = Math.floor(timerText / 60);
-    let second = timerText % 60;
+const setTimerText = (tick) => {
+  if (tick < 60) {
+    return `00:${setTwoDigits(tick)}`;
+  } else if (tick >= 60) {
+    let minite = Math.floor(tick / 60);
+    let second = tick % 60;
 
     return `${setTwoDigits(minite)}:${setTwoDigits(second)}`;
   }
@@ -184,6 +197,14 @@ const toggleProgressRingVisibility = () => {
   isProgressRingActive
     ? (progressRingEl.style.display = 'inherit')
     : (progressRingEl.style.display = 'none');
+};
+
+/* -------------------------------------------------------------------------- */
+/*                               help functions                               */
+/* -------------------------------------------------------------------------- */
+
+const minutesToTick = (min) => {
+  return 60 * min;
 };
 
 export {
