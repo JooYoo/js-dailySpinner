@@ -78,17 +78,19 @@ function setMainTimer(restPeople, allPeople) {
       // set MainTimer progressRing
       setTimerRing(mainTimerRingMinute, tick, '#mainTimer');
       // check if play timeOverAudio
-      mainTimeAudioHandler(tick, minutesToTick(mainTimerRingMinute), sound);
+      playMainTimeAudioHandler(tick, minutesToTick(mainTimerRingMinute), sound);
     }, 1000);
   } else if (timerStatus == onTimer.STOP) {
     clearInterval(mainTimer);
     mainTimerTextEl.innerHTML = '00:00';
     // set MainTimer progressRing
     setTimerRing(mainTimerRingMinute, tick, '#mainTimer');
+    // stop timeOverAudio
+    sound.stopTimeOverAudio(sound.mainAudioPlayer);
   }
 }
 
-const mainTimeAudioHandler = (currentTick, mainTimeTick, soundPlayer) => {
+const playMainTimeAudioHandler = (currentTick, mainTimeTick, soundPlayer) => {
   if (currentTick === mainTimeTick) {
     soundPlayer.playTimeOverAudio(soundPlayer.mainAudioPlayer);
   }
