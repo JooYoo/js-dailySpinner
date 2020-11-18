@@ -170,6 +170,7 @@ template.innerHTML = `
   <div class="slide-up-panel__state-card__time-container">
     <slot name="shortcut"></slot>
     <slot name="sound"></slot>
+    <slot name="factory-reset"></slot>
 
     <span
       id="slide-up-panel__state-card__time-number"

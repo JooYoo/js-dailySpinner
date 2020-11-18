@@ -772,6 +772,36 @@ body {
   background-color: var(--color-slide-up-card-info-shortcut-background);
 }
 
+.factory-reset-slot__button {
+  position: absolute;
+  top: -7vmin;
+  right: -5vmin;
+
+  width: 6vmin;
+  height: 6vmin;
+
+  margin: 0 1vmin;
+  border-radius: 50%;
+  border: 0.1vmin solid rgb(212, 2, 27);
+
+  font-family: monospace;
+  font-size: 3.5vmin;
+  text-align: center;
+  color: var(--color-slide-up-card-button-forecolor);
+
+  background: var(--color-neu-btn-round-background);
+  box-shadow: var(--color-neu-btn-round-box-shadow);
+}
+
+.factory-reset-slot__button:focus {
+  outline: 0;
+}
+.factory-reset-slot__button:active {
+  border: 1px solid var(--color-neu-btn-round-border);
+  background: var(--color-neu-btn-round-background-active);
+  box-shadow: var(--color-neu-btn-round-box-shadow-active);
+}
+
 /* -------------------------------------------------------------------------- */
 /*                                  Animation                                 */
 /* -------------------------------------------------------------------------- */
