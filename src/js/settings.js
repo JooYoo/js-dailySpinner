@@ -135,6 +135,20 @@ const onCardBtnClick = (currentComponentId, btnType) => {
   }
 };
 
+/* -------------------------- set app factoryReset -------------------------- */
+
+const factoryResetHandler = () => {
+  const answer = window.confirm('Clear data and restore DailySpinner?');
+  if (answer) {
+    // clear storage
+    localStorage.clear();
+    // reload app
+    location.reload(true);
+  } else {
+    return;
+  }
+};
+
 /* ----------------------------- help functions ----------------------------- */
 
 const displayTimeNr = (displayEl, displayValue) => {
@@ -148,4 +162,5 @@ export {
   initCardText,
   setTimeRingToggle,
   onCardBtnClick,
+  factoryResetHandler,
 };

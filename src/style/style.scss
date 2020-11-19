@@ -791,6 +791,8 @@ body {
 
   background: var(--color-neu-btn-round-background);
   box-shadow: var(--color-neu-btn-round-box-shadow);
+
+  z-index: 1;
 }
 
 .factory-reset-slot__button:focus {

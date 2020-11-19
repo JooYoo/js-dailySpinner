@@ -295,6 +295,23 @@ class YuSettingsTimerCard extends HTMLElement {
       settings.onCardBtnClick(currentComponentId, 'minusBtn');
       settings.setTimeNr(currentComponentId, timeNrEl);
     });
+
+    // factory-reset slot
+    // get 2nd slot: factory-reset
+    const restoreFactorySlot = this.shadowRoot.querySelectorAll('slot')[2];
+    restoreFactorySlot.addEventListener('slotchange', () => {
+      // get the whole slot element
+      const factoryResetSlotEl = restoreFactorySlot.assignedNodes()[0];
+      // get btn element
+      const factoryResetBtnEl = factoryResetSlotEl.querySelector(
+        '#factory-reset-slot__button',
+      );
+
+      // on factoryResetBtnEl click: reset DailySpinner
+      factoryResetBtnEl.addEventListener('click', () => {
+        settings.factoryResetHandler();
+      });
+    });
   }
 }
 
