@@ -20,6 +20,6 @@ const stopTimeOverAudio = (audioPlayer) => {
 };
 
 // init mainTimer over Audio player
-let mainAudioPlayer = initAudio('../src/assets/time_over_audio.wav');
+let mainAudioPlayer = initAudio('../src/assets/main_time_over_sound.mp3');
 
 export { toggleSound, mainAudioPlayer, playTimeOverAudio, stopTimeOverAudio };

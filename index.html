@@ -88,22 +88,22 @@
           </yu-settings-timer-card>
 
           <yu-settings-timer-card
-            id="progressRingCard"
-            icon="https://www.flaticon.com/svg/static/icons/svg/1152/1152888.svg"
-            isToggleDisplay="true"
-            isPlusMinusBtnsDisplay="false"
-            timeUnit="%"
-            timeDescription="progress ring"
-          >
-          </yu-settings-timer-card>
-
-          <yu-settings-timer-card
             id="personTimerCard"
             icon="https://www.flaticon.com/svg/static/icons/svg/1232/1232746.svg"
             isToggleDisplay="true"
             isPlusMinusBtnsDisplay="true"
             timeUnit="mins"
             timeDescription="individual time"
+          >
+          </yu-settings-timer-card>
+
+          <yu-settings-timer-card
+            id="progressRingCard"
+            icon="https://www.flaticon.com/svg/static/icons/svg/1152/1152888.svg"
+            isToggleDisplay="true"
+            isPlusMinusBtnsDisplay="false"
+            timeUnit="%"
+            timeDescription="progress ring"
           >
           </yu-settings-timer-card>
 
@@ -119,7 +119,7 @@
 
           <yu-settings-timer-card
             id="soundCard"
-            icon="https://www.flaticon.com/svg/static/icons/svg/1792/1792737.svg"
+            icon="https://www.flaticon.com/svg/static/icons/svg/3774/3774247.svg"
             isToggleDisplay="true"
             isPlusMinusBtnsDisplay="false"
             timeUnit=""
@@ -133,8 +133,21 @@
             </div>
           </yu-settings-timer-card>
 
-          <!--TODO:  airpods icon
-          https://www.flaticon.com/svg/static/icons/svg/2796/2796508.svg -->
+          <yu-settings-timer-card
+            id="individualSoundCard"
+            icon="https://www.flaticon.com/svg/static/icons/svg/1011/1011139.svg"
+            isToggleDisplay="true"
+            isPlusMinusBtnsDisplay="false"
+            timeUnit=""
+            timeDescription="sound"
+          >
+            <div slot="sound">
+              <div class="sound-text">
+                individual time over <br />
+                sound effect
+              </div>
+            </div>
+          </yu-settings-timer-card>
 
           <yu-settings-timer-card
             id="shortcutCard"
