@@ -3,11 +3,12 @@ import * as uiRing from './ui_progress-ring.js';
 import * as sound from './sound.js';
 
 let mainTimer;
-//TODO: dev: mainTimerRingMinute = 15
+//DEV: dev: mainTimerRingMinute = 15
 let mainTimerRingMinute = 15;
 let isMainTimerActive = true;
 
 let personTimer;
+//DEV: dev: personTimerRingMin = 3;
 let personTimerRingMin = 3;
 let isPersonTimerActive = true;
 
@@ -45,6 +46,13 @@ const setPersonTimer = (restPeople, allPeople) => {
       personTimerTextEl.innerHTML = `${setTimerText(tick++)}`;
       // set PersonTimer ProgressRing
       setTimerRing(personTimerRingMin, tick, '#personTimer');
+      // check if play individual sound
+      playAudioHandler(
+        tick,
+        minutesToTick(personTimerRingMin),
+        sound.isPlayIndividualSound,
+        sound.individualAudioPlayer,
+      );
     }, 1000);
   } else {
     personTimerTextEl.innerHTML = '00:00';
@@ -78,7 +86,12 @@ function setMainTimer(restPeople, allPeople) {
       // set MainTimer progressRing
       setTimerRing(mainTimerRingMinute, tick, '#mainTimer');
       // check if play timeOverAudio
-      playMainTimeAudioHandler(tick, minutesToTick(mainTimerRingMinute), sound);
+      playAudioHandler(
+        tick,
+        minutesToTick(mainTimerRingMinute),
+        sound.isPlayMainSound,
+        sound.mainAudioPlayer,
+      );
     }, 1000);
   } else if (timerStatus == onTimer.STOP) {
     clearInterval(mainTimer);
@@ -90,9 +103,14 @@ function setMainTimer(restPeople, allPeople) {
   }
 }
 
-const playMainTimeAudioHandler = (currentTick, mainTimeTick, soundPlayer) => {
-  if (currentTick === mainTimeTick) {
-    soundPlayer.playTimeOverAudio(soundPlayer.mainAudioPlayer);
+const playAudioHandler = (
+  currentTick,
+  mainTimeTick,
+  isPlaySound,
+  audioPlayer,
+) => {
+  if (isPlaySound && currentTick === mainTimeTick) {
+    sound.playTimeOverAudio(audioPlayer);
   }
 };
 

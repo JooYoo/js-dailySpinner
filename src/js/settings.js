@@ -86,7 +86,11 @@ const setTimeRingToggle = (currentComponentId, timeNrEl) => {
       break;
 
     case 'soundCard':
-      sound.toggleSound();
+      sound.toggleMainSound();
+      break;
+
+    case 'individualSoundCard':
+      sound.toggleIndividualSound();
       break;
 
     default:

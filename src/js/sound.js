@@ -1,8 +1,17 @@
-let isSound = true;
+let isPlayMainSound = true;
+let isPlayIndividualSound = false;
 
-const toggleSound = () => {
-  isSound = !isSound;
+const toggleMainSound = () => {
+  isPlayMainSound = !isPlayMainSound;
 };
+
+const toggleIndividualSound = () => {
+  isPlayIndividualSound = !isPlayIndividualSound;
+};
+
+/* -------------------------------------------------------------------------- */
+/*                                audio player                                */
+/* -------------------------------------------------------------------------- */
 
 const initAudio = (soundPath) => {
   const timeOverAudio = soundPath;
@@ -21,5 +30,17 @@ const stopTimeOverAudio = (audioPlayer) => {
 
 // init mainTimer over Audio player
 let mainAudioPlayer = initAudio('../src/assets/main_time_over_sound.mp3');
+let individualAudioPlayer = initAudio(
+  '../src/assets/individual_time_over_sound.mp3',
+);
 
-export { toggleSound, mainAudioPlayer, playTimeOverAudio, stopTimeOverAudio };
+export {
+  isPlayMainSound,
+  isPlayIndividualSound,
+  toggleMainSound,
+  toggleIndividualSound,
+  mainAudioPlayer,
+  individualAudioPlayer,
+  playTimeOverAudio,
+  stopTimeOverAudio,
+};
