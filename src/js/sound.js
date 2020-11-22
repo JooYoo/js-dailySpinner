@@ -28,7 +28,10 @@ const stopTimeOverAudio = (audioPlayer) => {
   audioPlayer.currentTime = 0;
 };
 
-// init mainTimer over Audio player
+/* -------------------------------------------------------------------------- */
+/*                             init Audio player                              */
+/* -------------------------------------------------------------------------- */
+
 let mainAudioPlayer = initAudio('../src/assets/main_time_over_sound.mp3');
 let individualAudioPlayer = initAudio(
   '../src/assets/individual_time_over_sound.mp3',

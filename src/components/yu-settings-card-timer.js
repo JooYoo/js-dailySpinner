@@ -236,7 +236,10 @@ class YuSettingsTimerCard extends HTMLElement {
       'slide-up-panel__state-card__time-number',
     );
 
-    // set ring visibility
+    // init toggle state
+    settings.initSettingCardToggle(currentComponentId);
+
+    // set ring visibility when click toggle
     toggleEl.addEventListener('change', () => {
       settings.setTimeRingToggle(currentComponentId, timeNrEl);
     });

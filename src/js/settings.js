@@ -66,6 +66,24 @@ const initCardText = (timerCardElId, textElId, text) => {
 
 /* -------------------------- timer settings via UI ------------------------- */
 
+// init toggle state
+const initSettingCardToggle = (currentComponentId) => {
+  switch (currentComponentId) {
+    // init toggleEl in individual-sound-card state
+    case 'individualSoundCard':
+      const individualSoundCardEl = document.getElementById(currentComponentId);
+      const toggleEl = individualSoundCardEl.shadowRoot.querySelector(
+        '#slide-up-panel__toggle',
+      );
+      toggleEl.checked = sound.isPlayIndividualSound;
+      break;
+
+    default:
+      break;
+  }
+};
+
+// set toggle when click
 const setTimeRingToggle = (currentComponentId, timeNrEl) => {
   switch (currentComponentId) {
     case 'mainTimerCard':
@@ -164,6 +182,7 @@ export {
   initElVisibility,
   setTimeNr,
   initCardText,
+  initSettingCardToggle,
   setTimeRingToggle,
   onCardBtnClick,
   factoryResetHandler,
