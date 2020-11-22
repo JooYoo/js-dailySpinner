@@ -3,12 +3,12 @@ import * as uiRing from './ui_progress-ring.js';
 import * as sound from './sound.js';
 
 let mainTimer;
-//DEV: dev: mainTimerRingMinute = 15
+//DEV: mainTimerRingMinute = 15
 let mainTimerRingMinute = 15;
 let isMainTimerActive = true;
 
 let personTimer;
-//DEV: dev: personTimerRingMin = 3;
+//DEV: personTimerRingMin = 3;
 let personTimerRingMin = 3;
 let isPersonTimerActive = true;
 
@@ -43,6 +43,7 @@ const setPersonTimer = (restPeople, allPeople) => {
 
   if (timerStatus != onTimer.STOP) {
     personTimer = setInterval(() => {
+      // set timer text
       personTimerTextEl.innerHTML = `${setTimerText(tick++)}`;
       // set PersonTimer ProgressRing
       setTimerRing(personTimerRingMin, tick, '#personTimer');
@@ -59,6 +60,8 @@ const setPersonTimer = (restPeople, allPeople) => {
     // set PersonTimer ProgressRing
     setTimerRing(personTimerRingMin, tick, '#personTimer');
   }
+  // clear individual-sound for each action to spinner
+  sound.stopTimeOverAudio(sound.individualAudioPlayer);
 };
 
 /* ------------------------------ set mainTimer ----------------------------- */
@@ -98,7 +101,7 @@ function setMainTimer(restPeople, allPeople) {
     mainTimerTextEl.innerHTML = '00:00';
     // set MainTimer progressRing
     setTimerRing(mainTimerRingMinute, tick, '#mainTimer');
-    // stop timeOverAudio
+    // stop main-time over audio
     sound.stopTimeOverAudio(sound.mainAudioPlayer);
   }
 }
