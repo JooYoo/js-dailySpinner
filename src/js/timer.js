@@ -1,11 +1,14 @@
 import * as datePeople from './data_people.js';
 import * as uiRing from './ui_progress-ring.js';
+import * as sound from './sound.js';
 
 let mainTimer;
+//DEV: mainTimerRingMinute = 15
 let mainTimerRingMinute = 15;
 let isMainTimerActive = true;
 
 let personTimer;
+//DEV: personTimerRingMin = 3;
 let personTimerRingMin = 3;
 let isPersonTimerActive = true;
 
@@ -40,15 +43,25 @@ const setPersonTimer = (restPeople, allPeople) => {
 
   if (timerStatus != onTimer.STOP) {
     personTimer = setInterval(() => {
+      // set timer text
       personTimerTextEl.innerHTML = `${setTimerText(tick++)}`;
       // set PersonTimer ProgressRing
       setTimerRing(personTimerRingMin, tick, '#personTimer');
+      // check if play individual sound
+      playAudioHandler(
+        tick,
+        minutesToTick(personTimerRingMin),
+        sound.isPlayIndividualSound,
+        sound.individualAudioPlayer,
+      );
     }, 1000);
   } else {
     personTimerTextEl.innerHTML = '00:00';
     // set PersonTimer ProgressRing
     setTimerRing(personTimerRingMin, tick, '#personTimer');
   }
+  // clear individual-sound for each action to spinner
+  sound.stopTimeOverAudio(sound.individualAudioPlayer);
 };
 
 /* ------------------------------ set mainTimer ----------------------------- */
@@ -69,17 +82,40 @@ function setMainTimer(restPeople, allPeople) {
   // set MainTimer text && ring
   if (timerStatus == onTimer.START) {
     mainTimer = setInterval(() => {
-      mainTimerTextEl.innerHTML = `${setTimerText(tick++)}`;
+      // tick -> min:sec
+      let displayTime = setTimerText(tick++);
+      // display mainTime
+      mainTimerTextEl.innerHTML = displayTime;
       // set MainTimer progressRing
       setTimerRing(mainTimerRingMinute, tick, '#mainTimer');
+      // check if play timeOverAudio
+      playAudioHandler(
+        tick,
+        minutesToTick(mainTimerRingMinute),
+        sound.isPlayMainSound,
+        sound.mainAudioPlayer,
+      );
     }, 1000);
   } else if (timerStatus == onTimer.STOP) {
     clearInterval(mainTimer);
     mainTimerTextEl.innerHTML = '00:00';
     // set MainTimer progressRing
     setTimerRing(mainTimerRingMinute, tick, '#mainTimer');
+    // stop main-time over audio
+    sound.stopTimeOverAudio(sound.mainAudioPlayer);
   }
 }
+
+const playAudioHandler = (
+  currentTick,
+  mainTimeTick,
+  isPlaySound,
+  audioPlayer,
+) => {
+  if (isPlaySound && currentTick === mainTimeTick) {
+    sound.playTimeOverAudio(audioPlayer);
+  }
+};
 
 /* ----------------------------- Timer Ring ----------------------------- */
 
@@ -99,12 +135,12 @@ const setTimerRing = (targetMinutes, currentSecond, elementId) => {
 
 /* ---------------------------- formate timerText --------------------------- */
 
-const setTimerText = (timerText) => {
-  if (timerText < 60) {
-    return `00:${setTwoDigits(timerText)}`;
-  } else if (timerText >= 60) {
-    let minite = Math.floor(timerText / 60);
-    let second = timerText % 60;
+const setTimerText = (tick) => {
+  if (tick < 60) {
+    return `00:${setTwoDigits(tick)}`;
+  } else if (tick >= 60) {
+    let minite = Math.floor(tick / 60);
+    let second = tick % 60;
 
     return `${setTwoDigits(minite)}:${setTwoDigits(second)}`;
   }
@@ -184,6 +220,14 @@ const toggleProgressRingVisibility = () => {
   isProgressRingActive
     ? (progressRingEl.style.display = 'inherit')
     : (progressRingEl.style.display = 'none');
+};
+
+/* -------------------------------------------------------------------------- */
+/*                               help functions                               */
+/* -------------------------------------------------------------------------- */
+
+const minutesToTick = (min) => {
+  return 60 * min;
 };
 
 export {

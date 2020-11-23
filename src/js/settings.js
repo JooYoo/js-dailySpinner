@@ -1,5 +1,6 @@
 import * as timer from './timer.js';
 import * as theme from './theme.js';
+import * as sound from './sound.js';
 import * as uiUtility from './ui_utility.js';
 
 /* ---------------------- init via DOM attribute ---------------------- */
@@ -65,6 +66,24 @@ const initCardText = (timerCardElId, textElId, text) => {
 
 /* -------------------------- timer settings via UI ------------------------- */
 
+// init toggle state
+const initSettingCardToggle = (currentComponentId) => {
+  switch (currentComponentId) {
+    // init toggleEl in individual-sound-card state
+    case 'individualSoundCard':
+      const individualSoundCardEl = document.getElementById(currentComponentId);
+      const toggleEl = individualSoundCardEl.shadowRoot.querySelector(
+        '#slide-up-panel__toggle',
+      );
+      toggleEl.checked = sound.isPlayIndividualSound;
+      break;
+
+    default:
+      break;
+  }
+};
+
+// set toggle when click
 const setTimeRingToggle = (currentComponentId, timeNrEl) => {
   switch (currentComponentId) {
     case 'mainTimerCard':
@@ -82,6 +101,14 @@ const setTimeRingToggle = (currentComponentId, timeNrEl) => {
     case 'themeCard':
       theme.toggleTheme();
       displayTimeNr(timeNrEl, theme.themeText);
+      break;
+
+    case 'soundCard':
+      sound.toggleMainSound();
+      break;
+
+    case 'individualSoundCard':
+      sound.toggleIndividualSound();
       break;
 
     default:
@@ -130,6 +157,20 @@ const onCardBtnClick = (currentComponentId, btnType) => {
   }
 };
 
+/* -------------------------- set app factoryReset -------------------------- */
+
+const factoryResetHandler = () => {
+  const answer = window.confirm('Clear data and restore DailySpinner?');
+  if (answer) {
+    // clear storage
+    localStorage.clear();
+    // reload app
+    location.reload(true);
+  } else {
+    return;
+  }
+};
+
 /* ----------------------------- help functions ----------------------------- */
 
 const displayTimeNr = (displayEl, displayValue) => {
@@ -141,6 +182,8 @@ export {
   initElVisibility,
   setTimeNr,
   initCardText,
+  initSettingCardToggle,
   setTimeRingToggle,
   onCardBtnClick,
+  factoryResetHandler,
 };

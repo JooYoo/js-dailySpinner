@@ -77,6 +77,7 @@
   --theme-light-slide-up-card-icon-filter-individual-timer: invert(0.6);
   --theme-light-slide-up-card-icon-filter-progress: invert(0.6);
   --theme-light-slide-up-card-icon-filter-theme: invert(0.6);
+  --theme-light-slide-up-card-info-shortcut-background: rgb(237, 237, 235);
   /* ---------------------------------- Dark Mode ---------------------------------- */
   --theme-dark-background: #1b1b1b;
   --theme-dark-forecolor: rgba(255, 255, 255, 1);
@@ -142,6 +143,7 @@
     saturate(5208%) hue-rotate(331deg) brightness(93%) contrast(91%);
   --theme-dark-slide-up-card-icon-filter-theme: invert(100%) sepia(3%)
     saturate(0%) hue-rotate(219deg) brightness(102%) contrast(100%);
+  --theme-dark-slide-up-card-info-shortcut-background: rgb(60, 64, 65);
 }
 
 .theme-light {
@@ -223,6 +225,9 @@
   --color-slide-up-card-icon-filter-theme: var(
     --theme-light-slide-up-card-icon-filter-theme
   );
+  --color-slide-up-card-info-shortcut-background: var(
+    --theme-light-slide-up-card-info-shortcut-background
+  );
 }
 
 .theme-dark {
@@ -303,6 +308,9 @@
   );
   --color-slide-up-card-icon-filter-theme: var(
     --theme-dark-slide-up-card-icon-filter-theme
+  );
+  --color-slide-up-card-info-shortcut-background: var(
+    --theme-dark-slide-up-card-info-shortcut-background
   );
 }
 
@@ -825,6 +833,61 @@ body {
   width: 100%;
   padding-bottom: 5vmin;
   overflow-x: auto;
+}
+
+.shortcut-action {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.shortcut-key {
+  display: block;
+  margin-top: 0.5vmin;
+  border-radius: 5px;
+  padding: 0.5vmin 2vmin;
+  font-family: monospace;
+  font-size: 2.3vmin;
+  font-weight: lighter;
+  color: #f74f4f;
+  background-color: var(--color-slide-up-card-info-shortcut-background);
+}
+
+.factory-reset-slot__button {
+  position: absolute;
+  top: -7vmin;
+  right: -5vmin;
+  width: 6vmin;
+  height: 6vmin;
+  margin: 0 1vmin;
+  border-radius: 50%;
+  border: 0.3vmin solid #d4021b;
+  font-family: monospace;
+  font-size: 3.5vmin;
+  text-align: center;
+  color: var(--color-slide-up-card-button-forecolor);
+  background: var(--color-neu-btn-round-background);
+  -webkit-box-shadow: var(--color-neu-btn-round-box-shadow);
+          box-shadow: var(--color-neu-btn-round-box-shadow);
+  z-index: 1;
+}
+
+.factory-reset-slot__button:focus {
+  outline: 0;
+}
+
+.factory-reset-slot__button:active {
+  border: 1px solid var(--color-neu-btn-round-border);
+  background: var(--color-neu-btn-round-background-active);
+  -webkit-box-shadow: var(--color-neu-btn-round-box-shadow-active);
+          box-shadow: var(--color-neu-btn-round-box-shadow-active);
 }
 
 /* -------------------------------------------------------------------------- */

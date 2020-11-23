@@ -147,18 +147,39 @@ template.innerHTML = `
 .slide-up-panel__btns .btn-minus {
   margin-top: 2vmin;
 }
+
+/* -------------------------------------------------------------------------- */
+/*                                 slot style                                 */
+/* -------------------------------------------------------------------------- */
+
+::slotted(*){
+  position: absolute;
+  top: 9vmin;
+  display: flex;
+  justify-content: space-between;
+  width: 80%;
+  font-size: 2.5vmin;
+  line-height: 3.5vmin;
+}
+
 </style>
 
 <div id="slide-up-panel__state-card" class="slide-up-panel__state-card">
   <img id="timer-card__icon" class="timer-card__icon"/>
 
   <div class="slide-up-panel__state-card__time-container">
+    <slot name="shortcut"></slot>
+    <slot name="sound"></slot>
+    <slot name="factory-reset"></slot>
+
     <span
       id="slide-up-panel__state-card__time-number"
-      class="slide-up-panel__state-card__time-number">0</span>
+      class="slide-up-panel__state-card__time-number"></span>
+
     <span
       id="slide-up-panel__state-card__time-unit"
       class="slide-up-panel__state-card__time-unit"></span>
+    
     <div
       id="slide-up-panel__state-card__time-text"
       class="slide-up-panel__state-card__time-text"></div>
@@ -215,7 +236,10 @@ class YuSettingsTimerCard extends HTMLElement {
       'slide-up-panel__state-card__time-number',
     );
 
-    // set ring visibility
+    // init toggle state
+    settings.initSettingCardToggle(currentComponentId);
+
+    // set ring visibility when click toggle
     toggleEl.addEventListener('change', () => {
       settings.setTimeRingToggle(currentComponentId, timeNrEl);
     });
@@ -273,6 +297,23 @@ class YuSettingsTimerCard extends HTMLElement {
     minusBtnEl.addEventListener('click', () => {
       settings.onCardBtnClick(currentComponentId, 'minusBtn');
       settings.setTimeNr(currentComponentId, timeNrEl);
+    });
+
+    // factory-reset slot
+    // get 2nd slot: factory-reset
+    const restoreFactorySlot = this.shadowRoot.querySelectorAll('slot')[2];
+    restoreFactorySlot.addEventListener('slotchange', () => {
+      // get the whole slot element
+      const factoryResetSlotEl = restoreFactorySlot.assignedNodes()[0];
+      // get btn element
+      const factoryResetBtnEl = factoryResetSlotEl.querySelector(
+        '#factory-reset-slot__button',
+      );
+
+      // on factoryResetBtnEl click: reset DailySpinner
+      factoryResetBtnEl.addEventListener('click', () => {
+        settings.factoryResetHandler();
+      });
     });
   }
 }
