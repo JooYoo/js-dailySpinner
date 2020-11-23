@@ -88,22 +88,22 @@
           </yu-settings-timer-card>
 
           <yu-settings-timer-card
-            id="progressRingCard"
-            icon="https://www.flaticon.com/svg/static/icons/svg/1152/1152888.svg"
-            isToggleDisplay="true"
-            isPlusMinusBtnsDisplay="false"
-            timeUnit="%"
-            timeDescription="progress ring"
-          >
-          </yu-settings-timer-card>
-
-          <yu-settings-timer-card
             id="personTimerCard"
             icon="https://www.flaticon.com/svg/static/icons/svg/1232/1232746.svg"
             isToggleDisplay="true"
             isPlusMinusBtnsDisplay="true"
             timeUnit="mins"
             timeDescription="individual time"
+          >
+          </yu-settings-timer-card>
+
+          <yu-settings-timer-card
+            id="progressRingCard"
+            icon="https://www.flaticon.com/svg/static/icons/svg/1152/1152888.svg"
+            isToggleDisplay="true"
+            isPlusMinusBtnsDisplay="false"
+            timeUnit="%"
+            timeDescription="progress ring"
           >
           </yu-settings-timer-card>
 
@@ -116,6 +116,81 @@
             timeDescription="theme"
           >
           </yu-settings-timer-card>
+
+          <yu-settings-timer-card
+            id="soundCard"
+            icon="https://www.flaticon.com/svg/static/icons/svg/3774/3774247.svg"
+            isToggleDisplay="true"
+            isPlusMinusBtnsDisplay="false"
+            timeUnit=""
+            timeDescription="sound"
+          >
+            <div slot="sound">
+              <div class="sound-text">
+                meeting time over <br />
+                sound effect
+              </div>
+            </div>
+          </yu-settings-timer-card>
+
+          <yu-settings-timer-card
+            id="individualSoundCard"
+            icon="https://www.flaticon.com/svg/static/icons/svg/1011/1011139.svg"
+            isToggleDisplay="true"
+            isPlusMinusBtnsDisplay="false"
+            timeUnit=""
+            timeDescription="sound"
+          >
+            <div slot="sound">
+              <div class="sound-text">
+                individual time over <br />
+                sound effect
+              </div>
+            </div>
+          </yu-settings-timer-card>
+
+          <yu-settings-timer-card
+            id="shortcutCard"
+            icon="https://www.flaticon.com/svg/static/icons/svg/1322/1322244.svg"
+            isToggleDisplay="false"
+            isPlusMinusBtnsDisplay="false"
+            timeUnit=""
+            timeDescription="shortcut"
+          >
+            <div slot="shortcut">
+              <div class="shortcut-action">
+                spin
+                <span class="shortcut-key">Space</span>
+              </div>
+              <div class="shortcut-action">
+                flip <span class="shortcut-key">F</span>
+              </div>
+              <div class="shortcut-action">
+                reset <span class="shortcut-key">R</span>
+              </div>
+            </div>
+          </yu-settings-timer-card>
+
+          <yu-settings-timer-card
+            id="resetAppCard"
+            icon="https://www.flaticon.com/svg/static/icons/svg/503/503824.svg"
+            isToggleDisplay="false"
+            isPlusMinusBtnsDisplay="false"
+            timeUnit=""
+            timeDescription="factory reset"
+          >
+            <div slot="factory-reset">
+              <div class="factory-reset-slot__text">
+                restore the app to its factory setting
+              </div>
+              <button
+                id="factory-reset-slot__button"
+                class="factory-reset-slot__button"
+              >
+                !
+              </button>
+            </div>
+          </yu-settings-timer-card>
         </div>
       </div>
       <div class="slide-up-panel__shadow--bottom"></div>
@@ -126,7 +201,7 @@
     <button id="btn-flip" class="btn-flip neu-btn-round">
       <img
         class="icon-flip"
-        src="https://www.flaticon.com/svg/static/icons/svg/1250/1250694.svg"
+        src="https://www.flaticon.com/svg/static/icons/svg/21/21192.svg"
       />
     </button>
   </body>
