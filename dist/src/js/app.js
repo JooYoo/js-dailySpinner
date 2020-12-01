@@ -61,50 +61,47 @@ async function registerSW() {
 }
 
 /* -------------------------------------------------------------------------- */
-/*                             UI_SWIPE: flip + reset                         */
+/*                               Hammerjs: swipe                              */
 /* -------------------------------------------------------------------------- */
+const hammertimer = new Hammer(swipeEl);
+let interactionType;
+
+hammertimer.get('pan').set({ direction: Hammer.DIRECTION_ALL });
+hammertimer.on('pan', (ev) => {
+  // sign in interactionType
+  interactionType = ev.additionalEvent;
+  // which interaction happens
+  switch (ev.additionalEvent) {
+    // swipe => Back
+    case 'panright':
+      uiSwipe.flipToBackAnim(swipeEl);
+      interactionType = '';
+      break;
+
+    // swipe <= Front
+    case 'panleft':
+      currentPersons = uiSwipe.flipToFront(
+        swipeEl,
+        needleEl,
+        frontSidePeopleEl,
+        mainStyle,
+        persons,
+      );
+      break;
+
+    // swipe UP
+    case 'panup':
+      if (!uiSwipe.isBack(swipeEl)) {
+        currentPersons = uiSwipe.resetAll(swipeEl, needleEl, persons);
+      }
+      break;
+
+    default:
+      break;
+  }
+});
 
 window.onload = () => {
-  /* ---------------------------------- start --------------------------------- */
-  swipeEl.addEventListener('mousedown', (e) => {
-    uiSwipe.onSwipeMouseDonw(10);
-  });
-  swipeEl.addEventListener('touchstart', (e) => {
-    uiSwipe.onSwipeTouchStart(0.2);
-  });
-
-  /* ----------------------------------- on ----------------------------------- */
-  window.addEventListener('mousemove', (e) => {
-    let restPeople = uiSwipe.onSwipeTo(
-      e,
-      swipeEl,
-      needleEl,
-      frontSidePeopleEl,
-      mainStyle,
-      persons,
-    );
-    if (restPeople) currentPersons = restPeople;
-  });
-  swipeEl.addEventListener('touchmove', (e) => {
-    let restPeople = uiSwipe.onSwipeTo(
-      e,
-      swipeEl,
-      needleEl,
-      frontSidePeopleEl,
-      mainStyle,
-      persons,
-    );
-    if (restPeople) currentPersons = restPeople;
-  });
-
-  /* ----------------------------------- end ---------------------------------- */
-  window.addEventListener('mouseup', () => {
-    uiSwipe.onSwipeMouseUp();
-  });
-  window.addEventListener('touchend', () => {
-    uiSwipe.onSwipeTouchEnd();
-  });
-
   /* -------------------------------------------------------------------------- */
   /*                                 side__front                                */
   /* -------------------------------------------------------------------------- */
@@ -159,6 +156,7 @@ window.onload = () => {
   /* ---------------------------- set attend person --------------------------- */
 
   backSidePeopleEl.addEventListener('click', (e) => {
+    // set attend people
     let attendPeople = uiBackSide.setAttendPerson(e, persons);
     if (attendPeople) persons = attendPeople;
   });

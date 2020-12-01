@@ -78,6 +78,10 @@ function setPersonAttend(e, clickedPersonName, allPeople) {
 
   // DT: find the person + set isAttend
   clickedPerson = allPeople.find((person) => person.name == clickedPersonName);
+
+  // check if clicked nothing
+  if (!clickedPerson) return;
+
   clickedPerson.isAttend = !clickedPerson.isAttend;
   people = allPeople;
 
