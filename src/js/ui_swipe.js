@@ -1,91 +1,75 @@
 import * as uiProgressRing from './ui_progress-ring.js';
 import * as uiFrontSide from './ui_front-side.js';
 import * as dataPeople from './data_people.js';
-import * as uiUtility from './ui_utility.js';
 import * as timer from './timer.js';
-
-let isTapDownPlate;
-let interactionType;
-let sensitivity = 0;
-let direOld;
-let direCur;
-let direCount = 0;
-
-const ControlBy = {
-  MOUSE: 'MOUSE',
-  TOUCH: 'TOUCH',
-};
 
 /* -------------------------------------------------------------------------- */
 /*                detect mousedown & touchstart in swipeElement               */
 /* -------------------------------------------------------------------------- */
 
-function onSwipeMouseDonw(mouseSensitivity) {
-  isTapDownPlate = true;
-  interactionType = ControlBy.MOUSE;
-  sensitivity = mouseSensitivity;
-}
+// function
+//   isTapD
 
-function onSwipeTouchStart(touchSensitivity) {
-  isTapDownPlate = true;
-  interactionType = ControlBy.TOUCH;
-  sensitivity = touchSensitivity;
-}
+// function onSwipeTouchStart(touchSensitivity) {
+//   isTapDownPlate = true;
+//   interactionType = ControlBy.TOUCH;
+//   sensitivity = touchSensitivity;
+// }
 
 /* -------------------------------------------------------------------------- */
 /*                detect mousemove & touchmove in swipeElement                */
 /* -------------------------------------------------------------------------- */
 
 // swipeUtil: main function
-function onSwipeTo(
-  e,
-  swipeEl,
-  needleEl,
-  peopleContainerEl,
-  mainStyle,
-  allPeople
-) {
-  if (!isTapDownPlate) return;
+// function onSwipeTo(
+//   e,
+//   swipeEl,
+//   needleEl,
+//   peopleContainerEl,
+//   mainStyle,
+//   allPeople
+// ) {
+//   if (!isTapDownPlate) return;
 
-  let restPeople;
+//   let restPeople;
 
-  //FIXME: (write a function) output Direction by sensitivity
-  direOld = onSwipe(e);
-  if (!direOld) return;
-  if (direCur === direOld) {
-    increaseDireCount();
-  } else {
-    direCount = 0;
-    direCur = direOld;
-  }
-  if (direCount != sensitivity) {
-    return;
-  }
-  let swipeTo = direCur;
-  // console.log(swipeTo, direCount);
-  // (func end)
+//   //FIXME: (write a function) output Direction by sensitivity
+//   direOld = onSwipe(e);
+//   if (!direOld) return;
+//   if (direCur === direOld) {
+//     increaseDireCount();
+//   } else {
+//     direCount = 0;
+//     direCur = direOld;
+//   }
+//   if (direCount != sensitivity) {
+//     return;
+//   }
+//   let swipeTo = direCur;
+//   // console.log(swipeTo, direCount);
+//   // (func end)
 
-  if (swipeTo === Swipe.UP && !isBack(swipeEl)) {
-    // UP: reset
-    restPeople = resetAll(swipeEl, needleEl, allPeople);
-  } else if (swipeTo === Swipe.RIGHT && !isBack(swipeEl)) {
-    // => to Back
-    flipToBackAnim(swipeEl);
-  } else if (swipeTo === Swipe.LEFT) {
-    // <= to Front
-    restPeople = flipToFront(
-      swipeEl,
-      needleEl,
-      peopleContainerEl,
-      mainStyle,
-      allPeople
-    );
-  } else if (swipeTo === Swipe.DOWN) {
-    // DOWN: toast
-  }
+//   if (swipeTo === Swipe.UP && !isBack(swipeEl)) {
+//     // UP: reset
+//     restPeople = resetAll(swipeEl, needleEl, allPeople);
+//   } else if (swipeTo === Swipe.RIGHT && !isBack(swipeEl)) {
+//     // => to Back
+//     flipToBackAnim(swipeEl);
+//   } else if (swipeTo === Swipe.LEFT) {
+//     // <= to Front
+//     restPeople = flipToFront(
+//       swipeEl,
+//       needleEl,
+//       peopleContainerEl,
+//       mainStyle,
+//       allPeople
+//     );
+//   } else if (swipeTo === Swipe.DOWN) {
+//     // DOWN: toast
+//   }
 
-  return restPeople;
-}
+//   return restPeople;
+// }
 
 // flip plate
 function flipToFront(
@@ -93,7 +77,7 @@ function flipToFront(
   needleEl,
   peopleContainerEl,
   mainStyle,
-  allPeople
+  allPeople,
 ) {
   let restPeople;
   let selectedPeople;
@@ -109,9 +93,6 @@ function flipToFront(
 
   // UI: reset ProgressUI
   uiProgressRing.setProgressRing(0);
-
-  // reset swipe sensetivity
-  direCount = 0;
 
   // DT
   selectedPeople = dataPeople.getSelectedPeople(allPeople);
@@ -138,78 +119,78 @@ function isBack(swipeEl) {
   return swipeEl.classList.contains('spin-container__flip');
 }
 
-// swipeUti: filter the useless direction signal in swipe process
-function increaseDireCount() {
-  if (interactionType === ControlBy.MOUSE) {
-    direCount++;
-  } else if (interactionType === ControlBy.TOUCH) {
-    direCount += 0.1;
-  }
-}
+// // swipeUti: filter the useless direction signal in swipe process
+// function increaseDireCount() {
+//   if (interactionType === ControlBy.MOUSE) {
+//     direCount++;
+//   } else if (interactionType === ControlBy.TOUCH) {
+//     direCount += 0.1;
+//   }
+// }
 
 /* --------------------- TODO: can be save as own module -------------------- */
 
-let oldX = 0;
-let oldY = 0;
-const Swipe = {
-  UP: 'UP',
-  DOWN: 'DOWN',
-  LEFT: 'LEFT',
-  RIGHT: 'RIGHT',
-};
+// let oldX = 0;
+// let oldY = 0;
+// const Swipe = {
+//   UP: 'UP',
+//   DOWN: 'DOWN',
+//   LEFT: 'LEFT',
+//   RIGHT: 'RIGHT',
+// };
 
 // check direction: main function TODO: change the func name
-function onSwipe(e) {
-  if (e.changedTouches) {
-    let result = checkDirection(
-      oldX,
-      oldY,
-      e.changedTouches[0].screenX,
-      e.changedTouches[0].screenY
-    );
-    if (result) {
-      return result;
-    }
-  } else {
-    let result = checkDirection(oldX, oldY, e.pageX, e.pageY);
-    if (result) {
-      return result;
-    }
-  }
-}
+// function onSwipe(e) {
+//   if (e.changedTouches) {
+//     let result = checkDirection(
+//       oldX,
+//       oldY,
+//       e.changedTouches[0].screenX,
+//       e.changedTouches[0].screenY
+//     );
+//     if (result) {
+//       return result;
+//     }
+//   } else {
+//     let result = checkDirection(oldX, oldY, e.pageX, e.pageY);
+//     if (result) {
+//       return result;
+//     }
+//   }
+// }
 
-function checkDirection(oldx, oldy, currx, curry) {
-  let direction;
+// function checkDirection(oldx, oldy, currx, curry) {
+//   let direction;
 
-  if (currx == oldx && curry < oldy) {
-    direction = Swipe.UP;
-  } else if (currx == oldx && curry > oldy) {
-    direction = Swipe.DOWN;
-  } else if (currx < oldx && curry == oldy) {
-    direction = Swipe.LEFT;
-  } else if (currx > oldx && curry == oldy) {
-    direction = Swipe.RIGHT;
-  }
+//   if (currx == oldx && curry < oldy) {
+//     direction = Swipe.UP;
+//   } else if (currx == oldx && curry > oldy) {
+//     direction = Swipe.DOWN;
+//   } else if (currx < oldx && curry == oldy) {
+//     direction = Swipe.LEFT;
+//   } else if (currx > oldx && curry == oldy) {
+//     direction = Swipe.RIGHT;
+//   }
 
-  oldX = currx;
-  oldY = curry;
+//   oldX = currx;
+//   oldY = curry;
 
-  if (direction) {
-    return direction;
-  }
-}
+//   if (direction) {
+//     return direction;
+//   }
+// }
 
 /* -------------------------------------------------------------------------- */
 /*                  detect mouseup & touchend in swipeElement                 */
 /* -------------------------------------------------------------------------- */
 
-function onSwipeMouseUp() {
-  isTapDownPlate = false;
-}
+// function onSwipeMouseUp() {
+//   isTapDownPlate = false;
+// }
 
-function onSwipeTouchEnd() {
-  isTapDownPlate = false;
-}
+// function onSwipeTouchEnd() {
+//   isTapDownPlate = false;
+// }
 
 /* -------------------------------------------------------------------------- */
 /*                      reset needle, progressRing, data                      */
@@ -251,9 +232,6 @@ function swipeToResetUi(swipeEl, needleEl) {
 
   // reset selectedPerson Anim
   uiFrontSide.resetSelectedPersonUI();
-
-  // reset swipe sensetivity
-  direCount = 0;
 }
 
 // rest needle
@@ -262,17 +240,4 @@ function resetNeedleUi(needleEl) {
   needleEl.classList.add('turn--reset');
 }
 
-export {
-  ControlBy,
-  isTapDownPlate,
-  onSwipeMouseDonw,
-  onSwipeTouchStart,
-  onSwipeTo,
-  onSwipeMouseUp,
-  onSwipeTouchEnd,
-  resetAll,
-  isBack,
-  flipToBackAnim,
-  flipToFrontAnim,
-  flipToFront,
-};
+export { resetAll, isBack, flipToBackAnim, flipToFrontAnim, flipToFront };
