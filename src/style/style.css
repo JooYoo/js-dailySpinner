@@ -668,7 +668,7 @@ body {
       -ms-flex-align: center;
           align-items: center;
   left: 50%;
-  bottom: 5%;
+  top: -10vmin;
   -webkit-transform: translateX(-50%);
           transform: translateX(-50%);
   -webkit-transition: -webkit-transform 0.2s ease-in-out;
@@ -716,9 +716,10 @@ body {
 }
 
 .slide-up-panel__btn {
+  position: absolute;
+  top: 32px;
   height: 0.8vmin;
   width: 30vmin;
-  margin: 4vmin;
   background-color: var(--color-slide-up-btn-background);
   -webkit-box-shadow: var(--color-slide-up-btn-box-shadow);
           box-shadow: var(--color-slide-up-btn-box-shadow);
@@ -789,9 +790,9 @@ body {
 /* -------------------------------------------------------------------------- */
 .slide-up-panel__shadow--up {
   position: absolute;
-  width: 85vmin;
+  width: 100%;
   height: 1vmin;
-  top: 7vmin;
+  top: 15vmin;
   background-color: var(--color-slide-up-shadow-up);
   -webkit-box-shadow: 0 1vmin 33px 2vmin var(--color-slide-up-shadow-up);
           box-shadow: 0 1vmin 33px 2vmin var(--color-slide-up-shadow-up);
@@ -813,8 +814,13 @@ body {
   position: absolute;
   width: 100%;
   height: 95%;
-  margin-top: 7vmin;
+  margin-top: 15vmin;
   overflow-y: auto;
+  scrollbar-width: none;
+}
+
+.slide-up-panel__scroll::-webkit-scrollbar {
+  display: none;
 }
 
 .slide-up-panel__state-card-container {
@@ -831,7 +837,7 @@ body {
       -ms-flex-align: start;
           align-items: flex-start;
   width: 100%;
-  padding-bottom: 5vmin;
+  padding-bottom: 14vmin;
   overflow-x: auto;
 }
 
