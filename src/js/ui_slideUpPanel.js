@@ -1,5 +1,6 @@
 import * as uiUtility from './ui_utility.js';
 import * as uiSwipe from './ui_swipe.js';
+import * as timer from './timer.js';
 
 const setSlidePanelUp = (isUp, modalBgEl, slideUpPanelEl, btnFlipEl) => {
   isUp = !isUp;
@@ -7,7 +8,7 @@ const setSlidePanelUp = (isUp, modalBgEl, slideUpPanelEl, btnFlipEl) => {
     uiUtility.toggleAnim(
       btnFlipEl,
       'btn-flip-anim__visible',
-      'btn-flip-anim__hide'
+      'btn-flip-anim__hide',
     );
     uiUtility.toggleAnim(slideUpPanelEl, 'slide-down-anim', 'slide-up-anim');
 
@@ -17,7 +18,7 @@ const setSlidePanelUp = (isUp, modalBgEl, slideUpPanelEl, btnFlipEl) => {
     uiUtility.toggleAnim(
       btnFlipEl,
       'btn-flip-anim__hide',
-      'btn-flip-anim__visible'
+      'btn-flip-anim__visible',
     );
     uiUtility.toggleAnim(slideUpPanelEl, 'slide-up-anim', 'slide-down-anim');
 
@@ -32,8 +33,13 @@ const clickToFlip = (
   needleEl,
   frontSidePeopleEl,
   mainStyle,
-  persons
+  persons,
 ) => {
+  // ok to flip?
+  if (!(timer.mainTimerStatus == timer.onTimer.STOP)) {
+    // TODO: optimize flipValidator()
+  }
+
   let isBack = uiSwipe.isBack(swipeEl);
   if (!isBack) {
     uiSwipe.flipToBackAnim(swipeEl);
@@ -43,8 +49,19 @@ const clickToFlip = (
       needleEl,
       frontSidePeopleEl,
       mainStyle,
-      persons
+      persons,
     );
+  }
+};
+
+const flipValidator = () => {
+  const answer = window.confirm('Flip Spinner and start new?');
+  if (answer) {
+    console.log('yes');
+    return false;
+  } else {
+    console.log('no');
+    return;
   }
 };
 
