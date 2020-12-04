@@ -35,12 +35,8 @@ const clickToFlip = (
   mainStyle,
   persons,
 ) => {
-  // ok to flip?
-  if (!(timer.mainTimerStatus == timer.onTimer.STOP)) {
-    // TODO: optimize flipValidator()
-  }
-
   let isBack = uiSwipe.isBack(swipeEl);
+
   if (!isBack) {
     uiSwipe.flipToBackAnim(swipeEl);
   } else {
@@ -51,17 +47,6 @@ const clickToFlip = (
       mainStyle,
       persons,
     );
-  }
-};
-
-const flipValidator = () => {
-  const answer = window.confirm('Flip Spinner and start new?');
-  if (answer) {
-    console.log('yes');
-    return false;
-  } else {
-    console.log('no');
-    return;
   }
 };
 
