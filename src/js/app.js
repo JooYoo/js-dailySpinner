@@ -5,6 +5,8 @@ import * as uiShortcut from './ui_shortcut.js';
 import * as uiSlideupPanel from './ui_slideUpPanel.js';
 import * as dataLocalStorage from './data_localstorage.js';
 import * as dataPeople from './data_people.js';
+import * as timer from './timer.js';
+import * as popup from './popup.js';
 
 import '../components/yu-toast.js';
 import '../components/yu-progress-ring.js';
@@ -239,11 +241,32 @@ modalBgEl.addEventListener('click', () => {
 
 // click flipBtn to toggle plate flip
 btnFlipEl.addEventListener('click', (e) => {
-  currentPersons = uiSlideupPanel.clickToFlip(
-    swipeEl,
-    needleEl,
-    frontSidePeopleEl,
-    mainStyle,
-    persons,
-  );
+  let restPeople;
+  let isSpinnerRunning = !(timer.mainTimerStatus == timer.onTimer.STOP);
+  let isBack = uiSwipe.isBack(swipeEl);
+
+  if (isSpinnerRunning && !isBack) {
+    // popup validator
+    if (popup.okCancel('Flip Spinner and restart?')) {
+      restPeople = uiSlideupPanel.clickToFlip(
+        swipeEl,
+        needleEl,
+        frontSidePeopleEl,
+        mainStyle,
+        persons,
+      );
+    } else {
+      return;
+    }
+  } else {
+    restPeople = uiSlideupPanel.clickToFlip(
+      swipeEl,
+      needleEl,
+      frontSidePeopleEl,
+      mainStyle,
+      persons,
+    );
+  }
+
+  if (restPeople) currentPersons = restPeople;
 });
