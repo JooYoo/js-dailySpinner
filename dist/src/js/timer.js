@@ -2,10 +2,18 @@ import * as datePeople from './data_people.js';
 import * as uiRing from './ui_progress-ring.js';
 import * as sound from './sound.js';
 
+const onTimer = {
+  START: 'start',
+  RUNNING: 'running',
+  LAST: 'last',
+  STOP: 'stop',
+};
+
 let mainTimer;
 //DEV: mainTimerRingMinute = 15
 let mainTimerRingMinute = 15;
 let isMainTimerActive = true;
+let mainTimerStatus = onTimer.STOP;
 
 let personTimer;
 //DEV: personTimerRingMin = 3;
@@ -14,13 +22,6 @@ let isPersonTimerActive = true;
 
 let progressRingNum = 100;
 let isProgressRingActive = true;
-
-const onTimer = {
-  START: 'start',
-  RUNNING: 'running',
-  LAST: 'last',
-  STOP: 'stop',
-};
 
 /* ----------------------------- set personTimer ---------------------------- */
 
@@ -73,14 +74,14 @@ function setMainTimer(restPeople, allPeople) {
   let tick = 0;
 
   // get Timer state
-  let timerStatus = checkTimerStatus(restPeople, allPeople);
+  mainTimerStatus = checkTimerStatus(restPeople, allPeople);
 
   //set MainTimer numericText
   let mainTimerEl = document.querySelector('#mainTimer');
   let mainTimerTextEl = mainTimerEl.shadowRoot.querySelector('#numeric-text');
 
   // set MainTimer text && ring
-  if (timerStatus == onTimer.START) {
+  if (mainTimerStatus == onTimer.START) {
     mainTimer = setInterval(() => {
       // tick -> min:sec
       let displayTime = setTimerText(tick++);
@@ -96,7 +97,7 @@ function setMainTimer(restPeople, allPeople) {
         sound.mainAudioPlayer,
       );
     }, 1000);
-  } else if (timerStatus == onTimer.STOP) {
+  } else if (mainTimerStatus == onTimer.STOP) {
     clearInterval(mainTimer);
     mainTimerTextEl.innerHTML = '00:00';
     // set MainTimer progressRing
@@ -234,6 +235,8 @@ export {
   mainTimerRingMinute,
   personTimerRingMin,
   progressRingNum,
+  mainTimerStatus,
+  onTimer,
   setMainTimer,
   setPersonTimer,
   setPlusPersonTime,
