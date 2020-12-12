@@ -65,6 +65,15 @@ const setPersonTimer = (restPeople, allPeople) => {
   sound.stopTimeOverAudio(sound.individualAudioPlayer);
 };
 
+/* ----------------------------- init mainTimer ----------------------------- */
+
+const setCurrentMainTime = (allPeople) => {
+  // get people count
+  let peopleLength = datePeople.getSelectedPeople(allPeople).length;
+  // set mainTimer by peopleCount and individualTime
+  mainTimerRingMinute = personTimerRingMin * peopleLength;
+};
+
 /* ------------------------------ set mainTimer ----------------------------- */
 
 function setMainTimer(restPeople, allPeople) {
@@ -237,6 +246,7 @@ export {
   progressRingNum,
   mainTimerStatus,
   onTimer,
+  setCurrentMainTime,
   setMainTimer,
   setPersonTimer,
   setPlusPersonTime,
