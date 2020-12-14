@@ -225,6 +225,14 @@ const setIndiTimerRelateMainTimer = () => {
   settings.setTimeNr('mainTimerCard', mainTimerNrEl);
 };
 
+// add person indiTimer --- mainTimer
+const setIndiTimerMainTimerUpdatePeople = (currentPeople) => {
+  // update people length
+  peopleLength = currentPeople.length;
+  // update mainTimer via peopleLength
+  setIndiTimerRelateMainTimer();
+};
+
 /* -------------------------- settings__card-toggle ------------------------- */
 // Main-Timer
 const toggleMainTimeRingVisibility = () => {
@@ -274,6 +282,7 @@ export {
   setMinusPersonTime,
   setPlusMainTime,
   setMinusMainTime,
+  setIndiTimerMainTimerUpdatePeople,
   toggleMainTimeRingVisibility,
   togglePersonTimeRingVisibility,
   toggleProgressRingVisibility,

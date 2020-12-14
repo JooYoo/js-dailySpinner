@@ -139,6 +139,9 @@ window.onload = () => {
         persons,
       );
 
+      // update indiTimer --- mainTimer
+      timer.setIndiTimerMainTimerUpdatePeople(persons);
+
       // press Enter: invalid text
     } else if (e.keyCode === 13 && !inputVal) {
       e.preventDefault();
