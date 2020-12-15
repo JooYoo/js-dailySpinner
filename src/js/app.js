@@ -139,7 +139,7 @@ window.onload = () => {
         persons,
       );
 
-      // update indiTimer --- mainTimer
+      // update mainTimer
       timer.setIndiTimerMainTimerUpdatePeople(persons);
 
       // press Enter: invalid text
@@ -169,6 +169,9 @@ window.onload = () => {
       e,
       persons,
     );
+
+    // update mainTimer
+    timer.setIndiTimerMainTimerUpdatePeople(persons);
   });
 
   /* -------------------------------------------------------------------------- */
