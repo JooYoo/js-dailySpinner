@@ -225,7 +225,7 @@ const setIndiTimerRelateMainTimer = () => {
   settings.setTimeNr('mainTimerCard', mainTimerNrEl);
 };
 
-// add person indiTimer --- mainTimer
+// set mainTimer when update people
 const setIndiTimerMainTimerUpdatePeople = (currentPeople) => {
   // update people length
   peopleLength = currentPeople.length;

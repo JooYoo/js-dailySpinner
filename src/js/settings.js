@@ -119,7 +119,7 @@ const setTimeRingToggle = (currentComponentId, timeNrEl) => {
 
 let isInit = true;
 
-const initMainTimer = (isInit) => {
+const initMainTimer = () => {
   if (isInit) {
     // get all people in localstorage
     let persons = dataPeople.getSavedPeople();
@@ -134,7 +134,7 @@ const setTimeNr = (currentComponentId, timerNrEl) => {
   switch (currentComponentId) {
     case 'mainTimerCard':
       // init main timer
-      initMainTimer(isInit);
+      initMainTimer();
       // render timer Nr
       displayTimeNr(timerNrEl, timer.mainTimerRingMinute);
       break;
