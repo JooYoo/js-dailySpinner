@@ -152,8 +152,17 @@ window.onload = () => {
 
   backSidePeopleEl.addEventListener('click', (e) => {
     // set attend people
-    let attendPeople = uiBackSide.setAttendPerson(e, persons);
-    if (attendPeople) persons = attendPeople;
+    let personsAfterSetAttend = uiBackSide.setAttendPerson(e, persons);
+
+    if (personsAfterSetAttend) {
+      persons = personsAfterSetAttend;
+    } else {
+      return;
+    }
+
+    // update mainTimer
+    let attendPeople = dataPeople.getSelectedPeople(persons);
+    timer.setIndiTimerMainTimerUpdatePeople(attendPeople);
   });
 
   /* ------------------------------ remove person ----------------------------- */
