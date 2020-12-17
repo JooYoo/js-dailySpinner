@@ -171,6 +171,15 @@ window.onload = () => {
     // UI: only works when click on 'X'
     if (e.target.className !== 'people-list-item__delete-btn') return;
 
+    // minimum person count validator
+    if (persons.length < 3) {
+      popup.ok('');
+      e.preventDefault();
+
+      return;
+    }
+
+    // remove person
     persons = uiBackSide.removePerson(
       frontSidePeopleEl,
       backSidePeopleEl,
