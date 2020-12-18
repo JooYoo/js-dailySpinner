@@ -77,7 +77,7 @@ hammertimer.on('pan', (ev) => {
         needleEl,
         frontSidePeopleEl,
         mainStyle,
-        persons,
+        persons
       );
       break;
 
@@ -95,6 +95,21 @@ hammertimer.on('pan', (ev) => {
 
 window.onload = () => {
   /* -------------------------------------------------------------------------- */
+  /*                           Shakejs: phone shaking                           */
+  /* -------------------------------------------------------------------------- */
+  var myShakeEvent = new Shake({
+    threshold: 15,
+    timeout: 1000,
+  });
+
+  myShakeEvent.start();
+
+  window.addEventListener('shake', () => {
+    alert('Shake!');
+    console.log('shake console');
+  });
+
+  /* -------------------------------------------------------------------------- */
   /*                                 side__front                                */
   /* -------------------------------------------------------------------------- */
 
@@ -107,7 +122,7 @@ window.onload = () => {
       swipeEl,
       needleEl,
       persons,
-      currentPersons,
+      currentPersons
     );
   });
 
@@ -136,7 +151,7 @@ window.onload = () => {
         backSidePeopleFormEl,
         mainStyle,
         inputVal,
-        persons,
+        persons
       );
 
       // update mainTimer
@@ -185,7 +200,7 @@ window.onload = () => {
       backSidePeopleEl,
       mainStyle,
       e,
-      persons,
+      persons
     );
 
     // update mainTimer
@@ -209,7 +224,7 @@ window.onload = () => {
       needleEl,
       e,
       persons,
-      currentPersons,
+      currentPersons
     );
     if (currentPeople) currentPersons = currentPeople;
   });
@@ -223,7 +238,7 @@ window.onload = () => {
       frontSidePeopleEl,
       e,
       mainStyle,
-      persons,
+      persons
     );
     if (currentPeople) currentPersons = currentPeople;
   });
@@ -239,7 +254,7 @@ btnSlideUpEl.addEventListener('click', () => {
     isUp,
     modalBgEl,
     slideUpPanelEl,
-    btnFlipEl,
+    btnFlipEl
   );
 });
 
@@ -249,7 +264,7 @@ modalBgEl.addEventListener('click', () => {
     isUp,
     modalBgEl,
     slideUpPanelEl,
-    btnFlipEl,
+    btnFlipEl
   );
 });
 
@@ -267,7 +282,7 @@ btnFlipEl.addEventListener('click', (e) => {
         needleEl,
         frontSidePeopleEl,
         mainStyle,
-        persons,
+        persons
       );
     } else {
       return;
@@ -278,7 +293,7 @@ btnFlipEl.addEventListener('click', (e) => {
       needleEl,
       frontSidePeopleEl,
       mainStyle,
-      persons,
+      persons
     );
   }
 
