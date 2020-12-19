@@ -105,8 +105,8 @@ window.onload = () => {
   myShakeEvent.start();
 
   window.addEventListener('shake', () => {
-    alert('Shake!');
-    console.log('shake console');
+    // reset spinner after shake
+    uiSwipe.resetAll(swipeEl, needleEl, persons);
   });
 
   /* -------------------------------------------------------------------------- */
