@@ -2,6 +2,7 @@ import * as timer from './timer.js';
 import * as theme from './theme.js';
 import * as sound from './sound.js';
 import * as uiUtility from './ui_utility.js';
+import * as dataPeople from './data_people.js';
 
 /* ---------------------- init via DOM attribute ---------------------- */
 
@@ -116,9 +117,25 @@ const setTimeRingToggle = (currentComponentId, timeNrEl) => {
   }
 };
 
+let isInit = true;
+
+const initMainTimer = () => {
+  if (isInit) {
+    // get all people in localstorage
+    let persons = dataPeople.getSavedPeople();
+    // set mainTimer by selected people
+    timer.setCurrentMainTime(persons);
+
+    isInit = false;
+  }
+};
+
 const setTimeNr = (currentComponentId, timerNrEl) => {
   switch (currentComponentId) {
     case 'mainTimerCard':
+      // init main timer
+      initMainTimer();
+      // render timer Nr
       displayTimeNr(timerNrEl, timer.mainTimerRingMinute);
       break;
 

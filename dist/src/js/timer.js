@@ -1,6 +1,9 @@
 import * as datePeople from './data_people.js';
 import * as uiRing from './ui_progress-ring.js';
 import * as sound from './sound.js';
+import * as settings from './settings.js';
+
+let peopleLength;
 
 const onTimer = {
   START: 'start',
@@ -63,6 +66,15 @@ const setPersonTimer = (restPeople, allPeople) => {
   }
   // clear individual-sound for each action to spinner
   sound.stopTimeOverAudio(sound.individualAudioPlayer);
+};
+
+/* ----------------------------- init mainTimer ----------------------------- */
+
+const setCurrentMainTime = (allPeople) => {
+  // get people count
+  peopleLength = datePeople.getSelectedPeople(allPeople).length;
+  // set mainTimer by peopleCount and individualTime
+  mainTimerRingMinute = personTimerRingMin * peopleLength;
 };
 
 /* ------------------------------ set mainTimer ----------------------------- */
@@ -185,14 +197,40 @@ const setMinusMainTime = () => {
   }
 };
 
-// Personal-Timer
+// indiTimer
 const setPlusPersonTime = () => {
+  // indiTimer addition
   personTimerRingMin++;
+  // mainTimer addition too
+  setIndiTimerRelateMainTimer();
 };
 const setMinusPersonTime = () => {
   if (personTimerRingMin > 1) {
+    // indiTimer subtraction
     personTimerRingMin--;
+    // mainTimer subtraction too
+    setIndiTimerRelateMainTimer();
   }
+};
+
+// indiTimer --- mainTimer
+const setIndiTimerRelateMainTimer = () => {
+  // set mainTimer min
+  mainTimerRingMinute = personTimerRingMin * peopleLength;
+  // render mainTimer Nr
+  let mainTimerCardEl = document.getElementById('mainTimerCard');
+  let mainTimerNrEl = mainTimerCardEl.shadowRoot.getElementById(
+    'slide-up-panel__state-card__time-number',
+  );
+  settings.setTimeNr('mainTimerCard', mainTimerNrEl);
+};
+
+// set mainTimer when update people
+const setIndiTimerMainTimerUpdatePeople = (currentPeople) => {
+  // update people length
+  peopleLength = currentPeople.length;
+  // update mainTimer via peopleLength
+  setIndiTimerRelateMainTimer();
 };
 
 /* -------------------------- settings__card-toggle ------------------------- */
@@ -237,12 +275,14 @@ export {
   progressRingNum,
   mainTimerStatus,
   onTimer,
+  setCurrentMainTime,
   setMainTimer,
   setPersonTimer,
   setPlusPersonTime,
   setMinusPersonTime,
   setPlusMainTime,
   setMinusMainTime,
+  setIndiTimerMainTimerUpdatePeople,
   toggleMainTimeRingVisibility,
   togglePersonTimeRingVisibility,
   toggleProgressRingVisibility,

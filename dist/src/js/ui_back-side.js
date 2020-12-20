@@ -1,5 +1,4 @@
 import * as UiFrontSide from './ui_front-side.js';
-import * as uiUtility from './ui_utility.js';
 import * as dataLocalStorage from './data_localstorage.js';
 import * as dataPeople from './data_people.js';
 
