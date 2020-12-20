@@ -77,7 +77,7 @@ hammertimer.on('pan', (ev) => {
         needleEl,
         frontSidePeopleEl,
         mainStyle,
-        persons
+        persons,
       );
       break;
 
@@ -106,7 +106,7 @@ window.onload = () => {
 
   window.addEventListener('shake', () => {
     // reset spinner after shake
-    uiSwipe.resetAll(swipeEl, needleEl, persons);
+    currentPersons = uiSwipe.resetAll(swipeEl, needleEl, persons);
   });
 
   /* -------------------------------------------------------------------------- */
@@ -122,7 +122,7 @@ window.onload = () => {
       swipeEl,
       needleEl,
       persons,
-      currentPersons
+      currentPersons,
     );
   });
 
@@ -151,7 +151,7 @@ window.onload = () => {
         backSidePeopleFormEl,
         mainStyle,
         inputVal,
-        persons
+        persons,
       );
 
       // update mainTimer
@@ -200,7 +200,7 @@ window.onload = () => {
       backSidePeopleEl,
       mainStyle,
       e,
-      persons
+      persons,
     );
 
     // update mainTimer
@@ -224,7 +224,7 @@ window.onload = () => {
       needleEl,
       e,
       persons,
-      currentPersons
+      currentPersons,
     );
     if (currentPeople) currentPersons = currentPeople;
   });
@@ -238,7 +238,7 @@ window.onload = () => {
       frontSidePeopleEl,
       e,
       mainStyle,
-      persons
+      persons,
     );
     if (currentPeople) currentPersons = currentPeople;
   });
@@ -254,7 +254,7 @@ btnSlideUpEl.addEventListener('click', () => {
     isUp,
     modalBgEl,
     slideUpPanelEl,
-    btnFlipEl
+    btnFlipEl,
   );
 });
 
@@ -264,7 +264,7 @@ modalBgEl.addEventListener('click', () => {
     isUp,
     modalBgEl,
     slideUpPanelEl,
-    btnFlipEl
+    btnFlipEl,
   );
 });
 
@@ -282,7 +282,7 @@ btnFlipEl.addEventListener('click', (e) => {
         needleEl,
         frontSidePeopleEl,
         mainStyle,
-        persons
+        persons,
       );
     } else {
       return;
@@ -293,7 +293,7 @@ btnFlipEl.addEventListener('click', (e) => {
       needleEl,
       frontSidePeopleEl,
       mainStyle,
-      persons
+      persons,
     );
   }
 
