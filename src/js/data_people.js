@@ -1,3 +1,4 @@
+import * as dataLocalStorage from './data_localstorage.js';
 class Person {
   constructor(name, id) {
     if (arguments.length == 2) {
@@ -17,8 +18,19 @@ class Person {
   }
 }
 
-function initPeople(people) {
-  people.push(
+const getSavedPeople = () => {
+  let preloadPeople = dataLocalStorage.loadPeople();
+  if (preloadPeople) {
+    return dataLocalStorage.loadPeople();
+  } else {
+    return initPeople();
+  }
+};
+
+function initPeople() {
+  let persons = [];
+
+  persons.push(
     new Person('Ruben'),
     new Person('Winnie'),
     new Person('Sascha'),
@@ -30,7 +42,7 @@ function initPeople(people) {
     new Person('Slawa'),
   );
 
-  return people;
+  return persons;
 }
 
 function getSelectedPeople(allPeople) {
@@ -50,4 +62,4 @@ function addNewPerson(inputValue, allPeople) {
   allPeople.unshift(new Person(inputValue, newPersonId));
 }
 
-export { Person, getSelectedPeople, addNewPerson, initPeople };
+export { Person, getSavedPeople, getSelectedPeople, addNewPerson, initPeople };

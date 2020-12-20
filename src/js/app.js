@@ -3,7 +3,6 @@ import * as uiFrontSide from './ui_front-side.js';
 import * as uiBackSide from './ui_back-side.js';
 import * as uiShortcut from './ui_shortcut.js';
 import * as uiSlideupPanel from './ui_slideUpPanel.js';
-import * as dataLocalStorage from './data_localstorage.js';
 import * as dataPeople from './data_people.js';
 import * as timer from './timer.js';
 import * as popup from './popup.js';
@@ -31,12 +30,7 @@ let persons = [];
 let currentPersons = [];
 
 // validate if localStorage has data, otherwise push default people
-let preloadPeople = dataLocalStorage.loadPeople();
-if (preloadPeople) {
-  persons = dataLocalStorage.loadPeople();
-} else {
-  persons = dataPeople.initPeople(persons);
-}
+persons = dataPeople.getSavedPeople();
 
 // inBeginning:
 currentPersons = dataPeople.getSelectedPeople(persons);
@@ -66,18 +60,14 @@ async function registerSW() {
 /*                               Hammerjs: swipe                              */
 /* -------------------------------------------------------------------------- */
 const hammertimer = new Hammer(swipeEl);
-let interactionType;
 
 hammertimer.get('pan').set({ direction: Hammer.DIRECTION_ALL });
 hammertimer.on('pan', (ev) => {
-  // sign in interactionType
-  interactionType = ev.additionalEvent;
   // which interaction happens
   switch (ev.additionalEvent) {
     // swipe => Back
     case 'panright':
       uiSwipe.flipToBackAnim(swipeEl);
-      interactionType = '';
       break;
 
     // swipe <= Front
@@ -87,7 +77,7 @@ hammertimer.on('pan', (ev) => {
         needleEl,
         frontSidePeopleEl,
         mainStyle,
-        persons,
+        persons
       );
       break;
 
@@ -105,6 +95,21 @@ hammertimer.on('pan', (ev) => {
 
 window.onload = () => {
   /* -------------------------------------------------------------------------- */
+  /*                           Shakejs: phone shaking                           */
+  /* -------------------------------------------------------------------------- */
+  var myShakeEvent = new Shake({
+    threshold: 15,
+    timeout: 1000,
+  });
+
+  myShakeEvent.start();
+
+  window.addEventListener('shake', () => {
+    // reset spinner after shake
+    uiSwipe.resetAll(swipeEl, needleEl, persons);
+  });
+
+  /* -------------------------------------------------------------------------- */
   /*                                 side__front                                */
   /* -------------------------------------------------------------------------- */
 
@@ -117,7 +122,7 @@ window.onload = () => {
       swipeEl,
       needleEl,
       persons,
-      currentPersons,
+      currentPersons
     );
   });
 
@@ -146,8 +151,11 @@ window.onload = () => {
         backSidePeopleFormEl,
         mainStyle,
         inputVal,
-        persons,
+        persons
       );
+
+      // update mainTimer
+      timer.setIndiTimerMainTimerUpdatePeople(persons);
 
       // press Enter: invalid text
     } else if (e.keyCode === 13 && !inputVal) {
@@ -159,8 +167,17 @@ window.onload = () => {
 
   backSidePeopleEl.addEventListener('click', (e) => {
     // set attend people
-    let attendPeople = uiBackSide.setAttendPerson(e, persons);
-    if (attendPeople) persons = attendPeople;
+    let personsAfterSetAttend = uiBackSide.setAttendPerson(e, persons);
+
+    if (personsAfterSetAttend) {
+      persons = personsAfterSetAttend;
+    } else {
+      return;
+    }
+
+    // update mainTimer
+    let attendPeople = dataPeople.getSelectedPeople(persons);
+    timer.setIndiTimerMainTimerUpdatePeople(attendPeople);
   });
 
   /* ------------------------------ remove person ----------------------------- */
@@ -169,13 +186,25 @@ window.onload = () => {
     // UI: only works when click on 'X'
     if (e.target.className !== 'people-list-item__delete-btn') return;
 
+    // minimum person count validator
+    if (persons.length < 3) {
+      popup.ok('');
+      e.preventDefault();
+
+      return;
+    }
+
+    // remove person
     persons = uiBackSide.removePerson(
       frontSidePeopleEl,
       backSidePeopleEl,
       mainStyle,
       e,
-      persons,
+      persons
     );
+
+    // update mainTimer
+    timer.setIndiTimerMainTimerUpdatePeople(persons);
   });
 
   /* -------------------------------------------------------------------------- */
@@ -195,7 +224,7 @@ window.onload = () => {
       needleEl,
       e,
       persons,
-      currentPersons,
+      currentPersons
     );
     if (currentPeople) currentPersons = currentPeople;
   });
@@ -209,7 +238,7 @@ window.onload = () => {
       frontSidePeopleEl,
       e,
       mainStyle,
-      persons,
+      persons
     );
     if (currentPeople) currentPersons = currentPeople;
   });
@@ -225,7 +254,7 @@ btnSlideUpEl.addEventListener('click', () => {
     isUp,
     modalBgEl,
     slideUpPanelEl,
-    btnFlipEl,
+    btnFlipEl
   );
 });
 
@@ -235,7 +264,7 @@ modalBgEl.addEventListener('click', () => {
     isUp,
     modalBgEl,
     slideUpPanelEl,
-    btnFlipEl,
+    btnFlipEl
   );
 });
 
@@ -253,7 +282,7 @@ btnFlipEl.addEventListener('click', (e) => {
         needleEl,
         frontSidePeopleEl,
         mainStyle,
-        persons,
+        persons
       );
     } else {
       return;
@@ -264,7 +293,7 @@ btnFlipEl.addEventListener('click', (e) => {
       needleEl,
       frontSidePeopleEl,
       mainStyle,
-      persons,
+      persons
     );
   }
 
