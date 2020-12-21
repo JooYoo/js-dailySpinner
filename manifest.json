@@ -1,10 +1,10 @@
 {
   "name": "Daily Spinner",
   "short_name": "DailySpinner",
-  "start_url": "/js-dailySpinner/",
+  "start_url": "/",
   "display": "standalone",
-  "background_color": "#fff",
-  "theme_color": "#fff",
+  "background_color": "#1b1b1b",
+  "theme_color": "#1b1b1b",
   "orientation": "portrait",
   "icons": [
     {
