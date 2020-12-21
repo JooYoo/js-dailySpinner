@@ -32,9 +32,11 @@ const stopTimeOverAudio = (audioPlayer) => {
 /*                             init Audio player                              */
 /* -------------------------------------------------------------------------- */
 
-let mainAudioPlayer = initAudio('/src/assets/main_time_over_sound.mp3');
+let mainAudioPlayer = initAudio(
+  'https://raw.githubusercontent.com/JooYoo/js-dailySpinner/master/src/assets/main_time_over_sound.mp3'
+);
 let individualAudioPlayer = initAudio(
-  '/src/assets/individual_time_over_sound.mp3'
+  'https://raw.githubusercontent.com/JooYoo/js-dailySpinner/master/src/assets/individual_time_over_sound.mp3'
 );
 
 export {
