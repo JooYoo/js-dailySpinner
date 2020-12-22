@@ -3,7 +3,7 @@
 
 <p align="center">
   <strong>
-   <a href="http://bit.ly/dailyspinner">🤹🏻‍♂️ &nbsp; Demo</a>
+   <a href="https://dailyspinner.netlify.app/">🤹🏻‍♂️ &nbsp; Demo</a>
    ・ <a href="https://github.com/JooYoo/js-dailySpinner">👨🏻‍💻 &nbsp; Github</a>
   </strong>
 </p>
