@@ -1,5 +1,5 @@
 <h1 align="center">Daily Spinner</h1>
-<div align="center">2020.8 ~ 2020.11</div>
+<div align="center">2020.8 ~ 2020.12</div>
 
 <p align="center">
   <strong>
