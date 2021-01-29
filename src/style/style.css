@@ -24,7 +24,7 @@
     inset 0 -15px 15px rgba(255, 255, 255, 1), 0 15px 15px rgba(0, 0, 0, 0.1),
     inset 0 15px 15px rgba(0, 0, 0, 0.08);
   --theme-light-spin-container-flip-box-shadow: rgba(0, 0, 0, 0.08);
-  --theme-light-side-back-background: rgba(255, 255, 255, 0.5);
+  --theme-light-side-back-background: rgba(255, 255, 0, 0.5);
   --theme-light-people-list-before: rgba(0, 0, 0, 0.2);
   --theme-light-back-people-radio-border: rgba(0, 0, 0, 0.1);
   --theme-light-back-people-radio-bg: rgba(0, 0, 0, 0.05);
